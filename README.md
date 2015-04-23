@@ -1,4 +1,7 @@
 # Bestnid
 Sitio de subastas.
 
-Grupo 29: Ferella Nicolás, Romano Carolina, Gotta Simón.
+Grupo 29: 
+* Ferella Nicolás 
+* Romano Carolina 
+* Gotta Simón.
