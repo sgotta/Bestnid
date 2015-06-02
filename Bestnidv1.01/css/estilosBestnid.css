@@ -1,0 +1,60 @@
+/*-- HEADER --*/
+.navbar{
+	margin-bottom: 0;
+	background: #FF5050;
+	border: 0px;
+}
+
+.navbar .navbar-brand{
+	color :#AA2121;
+}
+
+.breadcrumb{
+	background-color: #fff;
+}
+
+.list-group a{
+	border: 0px;
+}
+
+.posts{
+	margin-top: 20px;
+}
+
+.navbar-inverse .navbar-nav li a {
+  color :#AA2121;
+}
+
+.pagination {
+  margin-left: 250px;
+}
+
+.dropdown{
+	margin-top: 10px;
+	margin-right: 50px;
+}
+.dropdown-toggle {
+ 	color:#8B8F94;
+ }
+  
+.breadcrumb{
+	padding-left: 0px;
+}
+
+.miga-de-pan{
+	padding-left: 0px;
+}
+
+
+
+/*-- Media Querie --*/
+@media screen and (max-width: 768px){
+	.post .thumb{
+		width: 100%;
+		margin-bottom: 20px;
+		margin-right: 0px;
+	}
+}
+
+
+
