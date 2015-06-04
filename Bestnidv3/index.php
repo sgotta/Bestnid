@@ -21,18 +21,19 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="#" class="navbar-brand">Bestnid</a>
+					<a href="index.php" class="navbar-brand">Bestnid</a>
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<form action="" class="navbar-form navbar-left" role="search">
+					<form action="index.php" method="post" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda">
+							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
 							<button type="submit" class="btn btn-primary">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
 						</div>
 					</form>
+
 
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrarse.php" id="inicio">Registrarse</a>
@@ -126,11 +127,73 @@
 				<div class="list-group">
 					<?php include("categorias.php");?>
 				</div>
-				<h4>Filtros</h4>
-				<div class="list-group">
-					<a href="#" class="list-group-item">Filtro1</a>
-					<a href="#" class="list-group-item">Filtro2</a>
-				</div>
+				<!-- filtros -->
+
+				<form action="resultado_filtrado.php" method="post" name="filtrado">
+
+					<h4>Filtrar por ciudad: </h4>
+
+					<div class="checkbox">
+
+						<label>
+
+							<input type="checkbox" name="filtros[]" value="Buenos Aires">
+
+								Buenos Aires
+
+						</label>
+
+						<br>
+
+						<label>
+
+							<input type="checkbox" name="filtros[]" value="La Plata">
+
+								La Plata
+
+						</label>
+
+						<br>
+
+						<label>
+
+							<input type="checkbox" name="filtros[]" value="Los Toldos">
+
+								Los Toldos
+
+						</label>
+
+						<br>
+
+						<label>
+
+							<input type="checkbox" name="filtros[]" value="Pehuajó">
+
+								Pehuajó
+
+						</label>
+
+						<br>
+
+						<label>
+
+							<input type="checkbox" name="filtros[]" value="Bragado">
+
+								Bragado
+
+						</label>
+
+						<br>
+
+					</div>
+
+					<button type="submit" class="btn btn-default">Filtrar Resultados</button>
+
+
+
+				</form>
+
+				<!-- fin filtros -->
 			</aside>
 		</div>
 	</section>

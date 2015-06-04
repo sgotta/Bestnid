@@ -2,7 +2,25 @@
 	include("conexion.php");
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
-	$registro=mysql_query("SELECT * FROM publicacion") or die ("problemas en consulta:".mysql_error());
+	if(isset($_POST['buscar']) && !empty($_POST['buscar'])){
+		//$conexion=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
+
+		//mysql_select_db($db,$conexion) or die ("problemas al conectarDB");
+
+		$registro=mysql_query("
+				SELECT *
+				FROM publicacion
+				WHERE titulo LIKE'%$_POST[buscar]%'")
+				or die("problemas en consulta: ".mysql_error());
+
+	}
+	else {
+		$registro=mysql_query("SELECT * FROM publicacion") or die ("problemas en consulta:".mysql_error());
+	}
+
+
+	
+	
 	//$cantPub =mysql_query("SELECT COUNT(*) FROM publicacion") or die ("problemas en consulta:".mysql_error());
 	$numPub = mysql_num_rows($registro);
 	$totalPaginas = $numPub / 6;
