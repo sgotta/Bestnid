@@ -119,74 +119,13 @@
 			<aside class="col-md-3 hidden-xs hidden-sm">
 				<h4>Categorias</h4>
 				<div class="list-group">
-					<?php include("categorias.php");?>
+					<?php include("categorias.php"); ?>
 				</div>
 				<!-- filtros -->
-
-				<form action="resultado_filtrado.php" method="post" name="filtrado">
-
-					<h4>Filtrar por ciudad: </h4>
-
-					<div class="checkbox">
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="Buenos Aires">
-
-								Buenos Aires
-
-						</label>
-
-						<br>
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="La Plata">
-
-								La Plata
-
-						</label>
-
-						<br>
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="Los Toldos">
-
-								Los Toldos
-
-						</label>
-
-						<br>
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="Pehuajo">
-
-								Pehuajo
-
-						</label>
-
-						<br>
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="Bragado">
-
-								Bragado
-
-						</label>
-
-						<br>
-
-					</div>
-
-					<button type="submit" class="btn btn-default">Filtrar Resultados</button>
-
-
-
-				</form>
-
+				<h4>Filtros por ciudad: </h4>
+				<div class="list-group">					
+					<?php include("filtros.php"); ?>
+				</div>
 				<!-- fin filtros -->
 			</aside>
 		</div>

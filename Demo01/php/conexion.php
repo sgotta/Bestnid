@@ -2,7 +2,7 @@
 
 	$host = "localhost";
 	$user = "root";
-	$pw = "cromano";
-	$db = "bestnid"
+	$pw = "pezdios226";
+	$db = "primera"
 
 ?>

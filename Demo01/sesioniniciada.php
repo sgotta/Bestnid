@@ -7,11 +7,13 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
 	<link rel="stylesheet" href="css/estilosBestnid.css">
-	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
 	<header>
+		<?php session_start(); ?>
 		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
@@ -21,38 +23,44 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="index.php" class="navbar-brand">Bestnid</a>
+					<a href="sesioniniciada.php" class="navbar-brand">Bestnid</a>
 				</div>
 				<!-- inicia menu -->
-				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<form action="index.php" method="get" class="navbar-form navbar-left" role="search">
+				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
+				<style>
+				#navegacion-fm {
+					float: right;
+					width: 1000px;
+				}
+				#barra-busqueda {
+					width: 200px;
+					margin-left: 300px;
+				}
+				</style>
+					<form action="" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
+							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda">
 							<button type="submit" class="btn btn-primary">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
 						</div>
 					</form>
-
-
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
-					<a href="registrarse.php" id="inicio">Registrarse</a>
-					<a href="iniciarsesion.php" id="inicio">Ingresar</a>
+					<a href="#" class="glyphicon glyphicon-bullhorn" id="inicio"></a>
+					<span class="dropdown">
+						<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
+						<!-- <a href="#"  >
+							Categorias <span class="caret"></span>
+						</a> -->
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Perfil</a></li>
+							<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
+						</ul>
+					</span>
 				</div>
 			</div>
 		</nav>
 	</header>
-	<!-- <a class="glyphicon glyphicon-circle-arrow-left btn-lg"></a> -->
-	<section class="jumbotron">
-		<div class="container">
-			<img src="img/logobestnid.jpg" class="imagen-jumbotron">
-			<h1 id="bienvenida">Bienvenido a Bestnid</h1>
-			<p id="desc-bienvenida">Donde las personas y sus necesidades valen mucho<br>más que el dinero.</p>
-		</div>
-	</section>
-	<!-- <a class="glyphicon glyphicon-circle-arrow-right btn-lg"></a> -->
-
-	<!-- jumbotron -->
 	<section class="main container">
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
@@ -63,6 +71,7 @@
 			<li class="dropdown pull-right nav navbar-nav">
 				<?php include("ordenar.php"); ?>		
 			</li>
+		</li>
 		</section>
 		<div class="row">			
 			<section class="posts container col-md-9 pull-right">
@@ -90,28 +99,28 @@
 				<nav>
 					<div class="center-block">
 						<ul class="pagination">
-						<style>
-							#paginacion {
-								color: #B23B39;
-							}
-							#paginacion:active,
-							#paginacion:hover,
-							#paginacion:focus,
-							#paginacionActiva:active,
-							#paginacionActiva:hover,
-							#paginacionActiva:focus
-							 {
-								color: #FFFFFF;
-								background: #B23B39;
-								border-color: #B23B39;
-							}
-							#paginacionActiva {
-								color: #FFFFFF;
-								background: #FF5050;
-								border-color: #FF5050;
-							}
-						</style>
-						<?php include("paginacion.php"); ?>
+							<style>
+								#paginacion {
+									color: #B23B39;
+								}
+								#paginacion:active,
+								#paginacion:hover,
+								#paginacion:focus,
+								#paginacionActiva:active,
+								#paginacionActiva:hover,
+								#paginacionActiva:focus
+								 {
+									color: #FFFFFF;
+									background: #B23B39;
+									border-color: #B23B39;
+								}
+								#paginacionActiva {
+									color: #FFFFFF;
+									background: #FF5050;
+									border-color: #FF5050;
+								}
+							</style>
+							<?php include("paginacion.php"); ?>
 						</ul>
 					</div>
 				</nav>
@@ -119,74 +128,13 @@
 			<aside class="col-md-3 hidden-xs hidden-sm">
 				<h4>Categorias</h4>
 				<div class="list-group">
-					<?php include("categorias.php");?>
+					<?php include("categorias.php"); ?>
 				</div>
 				<!-- filtros -->
-
-				<form action="resultado_filtrado.php" method="post" name="filtrado">
-
-					<h4>Filtrar por ciudad: </h4>
-
-					<div class="checkbox">
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="Buenos Aires">
-
-								Buenos Aires
-
-						</label>
-
-						<br>
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="La Plata">
-
-								La Plata
-
-						</label>
-
-						<br>
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="Los Toldos">
-
-								Los Toldos
-
-						</label>
-
-						<br>
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="Pehuajo">
-
-								Pehuajo
-
-						</label>
-
-						<br>
-
-						<label>
-
-							<input type="checkbox" name="filtros[]" value="Bragado">
-
-								Bragado
-
-						</label>
-
-						<br>
-
-					</div>
-
-					<button type="submit" class="btn btn-default">Filtrar Resultados</button>
-
-
-
-				</form>
-
+				<h4>Filtros por ciudad: </h4>
+				<div class="list-group">					
+					<?php include("filtros.php"); ?>
+				</div>				
 				<!-- fin filtros -->
 			</aside>
 		</div>
