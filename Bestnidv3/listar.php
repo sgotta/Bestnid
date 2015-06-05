@@ -4,24 +4,59 @@
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
 	if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
 		//$conexion=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
-
 		//mysql_select_db($db,$conexion) or die ("problemas al conectarDB");
-
-		$registro=mysql_query("
+		//----ORDENAR BUSQUEDA----
+		if(isset($_GET['ordID']) && !empty($_GET['ordID'])){
+			if($_GET['ordID'] == 'menosRecientes'){ //menos reciente
+				$registro=mysql_query("
+					SELECT *
+					FROM publicacion
+					WHERE titulo LIKE'%$_GET[buscar]%'
+					ORDER BY fecha_inicio ASC")
+					or die("problemas en consulta: ".mysql_error());
+			} else	if($_GET['ordID'] == 'masRecientes'){ //mas recientes
+				$registro=mysql_query("
+					SELECT *
+					FROM publicacion
+					WHERE titulo LIKE'%$_GET[buscar]%'
+					ORDER BY fecha_inicio DESC")
+					or die("problemas en consulta: ".mysql_error());
+			}
+		}else{   //---BUSQUEDA SIN ORDENAR---
+			$registro=mysql_query("
 				SELECT *
 				FROM publicacion
 				WHERE titulo LIKE'%$_GET[buscar]%'")
 				or die("problemas en consulta: ".mysql_error());
 		// $busqueda = $_GET['buscar'];
-
-	}
-	else {
-		$registro=mysql_query("SELECT * FROM publicacion") or die ("problemas en consulta:".mysql_error());
+		}
+	}else {    //----TODAS LAS PUBLICACIONES------
+		//----ORDENAR PUBLICACIONES----
+		if(isset($_GET['ordID']) && !empty($_GET['ordID'])){
+			if($_GET['ordID'] == 'menosRecientes'){ //menos reciente
+				$registro=mysql_query("
+					SELECT *
+					FROM publicacion
+					ORDER BY fecha_inicio ASC")
+					or die("problemas en consulta: ".mysql_error());
+			} else	if($_GET['ordID'] == 'masRecientes'){ //mas recientes
+				$registro=mysql_query("
+					SELECT *
+					FROM publicacion
+					ORDER BY fecha_inicio DESC")
+					or die("problemas en consulta: ".mysql_error());
+			}
+		}else{  //---TODAS LAS PUBLICACIONES SIN ORDENAR
+			$registro=mysql_query("SELECT * FROM publicacion") or die ("problemas en consulta:".mysql_error());
+		}
 	}
 
 	// $nueva=mysql_query("SELECT * FROM publicacion") or die ("problemas en consulta22222:".mysql_error());
 	// echo $busqueda;
+
 	
+
+	//----PAGINACION----	
 	
 	//$cantPub =mysql_query("SELECT COUNT(*) FROM publicacion") or die ("problemas en consulta:".mysql_error());
 	$numPub = mysql_num_rows($registro);

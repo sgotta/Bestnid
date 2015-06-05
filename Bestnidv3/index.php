@@ -61,14 +61,8 @@
 				</ol>
 			</div>
 			<li class="dropdown pull-right nav navbar-nav">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Ordenar<span class="caret"></span></a>
-
-			<ul class="dropdown-menu col-md-3" role="menu">
-				<li><a href="#">Mas reciente</a></li>
-				<li class="divider"></li>
-				<li><a href="#">Menos reciente</a></li>
-			</ul>
-		</li>
+				<?php include("ordenar.php"); ?>		
+			</li>
 		</section>
 		<div class="row">			
 			<section class="posts container col-md-9 pull-right">
