@@ -1,18 +1,18 @@
 <?php 
 	$string = $_SERVER["PHP_SELF"]."?";  //"index.php?";
-	// if(isset($_GET['pagID'])) {
-  		for ($i=0; $i < count($_GET); $i++) {
-  			if (array_keys($_GET)[$i] != 'pagID'){
-  				$string = $string.array_keys($_GET)[$i]."=".array_values($_GET)[$i]."&";
-  			}
-  		}
-	// }
-	// echo $string;
-	// print_r(array_keys($_GET));
-	// print_r(array_values($_GET));
- //  	echo "hola";
- //  	echo $_GET['buscar'];
- //  	echo count($_GET);
+	for ($i=0; $i < count($_GET); $i++) {
+		if ((array_keys($_GET)[$i] != 'pagID') && (array_keys($_GET)[$i] != 'filtros')){
+			$string = $string.array_keys($_GET)[$i]."=".array_values($_GET)[$i]."&";
+		}
+		else {
+			if (array_keys($_GET)[$i] == 'filtros'){
+				for ($f=0; $f < count($_GET['filtros']); $f++) {
+					$string = $string.'filtros%5B%5D'."=".array_values($_GET['filtros'])[$f]."&";      //filtros%5B%5D=Buenos+Aires&filtros%5B%5D=La+Plata
+				}
+			}
+		}
+	}
+  	// echo $string;
 	if((isset($_GET['pagID']) && $_GET['pagID']==1) || (!isset($_GET['pagID']))){
 		echo '<li class="disabled"><a href="#" id="paginacion">&laquo;<span class="sr-only">Anterior</span></a></li>';
 	}

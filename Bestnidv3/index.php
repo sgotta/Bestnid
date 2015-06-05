@@ -122,71 +122,50 @@
 					<?php include("categorias.php");?>
 				</div>
 				<!-- filtros -->
-
-				<form action="resultado_filtrado.php" method="post" name="filtrado">
-
+				<?php 
+					$string = $_SERVER["PHP_SELF"]."?";  //"index.php?";
+					
+					for ($i=0; $i < count($_GET); $i++) {
+						if (array_keys($_GET)[$i] != 'filtros'){
+							$string = $string.array_keys($_GET)[$i]."=".array_values($_GET)[$i]."&";
+						}
+					}
+					
+				// $string = 'index.php?catID=2';
+				// '.$string.'
+				// echo $string;
+				echo '<form action="'.$string.'" method="get" target="_self" name="filtrado">
 					<h4>Filtrar por ciudad: </h4>
-
 					<div class="checkbox">
-
 						<label>
-
 							<input type="checkbox" name="filtros[]" value="Buenos Aires">
-
 								Buenos Aires
-
 						</label>
-
 						<br>
-
 						<label>
-
 							<input type="checkbox" name="filtros[]" value="La Plata">
-
 								La Plata
-
 						</label>
-
 						<br>
-
 						<label>
-
 							<input type="checkbox" name="filtros[]" value="Los Toldos">
-
 								Los Toldos
-
 						</label>
-
 						<br>
-
 						<label>
-
 							<input type="checkbox" name="filtros[]" value="Pehuajó">
-
 								Pehuajó
-
 						</label>
-
 						<br>
-
 						<label>
-
 							<input type="checkbox" name="filtros[]" value="Bragado">
-
 								Bragado
-
 						</label>
-
 						<br>
-
 					</div>
-
 					<button type="submit" class="btn btn-default">Filtrar Resultados</button>
-
-
-
-				</form>
-
+				</form>';
+				?>
 				<!-- fin filtros -->
 			</aside>
 		</div>
