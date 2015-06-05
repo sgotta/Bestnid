@@ -25,7 +25,7 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<form action="index.php" method="post" class="navbar-form navbar-left" role="search">
+					<form action="index.php" method="get" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
 							<button type="submit" class="btn btn-primary">
