@@ -89,7 +89,7 @@
 			 					<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon glyphicon glyphicon-user"></span>
-										<input type="text" class="form-control" placeholder="Nombre de usuario" name="username" required maxlength="45">
+										<input type="text" class="form-control" placeholder="Nombre de usuario" name="username" required maxlength="16">
 									</div>
 								</div>
 							</div>
@@ -97,7 +97,7 @@
 			 					<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon glyphicon glyphicon-asterisk"></span>
-										<input type="password" class="form-control" placeholder="Contraseña" name="password" required maxlength="8">
+										<input type="password" class="form-control" placeholder="Contraseña" name="password" required minlength="8" maxlength="45">
 									</div>
 								</div>
 							</div>

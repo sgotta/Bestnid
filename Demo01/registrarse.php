@@ -67,7 +67,7 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-user" ></span>
-									<input type="text" class="form-control" placeholder="Nombre de usuario"  name="username" maxlength="10" required autocomplete="off">
+									<input type="text" class="form-control" placeholder="Nombre de usuario"  name="username" maxlength="16" required autocomplete="off">
 								</div>
 							</div>
 						</div>
@@ -75,7 +75,7 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
-									<input type="password" class="form-control" placeholder="Contraseña"  name="password" minlength="8" required autocomplete="off">
+									<input type="password" class="form-control" placeholder="Contraseña"  name="password" minlength="8" maxlength="45" required autocomplete="off">
 								</div>
 							</div>
 						</div>
