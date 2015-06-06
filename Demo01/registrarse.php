@@ -25,18 +25,6 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse" id="navegacion-fm">
-					
-
-					<!-- <form action="" class="navbar-form navbar-left" role="search">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda">
-							<button type="submit" class="btn btn-primary">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-							
-						</div>
-						
-					</form> -->
 
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 				</div>
@@ -44,7 +32,7 @@
 			</div>
 		</nav>
 	</header>
-	<!-- <a class="glyphicon glyphicon-circle-arrow-left btn-lg"></a> -->
+
 	<section class="jumbotron">
 		<div class="container">
 			<img src="img/logobestnid.jpg" class="imagen-jumbotron">
@@ -52,10 +40,6 @@
 			<p id="desc-bienvenida">Donde las personas y sus necesidades valen mucho<br>más que el dinero.</p>
 		</div>
 	</section>
-	<!-- <a class="glyphicon glyphicon-circle-arrow-right btn-lg"></a> -->
-
-	<!-- jumbotron -->
-	<!-- <a href="index.php" id="migajaInicio">Inicio /</a><span id="migaja"> Registrarse</span> -->
 			
 	<section class="main container">
 		<section class="container">
@@ -91,7 +75,7 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
-									<input type="password" class="form-control" placeholder="Contraseña"  name="password" maxlength="8" required autocomplete="off">
+									<input type="password" class="form-control" placeholder="Contraseña"  name="password" minlength="8" required autocomplete="off">
 								</div>
 							</div>
 						</div>

@@ -23,7 +23,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="#" class="navbar-brand">Bestnid</a>
+					<a href="sesioniniciada.php" class="navbar-brand">Bestnid</a>
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
@@ -37,9 +37,9 @@
 					margin-left: 467px;
 				}
 				</style>
-					<form action="" class="navbar-form navbar-left" role="search">
+					<form action="sesioniniciada.php" method="get" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda">
+							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
 							<button type="submit" class="btn btn-primary">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
