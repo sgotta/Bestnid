@@ -23,7 +23,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="sesioniniciada.php" class="navbar-brand">Bestnid</a>
+					<a href="#" class="navbar-brand">Bestnid</a>
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
@@ -34,7 +34,7 @@
 				}
 				#barra-busqueda {
 					width: 200px;
-					margin-left: 300px;
+					margin-left: 467px;
 				}
 				</style>
 					<form action="" class="navbar-form navbar-left" role="search">
@@ -47,15 +47,19 @@
 					</form>
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="#" class="glyphicon glyphicon-bullhorn" id="inicio"></a>
+					
 					<span class="dropdown">
-						<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
-						<!-- <a href="#"  >
-							Categorias <span class="caret"></span>
-						</a> -->
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Perfil</a></li>
-							<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
-						</ul>
+						<li class="dropdown dropdown-user pull-right nav navbar-nav">
+					
+							<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
+							<!-- <a href="#"  >
+								Categorias <span class="caret"></span>
+							</a> -->
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Perfil</a></li>
+								<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
+							</ul>
+						</li>
 					</span>
 				</div>
 			</div>

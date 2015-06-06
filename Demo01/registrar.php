@@ -1,5 +1,7 @@
 <?php
 	include("conexion.php");
+// verificar si el usuario ya esta registrado
+
 	if(isset($_POST['username']) && !empty($_POST['username']) && 
 		isset($_POST['password']) && !empty($_POST['password']) && 
 		isset($_POST['nombre']) && !empty($_POST['nombre']) &&
@@ -10,8 +12,7 @@
 		isset($_POST['numero']) && !empty($_POST['numero']) &&
 		isset($_POST['ciudad']) && !empty($_POST['ciudad']) &&
 		isset($_POST['provincia']) && !empty($_POST['provincia']) &&
-		isset($_POST['pais']) && !empty($_POST['pais']) &&
-		isset($_POST['depto']) && isset($_POST['piso']))
+		isset($_POST['pais']) && !empty($_POST['pais']))
 	{
 		$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 		mysql_select_db($db,$con) or die ("problemas al conectarDB");
@@ -37,6 +38,7 @@
 	}else{
 		// echo "Pass:".$_POST['pw']."<br>";
 		// echo "Pass2:".$_POST['pw2']."<br>";
-		echo "verifica datos o contraseña incorrecta";
+		echo '<script type="text/javascript">', 'alert("Hey parece que hay alguien registrado con este nombre de usuario, por favor, elige otro");', '</script>';
+		echo'<script>location.href="registrarse.php"; </script>';
 	}
 ?>

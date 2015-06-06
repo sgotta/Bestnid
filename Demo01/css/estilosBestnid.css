@@ -21,9 +21,10 @@
 	margin-top: 20px;
 }
 
-.navbar-inverse .navbar-nav li a {
+
+/*.navbar-inverse .navbar-nav li a {
   color :#AA2121;
-}
+}*/
 
 .pagination {
   margin-left: 250px;
@@ -32,6 +33,9 @@
 .dropdown{
 	margin-top: 10px;
 	margin-right: 50px;
+}
+.dropdown-user{
+	margin: 0;
 }
 .dropdown-toggle {
  	color:#8B8F94;
@@ -55,6 +59,21 @@
 		margin-right: 0px;
 	}
 }
+
+select#ciudad.form-control{
+	width: 185px;
+	height: 34px;
+}
+select#provincia.form-control{
+	width: 185px;
+	height: 34px;
+}
+select#pais.form-control{
+	width: 185px;
+	height: 34px;
+}
+
+
 
 
 

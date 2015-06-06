@@ -28,18 +28,15 @@
 				<div class="collapse navbar-collapse" id="navegacion-fm">
 					
 
-					<form action="" class="navbar-form navbar-left" role="search">
+					<!-- <form action="" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda">
 							<button type="submit" class="btn btn-primary">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
-							<!-- <span class="input-group-addon" id="basic-addon2">@example.com</span> -->
 						</div>
-						<!-- <div class="form-group">
-							<input type="text" class="form-control" placeholder="buscar">
-						</div>-->
-					</form>
+					</form> -->
+					
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 				</div>
 			</div>
@@ -91,16 +88,16 @@
 							<div class="form-inline">
 			 					<div class="form-group">
 									<div class="input-group">
-										<span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
-										<input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1" name="username">
+										<span class="input-group-addon glyphicon glyphicon-user"></span>
+										<input type="text" class="form-control" placeholder="Nombre de usuario" name="username" required maxlength="45">
 									</div>
 								</div>
 							</div>
 							<div class="form-inline">
 			 					<div class="form-group">
 									<div class="input-group">
-										<span class="input-group-addon glyphicon glyphicon-asterisk" id="basic-addon1"></span>
-										<input type="password" class="form-control" placeholder="Contraseña" aria-describedby="basic-addon1" name="password">
+										<span class="input-group-addon glyphicon glyphicon-asterisk"></span>
+										<input type="password" class="form-control" placeholder="Contraseña" name="password" required maxlength="8">
 									</div>
 								</div>
 							</div>

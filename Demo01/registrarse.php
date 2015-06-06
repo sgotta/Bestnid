@@ -27,19 +27,16 @@
 				<div class="collapse navbar-collapse" id="navegacion-fm">
 					
 
-					<form action="" class="navbar-form navbar-left" role="search">
+					<!-- <form action="" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda">
 							<button type="submit" class="btn btn-primary">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
-							<!-- <span class="input-group-addon" id="basic-addon2">@example.com</span> -->
+							
 						</div>
-						<!-- <div class="form-group">
-							<input type="text" class="form-control" placeholder="buscar">
-						</div>-->
 						
-					</form>
+					</form> -->
 
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 				</div>
@@ -85,84 +82,105 @@
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1" name="username">
+									<span class="input-group-addon glyphicon glyphicon-user" ></span>
+									<input type="text" class="form-control" placeholder="Nombre de usuario"  name="username" maxlength="10" required autocomplete="off">
 								</div>
 							</div>
 						</div>
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-asterisk" id="basic-addon1"></span>
-									<input type="password" class="form-control" placeholder="Contraseña" aria-describedby="basic-addon1" name="password">
+									<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
+									<input type="password" class="form-control" placeholder="Contraseña"  name="password" maxlength="8" required autocomplete="off">
 								</div>
 							</div>
 						</div>
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Nombre" aria-describedby="basic-addon1" name="nombre">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Nombre"  name="nombre" maxlength="45" required autocomplete="on">
 								</div>
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Apellido" aria-describedby="basic-addon1" name="apellido">
-								</div>
-							</div>
-						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Telefono" aria-describedby="basic-addon1" name="telefono">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Mail" aria-describedby="basic-addon1" name="mail">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Apellido"  name="apellido" maxlength="45" required autocomplete="on">
 								</div>
 							</div>
 						</div>
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Calle" aria-describedby="basic-addon1" name="calle">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Telefono"  name="telefono" maxlength="45" required autocomplete="on">
 								</div>
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Numero" aria-describedby="basic-addon1" name="numero">
-								</div>
-							</div>
-						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Depto" aria-describedby="basic-addon1" name="depto">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Piso" aria-describedby="basic-addon1" name="piso">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="email" class="form-control" placeholder="Mail"  name="mail" maxlength="45" required autocomplete="on">
 								</div>
 							</div>
 						</div>
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Ciudad" aria-describedby="basic-addon1" name="ciudad">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Calle"  name="calle" maxlength="45" required autocomplete="on">
 								</div>
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Provincia" aria-describedby="basic-addon1" name="provincia">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Numero"  name="numero" maxlength="11" required autocomplete="on">
+								</div>
+							</div>
+						</div>
+						<!-- <div class="input-group">
+						      <div class="input-group-addon">$</div>
+						      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+						      <div class="input-group-addon">.00</div>
+						    </div> -->
+						<div class="form-inline">
+		 					<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Depto"  name="depto" maxlength="15" autocomplete="on">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Piso"  name="piso" maxlength="11" autocomplete="on">
 								</div>
 							</div>
 						</div>
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" id="basic-addon1"></span>
-									<input type="text" class="form-control" placeholder="Pais" aria-describedby="basic-addon1" name="pais">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<!-- <input type="text" class="form-control" placeholder="Ciudad"  name="ciudad" maxlength="45" required autocomplete="off"> -->
+									<select class="form-control" name="ciudad" id="ciudad" required>
+										<option value="" disabled selected>Ciudad</option>
+										<option value="Buenos Aires">Buenos Aires</option>
+										<option value="La Plata">La Plata</option>
+										<option value="Bragado">Bragado</option>
+										<option value="Pehuajo">Pehuajo</option>
+										<option value="Pehuajo">Los Toldos</option>
+									</select>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<!-- <input type="text" class="form-control" placeholder="Provincia"  name="provincia" maxlength="45" required autocomplete="off"> -->
+									<select class="form-control" name="provincia" id="provincia" required>
+										<option value="" disabled selected>Provincia</option>
+										<option value="Buenos Aires">Buenos Aires</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-inline">
+		 					<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<!-- <input type="text" class="form-control" placeholder="Pais" name="pais" maxlength="45" required autocomplete="off"> -->
+									  <select class="form-control" name="pais" id="pais" required>
+									  	<option value="" disabled selected>Pais</option>
+									    <option value="Argentina">Argentina</option>
+									  </select>
 								</div>
 							</div>
 						</div>	
