@@ -34,7 +34,7 @@
 				}
 				#barra-busqueda {
 					width: 200px;
-					margin-left: 467px;
+					margin-left: 350px;
 				}
 				</style>
 					<form action="sesioniniciada.php" method="get" class="navbar-form navbar-left" role="search">
