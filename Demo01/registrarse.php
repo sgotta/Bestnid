@@ -67,10 +67,13 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-user" ></span>
-									<input type="text" class="form-control" placeholder="Nombre de usuario"  name="username" maxlength="16" required autocomplete="off">
+									<input type="text" class="form-control" onblur="validarusuario(this);" placeholder="Nombre de usuario"  name="username" maxlength="16" required autocomplete="off">
+									
 								</div>
 							</div>
+							
 						</div>
+						<span id="comprobarusuario"></span>
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
@@ -193,5 +196,13 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/prototype.js"></script>
+	<script type="text/javascript">
+	function validarusuario(usuario){
+		var url = 'validarusuario.php';
+		var parametros = 'usuario='+usuario.value;
+		var ajax = new Ajax.Updater('comprobarusuario',url,{method: 'get', parameters: parametros});
+	}
+	</script>
 </body>
 </html>
