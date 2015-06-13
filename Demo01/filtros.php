@@ -1,5 +1,9 @@
 <?php 
-	$string = $_SERVER["PHP_SELF"]."?";  //"index.php?";
+	if (isset($_SESSION) && !empty($_SESSION)) {
+		$string = "sesioniniciada.php?";
+	}else{
+		$string = "index.php?";
+	}
 
 	for ($i=0; $i < count($_GET); $i++) {
 		if ((array_keys($_GET)[$i] != 'filtros') && (array_keys($_GET)[$i] != 'pagID')){

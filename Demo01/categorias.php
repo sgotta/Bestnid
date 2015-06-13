@@ -4,13 +4,19 @@
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
 	$registro=mysql_query("SELECT * FROM categoria") or die ("problemas en consulta:".mysql_error());
 
-	$string = $_SERVER["PHP_SELF"]."?";  //"index.php?";
-	
-	for ($i=0; $i < count($_GET); $i++) {
-		if ((array_keys($_GET)[$i] != 'catID')&& (array_keys($_GET)[$i] != 'pagID')){
-			$string = $string.array_keys($_GET)[$i]."=".array_values($_GET)[$i]."&";
-		}
+	if (isset($_SESSION) && !empty($_SESSION)) {
+		$string = "sesioniniciada.php?";
+	}else{
+		$string = "index.php?";
 	}
+
+	//TENER EN CUENTA LA BUSQUEDA Y FILTROS O NO
+
+	// for ($i=0; $i < count($_GET); $i++) {
+	// 	if ((array_keys($_GET)[$i] != 'catID') && (array_keys($_GET)[$i] != 'pagID')){
+	// 		$string = $string.array_keys($_GET)[$i]."=".array_values($_GET)[$i]."&";
+	// 	}
+	// }
 
 	while($reg=mysql_fetch_array($registro)){
 		// echo "&nbsp&nbsp&nbsp".$reg['nombre']."<br>";

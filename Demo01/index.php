@@ -26,15 +26,16 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<form action="index.php" method="get" class="navbar-form navbar-left" role="search">
+					<!-- <form action="index.php" method="get" class="navbar-form navbar-left" role="search"> -->
+					<div class="navbar-form navbar-left" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar" onkeyup="mostrarSubastas(this.value)">
 							<!-- <button type="submit" class="btn btn-primary">
 								<span class="glyphicon glyphicon-search"></span>
 							</button> -->
 						</div>
-					</form>
-
+					</div>
+					<!-- </form> -->
 
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrarse.php" id="inicio">Registrarse</a>
@@ -61,7 +62,7 @@
 					<li class="active">Inicio</li>
 				</ol>
 			</div>
-			<li class="dropdown pull-right nav navbar-nav">
+			<li class="dropdown pull-right nav navbar-nav" id="liOrdenar">
 				<?php include("ordenar.php"); ?>		
 			</li>
 		</section>
@@ -105,7 +106,7 @@
 			}
 		</style>
 		<div class="row">			
-			<section class="posts container col-md-9 pull-right" id="divSubastas">
+			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
 				<div class="row" > <!-- 1ER FILA IMAGENES -->
 					<?php include("listar.php"); ?>
 				</div>
@@ -119,12 +120,12 @@
 			</section>
 			<aside class="col-md-3 hidden-xs hidden-sm">
 				<h4>Categorias</h4>
-				<div class="list-group">
+				<div class="list-group" id="divCategorias">
 					<?php include("categorias.php"); ?>
 				</div>
 				<!-- filtros -->
 				<h4>Filtros por ciudad: </h4>
-				<div class="list-group">					
+				<div class="list-group" id="divFiltros">					
 					<?php include("filtros.php"); ?>
 				</div>
 				<!-- fin filtros -->
@@ -142,7 +143,7 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
-		function mostrarSubastas(busqueda) {
+		function mostrarSubastas(busqueda) {                              //ACTUALIZO LAS SUBASTAS SEGUN LA BUSQUEDA
 			$.ajax({
 				type: 'GET',
 				url: 'http://localhost/Bestnid/Demo01/listar.php',
@@ -159,11 +160,35 @@
 									echo 'ordID:'. $_GET['ordID'];
 							}?>
 				}
-			}).done(function(respuesta,paginas){
-				$('#divSubastas').html(respuesta); // en [0][0] esta el codigo HTML, en [0][1] el total de paginas
-				console.log(respuesta);
-				// respuesta[0][1]
-				//echo 'respuesta[0][1]'
+			}).done(function(listado){
+				$('#sectionSubastas').html(listado);
+			});
+			$.ajax({                                               //ACTUALIZO LOS HREF DE LOS FILTROS SEGUN LA BUSQUEDA
+				type: 'GET',
+				url: 'http://localhost/Bestnid/Demo01/filtros.php',
+				data: {
+					buscar: busqueda ,
+					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
+									echo 'catID:'. $_GET['catID'].' ,';
+							}?>
+				}
+			}).done(function(filtros){
+				$('#divFiltros').html(filtros);
+			});
+			$.ajax({                                                   //ACTUALIZO LOS HREF DEL ORDENAR SEGUN LA BUSQUEDA
+				type: 'GET',
+				url: 'http://localhost/Bestnid/Demo01/ordenar.php',
+				data: {
+					buscar: busqueda ,
+					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
+									echo 'catID:'. $_GET['catID'].' ,';
+							}?>
+					<?php if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
+									echo 'filtros:'. $_GET['filtros'].' ,';
+							}?>
+				}
+			}).done(function(orden){
+				$('#liOrdenar').html(orden);
 			});
 		}
 	</script>
