@@ -2,9 +2,6 @@
 	include("conexion.php");
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
-
-
-
 	$query = "";
 	$query = $query."SELECT * FROM publicacion";
 	
@@ -50,7 +47,7 @@
 	$numPub = mysql_num_rows($registro); 
 	if ($numPub == 0) {		//No se encontro nada en la busqueda
 		echo '<script type="text/javascript">', 'alert("La busqueda no contiene resultados"); document.location = index.php;', '</script>';
-		if ($_SESSION) {
+		if (isset($_SESSION) && !empty($_SESSION)) {
 			echo'<script>location.href="sesioniniciada.php"; </script>';
 		}else{
 			echo'<script>location.href="index.php"; </script>';
@@ -80,6 +77,8 @@
 	while(($pg<$saltear) && mysql_fetch_array($registro)){
 		$pg++;
 	}
+	$subastas='';
+	$subastas=$subastas.'<div class="row">';  //ARRANCO DIV DE SUBASTAS
 	while(($i<6) && ($reg=mysql_fetch_array($registro))){
 		if(strlen($reg['titulo']) >17){
 			$t=substr($reg['titulo'], 0, 17)."...";
@@ -91,7 +90,7 @@
 		}else{
 			$d=$reg['descripcion'];
 		}
-		echo '<section class="posts col-md-4">
+		$subastas = $subastas. '<section class="posts col-md-4">
 				<div class="thumbnail">    
 					<a href="#" class="thumb">
 						<img class="img-thumbnail" src="data:image/jpeg;base64,'.base64_encode( $reg['foto'] ).'" alt="" style="max-height: 140px;">
@@ -113,4 +112,30 @@
 			</section>';
 		$i++;
 	}
+	$subastas=$subastas.'</div>'; //CIERRO DIV SUBASTAS
+	// if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
+		// if ($subastas == ''){
+			// echo "NO HAY RESULTADOS";
+			
+		// }
+		// else {
+	if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
+		$subastas=$subastas.'<nav> 
+								<div class="center-block">
+									<ul class="pagination">';  //ABRO NAV PARA PAGINACION
+		$pag=include("paginacion.php");							
+		$subastas=$subastas.$pag;
+		$subastas=$subastas.'</ul>
+						</div>
+					</nav>'; //CIERRO NAV PAGINACION
+	}
+				echo $subastas;
+			// $return[] = array($subastas,$totalPaginas);
+			// header('Content-type: application/json; charset=utf-8');
+			// echo json_encode($return);
+
+			// echo json_encode(array('subastas' => $subastas));
+		// }
+	// }
+	// else echo $subastas;
 ?>					

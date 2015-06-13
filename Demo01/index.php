@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/estilosBestnid.css">
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
 	<header>
@@ -27,10 +28,10 @@
 				<div class="collapse navbar-collapse" id="navegacion-fm">
 					<form action="index.php" method="get" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
-							<button type="submit" class="btn btn-primary">
+							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar" onkeyup="mostrarSubastas(this.value)">
+							<!-- <button type="submit" class="btn btn-primary">
 								<span class="glyphicon glyphicon-search"></span>
-							</button>
+							</button> -->
 						</div>
 					</form>
 
@@ -64,53 +65,53 @@
 				<?php include("ordenar.php"); ?>		
 			</li>
 		</section>
+		<style>
+			#btn-ofertar {
+				background: #FF5050;
+				color: #FFFFFF;
+				border: 1px;
+				border-color: #ccc;
+				border-style: solid;
+			}
+			#btn-ofertar:hover,
+			#btn-ofertar:active,
+			#btn-ofertar:focus {
+				background: #B23B39;
+				border-color: #B23B39;
+			}
+			a {
+				color: #000000;
+			}
+		</style>
+		<style>
+			#paginacion {
+				color: #B23B39;
+			}
+			#paginacion:active,
+			#paginacion:hover,
+			#paginacion:focus,
+			#paginacionActiva:active,
+			#paginacionActiva:hover,
+			#paginacionActiva:focus
+			 {
+				color: #FFFFFF;
+				background: #B23B39;
+				border-color: #B23B39;
+			}
+			#paginacionActiva {
+				color: #FFFFFF;
+				background: #FF5050;
+				border-color: #FF5050;
+			}
+		</style>
 		<div class="row">			
-			<section class="posts container col-md-9 pull-right">
-				<div class="row"> <!-- 1ER FILA IMAGENES -->
-					<style>
-						#btn-ofertar {
-							background: #FF5050;
-							color: #FFFFFF;
-							border: 1px;
-							border-color: #ccc;
-							border-style: solid;
-						}
-						#btn-ofertar:hover,
-						#btn-ofertar:active,
-						#btn-ofertar:focus {
-							background: #B23B39;
-							border-color: #B23B39;
-						}
-						a {
-							color: #000000;
-						}
-					</style>
+			<section class="posts container col-md-9 pull-right" id="divSubastas">
+				<div class="row" > <!-- 1ER FILA IMAGENES -->
 					<?php include("listar.php"); ?>
 				</div>
 				<nav>
 					<div class="center-block">
 						<ul class="pagination">
-						<style>
-							#paginacion {
-								color: #B23B39;
-							}
-							#paginacion:active,
-							#paginacion:hover,
-							#paginacion:focus,
-							#paginacionActiva:active,
-							#paginacionActiva:hover,
-							#paginacionActiva:focus
-							 {
-								color: #FFFFFF;
-								background: #B23B39;
-								border-color: #B23B39;
-							}
-							#paginacionActiva {
-								color: #FFFFFF;
-								background: #FF5050;
-								border-color: #FF5050;
-							}
-						</style>
 						<?php include("paginacion.php"); ?>
 						</ul>
 					</div>
@@ -140,5 +141,31 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script>
+		function mostrarSubastas(busqueda) {
+			$.ajax({
+				type: 'GET',
+				url: 'http://localhost/Bestnid/Demo01/listar.php',
+				// dataType: 'json' ,
+				data: {
+					buscar: busqueda ,
+					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
+									echo 'catID:'. $_GET['catID'].' ,';
+							}?>
+					<?php if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
+									echo 'filtros:'. $_GET['filtros'].' ,';
+							}?>
+					<?php if(isset($_GET['ordID']) && !empty($_GET['ordID'])){
+									echo 'ordID:'. $_GET['ordID'];
+							}?>
+				}
+			}).done(function(respuesta,paginas){
+				$('#divSubastas').html(respuesta); // en [0][0] esta el codigo HTML, en [0][1] el total de paginas
+				console.log(respuesta);
+				// respuesta[0][1]
+				//echo 'respuesta[0][1]'
+			});
+		}
+	</script>
 </body>
 </html>
