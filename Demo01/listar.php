@@ -138,4 +138,6 @@
 		// }
 	// }
 	// else echo $subastas;
+	// unset($_GET['buscar']);
+	
 ?>					

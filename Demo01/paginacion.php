@@ -39,7 +39,7 @@
 		
 	$n++;
 	}
-	if(isset($_GET['pagID']) && $_GET['pagID']==$totalPaginas){
+	if((isset($_GET['pagID']) && $_GET['pagID']==$totalPaginas) || (1==$totalPaginas)){
 		// echo '<li class="disabled"><a href="#" id="paginacion">&raquo;<span class="sr-only">Siguiente</span></a></li>';
 		$codigo=$codigo. '<li class="disabled"><a href="#" id="paginacion">&raquo;<span class="sr-only">Siguiente</span></a></li>';
 	}

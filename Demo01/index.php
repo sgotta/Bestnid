@@ -151,17 +151,18 @@
 				data: {
 					buscar: busqueda ,
 					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
-									echo 'catID:'. $_GET['catID'].' ,';
-							}?>
-					<?php if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
-									echo 'filtros:'. $_GET['filtros'].' ,';
-							}?>
-					<?php if(isset($_GET['ordID']) && !empty($_GET['ordID'])){
-									echo 'ordID:'. $_GET['ordID'];
+									echo 'catID:'.'"'.$_GET['catID'].'"';
+							}
+						  if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
+									echo ' ,'.'filtros: '.'"'.$_GET['filtros'].'"';
+							}
+						  if(isset($_GET['ordID']) && !empty($_GET['ordID'])){
+									echo  ' ,'.'ordID: '.'"'.$_GET['ordID'].'"';
 							}?>
 				}
 			}).done(function(listado){
 				$('#sectionSubastas').html(listado);
+				console.log(busqueda);
 			});
 			$.ajax({                                               //ACTUALIZO LOS HREF DE LOS FILTROS SEGUN LA BUSQUEDA
 				type: 'GET',
@@ -169,7 +170,7 @@
 				data: {
 					buscar: busqueda ,
 					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
-									echo 'catID:'. $_GET['catID'].' ,';
+									echo 'catID:'.'"'.$_GET['catID'].'"';
 							}?>
 				}
 			}).done(function(filtros){
@@ -181,10 +182,10 @@
 				data: {
 					buscar: busqueda ,
 					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
-									echo 'catID:'. $_GET['catID'].' ,';
-							}?>
+									echo 'catID:'.'"'.$_GET['catID'].'"';
+							}?> 
 					<?php if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
-									echo 'filtros:'. $_GET['filtros'].' ,';
+									echo ' ,'.'filtros: '.'"'.$_GET['filtros'].'"';
 							}?>
 				}
 			}).done(function(orden){
