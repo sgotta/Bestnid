@@ -119,7 +119,7 @@
 			
 		// }
 		// else {
-	if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
+	if(isset($_GET['buscar'])){  //&& (!empty($_GET['buscar']) || ($_GET['buscar']==''))
 		$subastas=$subastas.'<nav> 
 								<div class="center-block">
 									<ul class="pagination">';  //ABRO NAV PARA PAGINACION
@@ -129,7 +129,19 @@
 						</div>
 					</nav>'; //CIERRO NAV PAGINACION
 	}
-				echo $subastas;
+	// else {
+	// 	if(isset($_GET['buscar']) && ($_GET['buscar']=='')){
+	// 		$subastas=$subastas.'<nav> 
+	// 								<div class="center-block">
+	// 									<ul class="pagination">';  //ABRO NAV PARA PAGINACION
+	// 		$pag=include("paginacion.php");							
+	// 		$subastas=$subastas.$pag;
+	// 		$subastas=$subastas.'</ul>
+	// 						</div>
+	// 					</nav>'; //CIERRO NAV PAGINACION
+	// 	}
+	// }			
+	echo $subastas;
 			// $return[] = array($subastas,$totalPaginas);
 			// header('Content-type: application/json; charset=utf-8');
 			// echo json_encode($return);

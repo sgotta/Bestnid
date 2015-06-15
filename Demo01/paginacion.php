@@ -55,7 +55,7 @@
 			$codigo=$codigo. '<li class=""><a href="'.$string.'pagID='.$sig.'" id="paginacion">&raquo;<span class="sr-only">Siguiente</span></a></li>';
 		}
 	}
-	if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
+	if(isset($_GET['buscar'])){  //&& (!empty($_GET['buscar']) || ($_GET['buscar']==''))
 		return $codigo;
 	}
 	else {
