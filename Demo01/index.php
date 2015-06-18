@@ -58,8 +58,14 @@
 	<section class="main container">
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
+				<style>
+					#filtroActivo {
+						background-color: #FF5050;
+					  	border-color: #FF5050; 
+					}
+				</style>
 				<ol class="breadcrumb pull-left">
-					<li class="active">Inicio</li>
+					<?php include("migajas.php"); ?>
 				</ol>
 			</div>
 			<li class="dropdown pull-right nav navbar-nav" id="liOrdenar">

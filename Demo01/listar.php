@@ -46,11 +46,11 @@
 	// echo $busqueda;
 	$numPub = mysql_num_rows($registro); 
 	if ($numPub == 0) {		//No se encontro nada en la busqueda
-		echo '<script type="text/javascript">', 'alert("La busqueda no contiene resultados"); document.location = index.php;', '</script>';
+		echo '<script type="text/javascript">', 'alert("La busqueda no contiene resultados");', '</script>';  //document.location = index.php;
 		if (isset($_SESSION) && !empty($_SESSION)) {
-			echo'<script>location.href="sesioniniciada.php"; </script>';
+			//echo'<script>location.href="sesioniniciada.php"; </script>';
 		}else{
-			echo'<script>location.href="index.php"; </script>';
+			//echo'<script>location.href="index.php"; </script>';
 		}
 		
 	}
