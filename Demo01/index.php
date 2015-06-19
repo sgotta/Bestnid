@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/estilosBestnid.css">
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
 	<header>
@@ -25,15 +26,16 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<form action="index.php" method="get" class="navbar-form navbar-left" role="search">
+					<!-- <form action="index.php" method="get" class="navbar-form navbar-left" role="search"> -->
+					<div class="navbar-form navbar-left" role="search">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
-							<button type="submit" class="btn btn-primary">
+							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar" onkeyup="mostrarSubastas(this.value)">
+							<!-- <button type="submit" class="btn btn-primary">
 								<span class="glyphicon glyphicon-search"></span>
-							</button>
+							</button> -->
 						</div>
-					</form>
-
+					</div>
+					<!-- </form> -->
 
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrarse.php" id="inicio">Registrarse</a>
@@ -56,61 +58,67 @@
 	<section class="main container">
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
+				<style>
+					#filtroActivo {
+						background-color: #FF5050;
+					  	border-color: #FF5050; 
+					}
+				</style>
 				<ol class="breadcrumb pull-left">
-					<li class="active">Inicio</li>
+					<?php include("migajas.php"); ?>
 				</ol>
 			</div>
-			<li class="dropdown pull-right nav navbar-nav">
+			<li class="dropdown pull-right nav navbar-nav" id="liOrdenar">
 				<?php include("ordenar.php"); ?>		
 			</li>
 		</section>
+		<style>
+			#btn-ofertar {
+				background: #FF5050;
+				color: #FFFFFF;
+				border: 1px;
+				border-color: #ccc;
+				border-style: solid;
+			}
+			#btn-ofertar:hover,
+			#btn-ofertar:active,
+			#btn-ofertar:focus {
+				background: #B23B39;
+				border-color: #B23B39;
+			}
+			a {
+				color: #000000;
+			}
+		</style>
+		<style>
+			#paginacion {
+				color: #B23B39;
+			}
+			#paginacion:active,
+			#paginacion:hover,
+			#paginacion:focus,
+			#paginacionActiva:active,
+			#paginacionActiva:hover,
+			#paginacionActiva:focus
+			 {
+				color: #FFFFFF;
+				background: #B23B39;
+				border-color: #B23B39;
+			}
+			#paginacionActiva {
+				color: #FFFFFF;
+				background: #FF5050;
+				border-color: #FF5050;
+			}
+		</style>
 		<div class="row">			
-			<section class="posts container col-md-9 pull-right">
-				<div class="row"> <!-- 1ER FILA IMAGENES -->
-					<style>
-						#btn-ofertar {
-							background: #FF5050;
-							color: #FFFFFF;
-							border: 1px;
-							border-color: #ccc;
-							border-style: solid;
-						}
-						#btn-ofertar:hover,
-						#btn-ofertar:active,
-						#btn-ofertar:focus {
-							background: #B23B39;
-							border-color: #B23B39;
-						}
-						a {
-							color: #000000;
-						}
-					</style>
+			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
+				<div class="row" > <!-- 1ER FILA IMAGENES -->
 					<?php include("listar.php"); ?>
 				</div>
 				<nav>
 					<div class="center-block">
 						<ul class="pagination">
-						<style>
-							#paginacion {
-								color: #B23B39;
-							}
-							#paginacion:active,
-							#paginacion:hover,
-							#paginacion:focus,
-							#paginacionActiva:active,
-							#paginacionActiva:hover,
-							#paginacionActiva:focus
-							 {
-								color: #FFFFFF;
-								background: #B23B39;
-								border-color: #B23B39;
-							}
-							#paginacionActiva {
-								color: #FFFFFF;
-								background: #FF5050;
-								border-color: #FF5050;
-							}
-						</style>
 						<?php include("paginacion.php"); ?>
 						</ul>
 					</div>
@@ -118,12 +126,12 @@
 			</section>
 			<aside class="col-md-3 hidden-xs hidden-sm">
 				<h4>Categorias</h4>
-				<div class="list-group">
+				<div class="list-group" id="divCategorias">
 					<?php include("categorias.php"); ?>
 				</div>
 				<!-- filtros -->
 				<h4>Filtros por ciudad: </h4>
-				<div class="list-group">					
+				<div class="list-group" id="divFiltros">					
 					<?php include("filtros.php"); ?>
 				</div>
 				<!-- fin filtros -->
@@ -140,5 +148,56 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script>
+		function mostrarSubastas(busqueda) {                              //ACTUALIZO LAS SUBASTAS SEGUN LA BUSQUEDA
+			$.ajax({
+				type: 'GET',
+				url: 'http://localhost/Bestnid/Demo01/listar.php',
+				// dataType: 'json' ,
+				data: {
+					buscar: busqueda ,
+					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
+						echo 'catID:'.'"'.$_GET['catID'].'"';
+					}
+					  if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
+						echo ' ,'.'filtros: '.'"'.$_GET['filtros'].'"';
+					}
+					  if(isset($_GET['ordID']) && !empty($_GET['ordID'])){
+						echo  ' ,'.'ordID: '.'"'.$_GET['ordID'].'"';
+					}?>
+				}
+			}).done(function(listado){
+				$('#sectionSubastas').html(listado);
+				console.log(busqueda);
+			});
+			$.ajax({                                               //ACTUALIZO LOS HREF DE LOS FILTROS SEGUN LA BUSQUEDA
+				type: 'GET',
+				url: 'http://localhost/Bestnid/Demo01/filtros.php',
+				data: {
+					buscar: busqueda ,
+					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
+							echo 'catID:'.'"'.$_GET['catID'].'"';
+						}?>
+				}
+			}).done(function(filtros){
+				$('#divFiltros').html(filtros);
+			});
+			$.ajax({                                                   //ACTUALIZO LOS HREF DEL ORDENAR SEGUN LA BUSQUEDA
+				type: 'GET',
+				url: 'http://localhost/Bestnid/Demo01/ordenar.php',
+				data: {
+					buscar: busqueda ,
+					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
+							echo 'catID:'.'"'.$_GET['catID'].'"';
+						}?> 
+					<?php if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
+							echo ' ,'.'filtros: '.'"'.$_GET['filtros'].'"';
+						}?>
+				}
+			}).done(function(orden){
+				$('#liOrdenar').html(orden);
+			});
+		}
+	</script>
 </body>
 </html>
