@@ -60,130 +60,119 @@
 				}
 			</style>		
 			<section class="posts container col-md-9">
-				<form action="registrar.php" class="navbar-form " role="form" id="registro-form" method="post">
-					<span id="spanRegistro">Registrate</span>
-					<div class="form-group">
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-user" ></span>
-									<input type="text" class="form-control" onblur="validarusuario(this);" placeholder="Nombre de usuario"  name="username" maxlength="16" required autocomplete="off">
-									
-								</div>
-							</div>
-							
-						</div>
-						<span id="comprobarusuario"></span>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
-									<input type="password" class="form-control" placeholder="Contraseña"  name="password" minlength="8" maxlength="45" required autocomplete="off">
-								</div>
+			<form class="navbar-form" role="form" id="registro-form" method="post">
+				<span id="spanRegistro">Registrate</span>
+				<div class="form-group">
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-user"></span>
+								<input type="text" class="form-control" placeholder="Nombre de usuario"  name="username" id="username" maxlength="16" required autocomplete="off">
 							</div>
 						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" placeholder="Nombre"  name="nombre" maxlength="45" required autocomplete="on">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" placeholder="Apellido"  name="apellido" maxlength="45" required autocomplete="on">
-								</div>
-							</div>
-						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" placeholder="Telefono"  name="telefono" maxlength="45" required autocomplete="on">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="email" class="form-control" placeholder="Mail"  name="mail" maxlength="45" required autocomplete="on">
-								</div>
-							</div>
-						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" placeholder="Calle"  name="calle" maxlength="45" required autocomplete="on">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" placeholder="Numero"  name="numero" maxlength="11" required autocomplete="on">
-								</div>
-							</div>
-						</div>
-						<!-- <div class="input-group">
-						      <div class="input-group-addon">$</div>
-						      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-						      <div class="input-group-addon">.00</div>
-						    </div> -->
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" placeholder="Depto"  name="depto" maxlength="15" autocomplete="on">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" placeholder="Piso"  name="piso" maxlength="11" autocomplete="on">
-								</div>
-							</div>
-						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<!-- <input type="text" class="form-control" placeholder="Ciudad"  name="ciudad" maxlength="45" required autocomplete="off"> -->
-									<select class="form-control" name="ciudad" id="ciudad" required>
-										<option value="" disabled selected>Ciudad</option>
-										<option value="Buenos Aires">Buenos Aires</option>
-										<option value="La Plata">La Plata</option>
-										<option value="Bragado">Bragado</option>
-										<option value="Pehuajo">Pehuajo</option>
-										<option value="Pehuajo">Los Toldos</option>
-									</select>
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<!-- <input type="text" class="form-control" placeholder="Provincia"  name="provincia" maxlength="45" required autocomplete="off"> -->
-									<select class="form-control" name="provincia" id="provincia" required>
-										<option value="" disabled selected>Provincia</option>
-										<option value="Buenos Aires">Buenos Aires</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<!-- <input type="text" class="form-control" placeholder="Pais" name="pais" maxlength="45" required autocomplete="off"> -->
-									  <select class="form-control" name="pais" id="pais" required>
-									  	<option value="" disabled selected>Pais</option>
-									    <option value="Argentina">Argentina</option>
-									  </select>
-								</div>
-							</div>
-						</div>	
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<a href="index.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
-								</div>
-								<div class="input-group">
-									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrarme"/>
-								</div>
-							</div>
-						</div>	
 					</div>
-				</form>
-			</section>
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
+								<input type="password" class="form-control" placeholder="Contraseña"  name="password" id="password" minlength="8" maxlength="45" required autocomplete="off">
+							</div>
+						</div>
+					</div>
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<input type="text" class="form-control" placeholder="Nombre"  name="nombre" id="nombre" maxlength="45" required autocomplete="on">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<input type="text" class="form-control" placeholder="Apellido"  name="apellido" id="apellido" maxlength="45" required autocomplete="on">
+							</div>
+						</div>
+					</div>
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<input type="text" class="form-control" placeholder="Telefono"  name="telefono" id="telefono" maxlength="45" required autocomplete="on">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<input type="email" class="form-control" placeholder="Mail"  name="mail" id="mail" maxlength="45" required autocomplete="on">
+							</div>
+						</div>
+					</div>
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<input type="text" class="form-control" placeholder="Calle"  name="calle" id="calle" maxlength="45" required autocomplete="on">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<input type="text" class="form-control" placeholder="Numero"  name="numero" id="numero" maxlength="11" required autocomplete="on">
+							</div>
+						</div>
+					</div>
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<input type="text" class="form-control" placeholder="Depto" name="dpto" id="dpto" maxlength="15" autocomplete="on">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<input type="text" class="form-control" placeholder="Piso"  name="piso" id="piso" maxlength="11" autocomplete="on">
+							</div>
+						</div>
+					</div>
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<select class="form-control" name="ciudad" id="ciudad" required>
+									<option value="" disabled selected>Ciudad</option>
+									<option value="Buenos Aires">Buenos Aires</option>
+									<option value="La Plata">La Plata</option>
+									<option value="Bragado">Bragado</option>
+									<option value="Pehuajo">Pehuajo</option>
+									<option value="Pehuajo">Los Toldos</option>
+								</select>
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								<select class="form-control" name="provincia" id="provincia" required>
+									<option value="" disabled selected>Provincia</option>
+									<option value="Buenos Aires">Buenos Aires</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+								  <select class="form-control" name="pais" id="pais" required>
+								  	<option value="" disabled selected>Pais</option>
+								    <option value="Argentina">Argentina</option>
+								  </select>
+							</div>
+						</div>
+					</div>	
+					<div class="form-inline">
+							<div class="form-group">
+							<div class="input-group">
+								<a href="index.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
+							</div>
+							<div class="input-group">
+								<button type="button" class="btn btn-primary" id="btn-registro" onclick="validarusuario();"> Registrarme </button>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</form>
+		</section>
 		</div>
 	</section>
 	<footer id="foot">
@@ -196,13 +185,39 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/prototype.js"></script>
 	<script type="text/javascript">
-	function validarusuario(usuario){
-		var url = 'validarusuario.php';
-		var parametros = 'usuario='+usuario.value;
-		var ajax = new Ajax.Updater('comprobarusuario',url,{method: 'get', parameters: parametros});
-	}
+		$( document ).ready(function() {
+    		console.log( "ready!" );
+		});
+
+		var datosForm = $( "#registro-form" ).serializeArray();
+
+		function validarusuario(usuario){
+
+			$.ajax({
+				url: 'validarusuario.php', /*= action*/
+				type: 'post', /*= method*/
+				dataType: 'json',
+				data: 'username='+usuario.value, /*parametros para url*/
+				beforeSend: function(){
+					$('.fa').css('display', 'inline');
+				}
+			})
+			.done(function(){ /*true*/
+				console.log("success");
+				$('comprobarusuario').html("Correcto");
+			})
+			.fail(function(){ /*false*/
+				console.log("error");
+				$('comprobarusuario').html("Falso");
+			})
+			.always(function(){
+				console.log("complete");
+				setTimeout(function(){
+					$('.fa').hide();
+				}, 1000);
+			})
+		}
 	</script>
 </body>
 </html>
