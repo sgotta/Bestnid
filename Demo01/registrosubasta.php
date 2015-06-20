@@ -46,8 +46,8 @@
 						</div>
 					</form>
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
-					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
 					<a href="#" class="glyphicon glyphicon-bullhorn" id="inicio"></a>
+					
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					
@@ -69,16 +69,13 @@
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
 				<ol class="breadcrumb pull-left">
-					<li class="active">Inicio</li>
+					<li class="">Inicio</li>
+					<li class="active">Registro Subasta</li>
 				</ol>
 			</div>
-			<li class="dropdown pull-right nav navbar-nav">
-				<?php include("ordenar.php"); ?>		
-			</li>
-		</li>
 		</section>
 		<div class="row">			
-			<section class="posts container col-md-9 pull-right">
+			<section class="posts container col-md-12 pull-right">
 				<div class="row"> <!-- 1ER FILA IMAGENES -->
 					<style>
 						#btn-ofertar {
@@ -98,49 +95,46 @@
 							color: #000000;
 						}
 					</style>
-					<?php include("listar.php"); ?>
+					<section class="posts col-md-6">
+						<div class="thumbnail">    
+							<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
+						</div>
+						<div class="form-group">
+						    <input type="file" id="imagen">
+						    <!-- <p class="help-block">Subir imagen del producto que desea subastar.</p> -->
+					    </div>
+					</section>
+					<!-- form registrar subasta -->
+					<section class="posts col-md-6">
+						<form>
+						  <div class="form-group">
+						    <input type="text" class="form-control" id="titulo" placeholder="Título de su publicación">
+						  </div>
+						  <textarea class="form-control" rows="5" placeholder="Descripción del producto"></textarea><br>
+						  <div class="form-inline">
+							<div class="input-group">
+								<label for="fecha-inicio">Inicio Subasta</label>
+					    		<input type="date" class="form-control" id="fecha-inicio">
+							</div>
+							<div class="input-group">
+								<label for="fecha-fin">Fin Subasta</label>
+					    		<input type="date" class="form-control" id="fecha-fin">
+							</div>
+						  </div><br>
+						  <div class="form-inline">
+							<div class="form-group">
+								<div class="input-group">
+									<a href="sesioniniciada.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
+								</div>
+								<div class="input-group">
+									<button type="button" class="btn btn-primary" id="btn-registro"> Registrar Subasta </button>
+								</div>
+							</div>
+						  </div><br>
+						</form>
+					</section>
 				</div>
-				<nav>
-					<div class="center-block">
-						<ul class="pagination">
-							<style>
-								#paginacion {
-									color: #B23B39;
-								}
-								#paginacion:active,
-								#paginacion:hover,
-								#paginacion:focus,
-								#paginacionActiva:active,
-								#paginacionActiva:hover,
-								#paginacionActiva:focus
-								 {
-									color: #FFFFFF;
-									background: #B23B39;
-									border-color: #B23B39;
-								}
-								#paginacionActiva {
-									color: #FFFFFF;
-									background: #FF5050;
-									border-color: #FF5050;
-								}
-							</style>
-							<?php include("paginacion.php"); ?>
-						</ul>
-					</div>
-				</nav>
 			</section>
-			<aside class="col-md-3 hidden-xs hidden-sm">
-				<h4>Categorias</h4>
-				<div class="list-group">
-					<?php include("categorias.php"); ?>
-				</div>
-				<!-- filtros -->
-				<h4>Filtros por ciudad: </h4>
-				<div class="list-group">					
-					<?php include("filtros.php"); ?>
-				</div>				
-				<!-- fin filtros -->
-			</aside>
 		</div>
 	</section>
 	<footer id="foot">
