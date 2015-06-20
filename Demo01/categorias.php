@@ -17,10 +17,12 @@
 	// 		$string = $string.array_keys($_GET)[$i]."=".array_values($_GET)[$i]."&";
 	// 	}
 	// }
-
+	$condFecha =   'YEAR(CURRENT_DATE()) < YEAR(p.fecha_fin) 
+					OR ( YEAR(CURRENT_DATE()) = YEAR(p.fecha_fin) AND MONTH(CURRENT_DATE()) < MONTH(p.fecha_fin) ) 
+					OR ( YEAR(CURRENT_DATE()) = YEAR(p.fecha_fin) AND MONTH(CURRENT_DATE()) = MONTH(p.fecha_fin) AND DAY(CURRENT_DATE()) <= DAY(p.fecha_fin) )';
 	while($reg=mysql_fetch_array($registro)){
 		// echo "&nbsp&nbsp&nbsp".$reg['nombre']."<br>";
-		$cant = mysql_query("SELECT nombre FROM publicacion p INNER JOIN categoria c ON (p.Categoria_idCategoria = c.idCategoria) WHERE c.idCategoria = $reg[idCategoria]") or die ("problemas en consulta:".mysql_error());
+		$cant = mysql_query("SELECT nombre FROM publicacion p INNER JOIN categoria c ON (p.Categoria_idCategoria = c.idCategoria) WHERE c.idCategoria = $reg[idCategoria] AND ( $condFecha )") or die ("problemas en consulta:".mysql_error());
 		$numC = mysql_num_rows($cant);
 		echo '<a href="'.$string.'catID='.$reg['idCategoria'].'" class="list-group-item">'.$reg['nombre'].'<span class="badge">'.$numC.'</span></a>';
 	}

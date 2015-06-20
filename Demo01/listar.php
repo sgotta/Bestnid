@@ -13,21 +13,28 @@
 	// if (isset($_GET['filtros'])) {
 	// 	echo array_keys($_GET['filtros'])."valuessssss:".array_values($_GET['filtros']);
 	// }
-
+	$condicionFecha =  'YEAR(CURRENT_DATE()) < YEAR(publicacion.fecha_fin) 
+						OR ( YEAR(CURRENT_DATE()) = YEAR(publicacion.fecha_fin) AND MONTH(CURRENT_DATE()) < MONTH(publicacion.fecha_fin) ) 
+					    OR ( YEAR(CURRENT_DATE()) = YEAR(publicacion.fecha_fin) AND MONTH(CURRENT_DATE()) = MONTH(publicacion.fecha_fin) AND DAY(CURRENT_DATE()) <= DAY(publicacion.fecha_fin) )';
 	if (isset($_GET['filtros'])) {
 		$query = $query." INNER JOIN usuario 
 						ON usuario.ciudad='$_GET[filtros]'
 						AND usuario.nombre_usuario = publicacion.Usuario_nombre_usuario";
 	}
 	if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
-		$query = $query." WHERE titulo LIKE'%$_GET[buscar]%'";
+		$query = $query." WHERE titulo LIKE'%$_GET[buscar]%'
+						  AND ( $condicionFecha )";
 	}
 
 	if(isset($_GET['catID']) && !empty($_GET['catID'])){
 		if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
 			$query = $query." AND publicacion.Categoria_idCategoria = $_GET[catID]";
 		}
-		else $query = $query." WHERE publicacion.Categoria_idCategoria = $_GET[catID]";
+		else $query = $query." WHERE publicacion.Categoria_idCategoria = $_GET[catID]
+							    AND ( $condicionFecha )";
+	}
+	if ((!isset($_GET['catID']) || empty($_GET['catID'])) && (!isset($_GET['buscar']) || empty($_GET['buscar']))){
+		$query = $query." WHERE $condicionFecha";
 	}
 	if(isset($_GET['ordID']) && !empty($_GET['ordID'])){
 		if($_GET['ordID'] == 'menosRecientes'){
@@ -37,9 +44,6 @@
 			$query = $query." ORDER BY fecha_inicio DESC";
 		}
 	}
-
-	
-
 	// echo $query;
 	$registro=mysql_query($query) or die ("problemas en consulta:".mysql_error());
 	// $nueva=mysql_query("SELECT * FROM publicacion") or die ("problemas en consulta22222:".mysql_error());
