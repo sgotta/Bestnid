@@ -23,7 +23,15 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="sesioniniciada.php" class="navbar-brand">Bestnid</a>
+					<?php 
+						if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
+							echo '<a href="sesioniniciada.php" class="navbar-brand">Bestnid</a>';
+						}
+						else {
+							echo '<a href="index.php" class="navbar-brand">Bestnid</a>';
+						}
+					?>
+					
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
@@ -45,9 +53,7 @@
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
 				<ol class="breadcrumb pull-left">
-					<li class="">Inicio</li>
-					<li class="active">Categorias</li>
-					<li class="active">Titulo Subasta</li>
+					<?php include("migajas.php"); ?>
 				</ol>
 			</div>
 		</section>
