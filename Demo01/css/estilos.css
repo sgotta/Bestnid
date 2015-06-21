@@ -298,13 +298,19 @@ a {
 
 #respuesta {
 	/*margin-left: 50px;*/
-	background-color: #E6E6E6;
+	background-color: #F68080;  /*#E6E6E6;*/
 	/*margin-bottom: 10px;*/
+	border-left: 1px solid #FF5050;
+	border-right: 1px solid #FF5050;
+	border-bottom: 1px solid #FF5050;
+	border-top: 1px solid #ddd;
 }
 #pregunta {
 	/*margin-left: 50px;*/
 	/*background-color: #E6E6E6;*/
 	margin-top: 10px;
+	border: 1px solid #FF5050;
+	border-bottom: 1px solid #ddd;
 }
 
 div#tituloSub.form-group {
