@@ -58,12 +58,6 @@
 	<section class="main container">
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
-				<style>
-					#filtroActivo {
-						background-color: #FF5050;
-					  	border-color: #FF5050; 
-					}
-				</style>
 				<ol class="breadcrumb pull-left">
 					<?php include("migajas.php"); ?>
 				</ol>
@@ -72,45 +66,6 @@
 				<?php include("ordenar.php"); ?>		
 			</li>
 		</section>
-		<style>
-			#btn-ofertar {
-				background: #FF5050;
-				color: #FFFFFF;
-				border: 1px;
-				border-color: #ccc;
-				border-style: solid;
-			}
-			#btn-ofertar:hover,
-			#btn-ofertar:active,
-			#btn-ofertar:focus {
-				background: #B23B39;
-				border-color: #B23B39;
-			}
-			a {
-				color: #000000;
-			}
-		</style>
-		<style>
-			#paginacion {
-				color: #B23B39;
-			}
-			#paginacion:active,
-			#paginacion:hover,
-			#paginacion:focus,
-			#paginacionActiva:active,
-			#paginacionActiva:hover,
-			#paginacionActiva:focus
-			 {
-				color: #FFFFFF;
-				background: #B23B39;
-				border-color: #B23B39;
-			}
-			#paginacionActiva {
-				color: #FFFFFF;
-				background: #FF5050;
-				border-color: #FF5050;
-			}
-		</style>
 		<div class="row">			
 			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
 				<div class="row" > <!-- 1ER FILA IMAGENES -->

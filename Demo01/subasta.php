@@ -35,22 +35,8 @@
 							</button>
 						</div>
 					</form>
-					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
-					<a href="#" class="glyphicon glyphicon-bullhorn" id="inicio"></a>
-					
-					<span class="dropdown">
-						<li class="dropdown dropdown-user pull-right nav navbar-nav">
-					
-							<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
-							<!-- <a href="#"  >
-								Categorias <span class="caret"></span>
-							</a> -->
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Perfil</a></li>
-								<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
-							</ul>
-						</li>
-					</span>
+					<!-- ACA MUESTRO EL NOMBRE DE USUARIO Y NOTIFICACION O "INGRESAR" Y "REGISTRARSE" -->
+					<?php include("barra.php"); ?>
 				</div>
 			</div>
 		</nav>
@@ -60,7 +46,8 @@
 			<div class="miga-de-pan col-md-9 ">
 				<ol class="breadcrumb pull-left">
 					<li class="">Inicio</li>
-					<li class="active">Registro Subasta</li>
+					<li class="active">Categorias</li>
+					<li class="active">Titulo Subasta</li>
 				</ol>
 			</div>
 		</section>
@@ -68,42 +55,10 @@
 			<section class="posts container col-md-12 pull-right">
 				<div class="row"> <!-- 1ER FILA IMAGENES -->
 					<section class="posts col-md-6">
-						<div class="thumbnail">    
-							<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
+						<?php include ("infoSubasta.php"); ?>
+						<div id="com-of"> 
+							<?php include ("comentariosofertas.php"); ?> <!-- ACA ME TRAIGO LA BARRA, COMENTARIOS Y OFERTAS -->
 						</div>
-						<div class="form-group">
-						    <input type="file" id="imagen">
-						    <!-- <p class="help-block">Subir imagen del producto que desea subastar.</p> -->
-					    </div>
-					</section>
-					<!-- form registrar subasta -->
-					<section class="posts col-md-6">
-						<form>
-						  <div class="form-group">
-						    <input type="text" class="form-control" id="titulo" placeholder="Título de su publicación">
-						  </div>
-						  <textarea class="form-control" rows="5" placeholder="Descripción del producto"></textarea><br>
-						  <div class="form-inline">
-							<div class="input-group">
-								<label for="fecha-inicio">Inicio Subasta</label>
-					    		<input type="date" class="form-control" id="fecha-inicio">
-							</div>
-							<div class="input-group">
-								<label for="fecha-fin">Fin Subasta</label>
-					    		<input type="date" class="form-control" id="fecha-fin">
-							</div>
-						  </div><br>
-						  <div class="form-inline">
-							<div class="form-group">
-								<div class="input-group">
-									<a href="sesioniniciada.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
-								</div>
-								<div class="input-group">
-									<button type="button" class="btn btn-primary" id="btn-registro"> Registrar Subasta </button>
-								</div>
-							</div>
-						  </div><br>
-						</form>
 					</section>
 				</div>
 			</section>
@@ -119,5 +74,39 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script>
+		function comentarios() {                              //MUESTRO/ACTUALIZO LOS COMENTARIOS
+			$.ajax({
+				type: 'GET',
+				url: 'http://localhost/Bestnid/Demo01/comentariosofertas.php',
+				// dataType: 'json' ,
+				data: {
+					op: 1,
+					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
+							echo 'subID:'.'"'.$_GET['subID'].'"';
+						}?> 
+				}
+			}).done(function(comOf){
+				$('#com-of').html(comOf);
+			});
+		}
+	</script>
+	<script>
+		function ofertas() {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				type: 'GET',
+				url: 'http://localhost/Bestnid/Demo01/comentariosofertas.php',
+				// dataType: 'json' ,
+				data: {
+					op: 2,
+					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
+							echo 'subID:'.'"'.$_GET['subID'].'"';
+						}?> 
+				}
+			}).done(function(comOf){
+				$('#com-of').html(comOf);
+			});
+		}
+	</script>
 </body>
 </html>

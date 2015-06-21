@@ -93,7 +93,7 @@
 			$d=substr($reg['descripcion'], 0, 30)."...";
 		}else{
 			$d=$reg['descripcion'];
-		}
+		}  //<a href="#" class="btn btn-success" id="btn-ofertar">Ofertar</a>
 		$subastas = $subastas. '<section class="posts col-md-4">
 				<div class="thumbnail">    
 					<a href="#" class="thumb">
@@ -101,15 +101,15 @@
 					</a>
 					<div class="caption">
 						<h3 class="post-title">
-							<a href="#">'.$t.'</a>
+							<span>'.$t.'</span>
 						</h3>
 						<p><span class="post-fecha">'.$reg['fecha_inicio'].'</span></p>
 						<p class="post-contenido text-justify">
 							'.$d.'
 						</p>
 						<div class="contenedor-botones">
-							<a href="#" class="btn btn-primary">Detalles</a>
-							<a href="#" class="btn btn-success" id="btn-ofertar">Ofertar</a>
+							<a href="subasta.php?subID='.$reg['idPublicacion'].'" class="btn btn-primary" id="btn-ofertar">Detalles</a>
+							
 						</div>
 					</div>
 				</div>

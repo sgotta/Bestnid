@@ -140,6 +140,10 @@ body {
 	width: 250px;
 }
 
+#btn-registro2 {
+	height: 30px;
+	width: 125px;
+}
 
 .form-inline .form-group {
 	margin: 5px 15px 5px 15px;
@@ -240,3 +244,65 @@ body {
 	padding: 10px;
 	float: left;
 }*/
+
+#paginacion {
+	color: #B23B39;
+}
+#paginacion:active,
+#paginacion:hover,
+#paginacion:focus,
+#paginacionActiva:active,
+#paginacionActiva:hover,
+#paginacionActiva:focus
+ {
+	color: #FFFFFF;
+	background: #B23B39;
+	border-color: #B23B39;
+}
+#paginacionActiva {
+	color: #FFFFFF;
+	background: #FF5050;
+	border-color: #FF5050;
+}
+
+#btn-ofertar {
+	background: #FF5050;
+	color: #FFFFFF;
+	border: 1px;
+	border-color: #ccc;
+	border-style: solid;
+}
+#btn-ofertar:hover,
+#btn-ofertar:active,
+#btn-ofertar:focus {
+	background: #B23B39;
+	border-color: #B23B39;
+}
+a {
+	color: #000000;
+}
+
+#filtroActivo {
+	background-color: #FF5050;
+  	border-color: #FF5050; 
+}
+
+#navegacion-fm {
+	float: right;
+	width: 1000px;
+}
+#barra-busqueda {
+	width: 200px;
+	margin-left: 350px;
+}
+
+#respuesta {
+	/*margin-left: 50px;*/
+	background-color: #E6E6E6;
+	/*margin-bottom: 10px;*/
+}
+#pregunta {
+	/*margin-left: 50px;*/
+	/*background-color: #E6E6E6;*/
+	margin-top: 10px;
+}

@@ -27,16 +27,6 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
-				<style>
-				#navegacion-fm {
-					float: right;
-					width: 1000px;
-				}
-				#barra-busqueda {
-					width: 200px;
-					margin-left: 350px;
-				}
-				</style>
 					<!-- <form action="sesioniniciada.php" method="get" class="navbar-form navbar-left" role="search"> -->
 					<div class="navbar-form navbar-left" role="search">
 						<div class="input-group">
@@ -71,12 +61,6 @@
 	<section class="main container">
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
-				<style>
-					#filtroActivo {
-						background-color: #FF5050;
-					  	border-color: #FF5050; 
-					}
-				</style>
 				<ol class="breadcrumb pull-left">
 					<?php include("migajas.php"); ?>
 				</ol>
@@ -85,45 +69,6 @@
 				<?php include("ordenar.php"); ?>		
 			</li>
 		</section>
-		<style>
-			#btn-ofertar {
-				background: #FF5050;
-				color: #FFFFFF;
-				border: 1px;
-				border-color: #ccc;
-				border-style: solid;
-			}
-			#btn-ofertar:hover,
-			#btn-ofertar:active,
-			#btn-ofertar:focus {
-				background: #B23B39;
-				border-color: #B23B39;
-			}
-			a {
-				color: #000000;
-			}
-		</style>
-		<style>
-			#paginacion {
-				color: #B23B39;
-			}
-			#paginacion:active,
-			#paginacion:hover,
-			#paginacion:focus,
-			#paginacionActiva:active,
-			#paginacionActiva:hover,
-			#paginacionActiva:focus
-			 {
-				color: #FFFFFF;
-				background: #B23B39;
-				border-color: #B23B39;
-			}
-			#paginacionActiva {
-				color: #FFFFFF;
-				background: #FF5050;
-				border-color: #FF5050;
-			}
-		</style>
 		<div class="row">			
 			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
 				<div class="row" > <!-- 1ER FILA IMAGENES -->
