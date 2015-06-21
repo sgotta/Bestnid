@@ -5,6 +5,7 @@
 		session_start();
 	}
 	
+	$coment = '';
 	$coment = '<ul class="list-group">';
 	include("conexion.php");
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
@@ -20,6 +21,7 @@
 
 	//EMPIEZO A DEVOLVER COMENTARIOS
 	while ($reg=mysql_fetch_array($c)){
+		
 		$coment = $coment.'<li class="list-group-item" id="pregunta">'.$reg['descripcion'].'</li>';
 		if (isset($reg['respuesta']) && !empty($reg['respuesta'])){
 			$coment = $coment.'<li class="list-group-item" id="respuesta">'.$reg['respuesta'].'</li>';
@@ -35,7 +37,7 @@
 				}
 			}
 		}
-
+		
 	}
 	$coment = $coment.'</ul>';
 	if (isset($_SESSION['username']) && !empty($_SESSION['username'])){

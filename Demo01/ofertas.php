@@ -28,7 +28,21 @@
 			$ofer = $ofer.'</ul>';
 		}
 		else {
-			$ofer = $ofer.'<form action="ofertar.php?subID='.$_GET['subID'].'" method="post">
+			//CONSULTA SI EL USUARIO CONECTADO YA HIZO UNA OFERTA SOBRE LA PUBLICACION
+			$c3=mysql_query("SELECT * 
+							 FROM oferta
+							 WHERE Publicacion_idPublicacion = '$_GET[subID]'
+							 AND Usuario_nombre_usuario = '$_SESSION[username]'") or die ("problemas en consulta:".mysql_error());
+			$reg3=mysql_fetch_array($c3);
+			//SI YA HIZO OFERTA, SE MUESTRA 
+			if (mysql_num_rows($c3) == 1){
+				$ofer = '<ul class="list-group">';
+				$ofer = $ofer.'<li class="list-group-item">'.$reg3['motivo'].'</li>';
+				$ofer = $ofer.'</ul>';
+			}
+			//SINO, FORMULARIO PARA REALIZAR OFERTA
+			else {
+				$ofer = $ofer.'<form action="ofertar.php?subID='.$_GET['subID'].'" method="post">
 						<textarea class="form-control" rows="3" placeholder="Motivo" name="motivo"></textarea><br>
 						<div class="input-group col-md-2">
 							<span class="input-group-addon glyphicon glyphicon-usd"></span>
@@ -36,6 +50,7 @@
 						</div><br>
 						<button type="submit" class="btn btn-primary" id="btn-registro"> Ofertar </button>
 					</form><br>';
+			}
 		}
 	}
 	else {
