@@ -54,7 +54,7 @@
 		<div class="row">			
 			<section class="posts container col-md-12 pull-right">
 				<div class="row"> <!-- 1ER FILA IMAGENES -->
-					<section class="posts col-md-6">
+					<section class="posts col-md-6" >
 						<?php include ("infoSubasta.php"); ?>
 						<div id="com-of"> 
 							<?php include ("comentariosofertas.php"); ?> <!-- ACA ME TRAIGO LA BARRA, COMENTARIOS Y OFERTAS -->

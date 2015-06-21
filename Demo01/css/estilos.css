@@ -306,3 +306,13 @@ a {
 	/*background-color: #E6E6E6;*/
 	margin-top: 10px;
 }
+
+div#tituloSub.form-group {
+	color: #B23B39;
+	font-size: 40px;
+	/*margin-top: 0px;*/
+	/*padding-top: 0px;*/
+}
+section#infoSubas.posts.col-md-6{
+	margin-top: 10px;
+}

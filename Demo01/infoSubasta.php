@@ -8,18 +8,18 @@
 				<img class="img-thumbnail" src="data:image/jpeg;base64,'.base64_encode( $reg['foto'] ).'" alt="No hay imagen" style="max-height: 250px;">
 			</div>
 		</section>
-		<section class="posts col-md-6">
-			<div class="form-group">
-			    <h2>'.$reg['titulo'].'</h2>
+		<section class="posts col-md-6" id="infoSubas">
+			<div class="form-group" id="tituloSub">
+			    <span>'.$reg['titulo'].'</span>
 			</div>
-			<h5>Descripcion:</h5>
+			<h5><u>Descripcion:</u></h5>
 			<h5>'.$reg['descripcion'].'</h5><br>
 			<div class="form-inline">
 				<div class="">
-		    		<h5>Inicio Subasta:<br>'.$reg['fecha_inicio'].'</h5>
+		    		<h5><u>Inicio Subasta:</u> '.$reg['fecha_inicio'].'</h5>
 				</div>
 				<div class="">
-		    		<h5>Fin Subasta:<br>'.$reg['fecha_fin'].'</h5>
+		    		<h5><u>Fin Subasta:</u> '.$reg['fecha_fin'].'</h5>
 				</div>
 			</div><br>		
 			</div><br>';

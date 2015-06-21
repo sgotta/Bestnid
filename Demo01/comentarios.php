@@ -1,5 +1,10 @@
 <?php
 	//DEVUELVO LOS COMENTARIOS DE LA SUBASTA(DUEÑO SUBASTA Y USUARIOS) Y EL FORMULARIO PARA REALIZAR UN COMENTARIO(USUARIO)
+
+	if (session_status() != PHP_SESSION_ACTIVE){
+		session_start();
+	}
+	
 	$coment = '<ul class="list-group">';
 	include("conexion.php");
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
@@ -37,18 +42,15 @@
 		if ($_SESSION['username'] == $reg2['Usuario_nombre_usuario']){
 			//SI ES EL DUEÑO DE LA SUBASTA NO MUESTRO OPCION DE COMENTAR
 		}
-		else {
+		else {  //SI ES CUALQUIER OTRO USUARIO MUESTRO FORMULARIO COMENTAR
 			$coment = $coment.'<form action="comentar.php?subID='.$_GET['subID'].'" method="post">
 							<textarea class="form-control" rows="3" placeholder="Haz un comentario..." name="coment"></textarea><br>
 							<button type="submit" class="btn btn-primary" id="btn-registro"> Comentar </button>
 						</form><br>';
 		}
 	}
-	else {  //SI NO ES DUEÑO MUESTRO FORMULARIO PARA COMENTAR
-		$coment = $coment.'<form action="comentar.php?subID='.$_GET['subID'].'" method="post">
-							<textarea class="form-control" rows="3" placeholder="Haz un comentario..." name="coment"></textarea><br>
-							<button type="submit" class="btn btn-primary" id="btn-registro"> Comentar </button>
-						</form><br>';
+	else {  //SI NO HAY USUARIO CONECTADO NO MUESTRO OPCION COMENTAR
+		$coment = $coment.'<span>***Inicia sesion para realizar un comentario***</span><br><br>';
 	}
 	return $coment;
 ?>

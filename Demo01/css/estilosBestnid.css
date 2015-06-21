@@ -49,8 +49,6 @@
 	padding-left: 0px;
 }
 
-
-
 /*-- Media Querie --*/
 @media screen and (max-width: 768px){
 	.post .thumb{
@@ -72,4 +70,3 @@ select#pais.form-control{
 	width: 185px;
 	height: 34px;
 }
-
