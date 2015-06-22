@@ -23,25 +23,15 @@
 
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
-	
 	$idCategoria= mysql_query("SELECT * FROM categoria WHERE nombre = '$_POST[categ]' ",$con);
-
-	/*echo $cosa;*/
 	$idCategoria= mysql_fetch_array($idCategoria);
-	
 	$idCategoria= $idCategoria['idCategoria'];
-
-
+	$data =addslashes(file_get_contents($_FILES['foto']['tmp_name']));
 	$resultado = mysql_query("INSERT INTO publicacion (fecha_inicio,fecha_fin,finalizado,titulo,descripcion,foto,Usuario_nombre_usuario, Categoria_idCategoria) 
-	VALUES ('$fecha_inicio','$fecha_fin','$finalizado','$_POST[titulo]','$_POST[descripcion]','$_FILES[foto]','$_SESSION[username]','$idCategoria')",$con);
+	VALUES ('$fecha_inicio','$fecha_fin','$finalizado','$_POST[titulo]','$_POST[descripcion]','$data','$_SESSION[username]','$idCategoria')",$con);
 	
 	if (!$resultado) { //si hay error
 		die('Error en base de datos: ' . mysql_error()); /*mostrar error de mysql*/
-
-		// echo "<script type='text/javascript'>"; "otra opción: volver a pág. anterior"
-	 //    echo "window.history.back(-1)";
-	 //    echo "</script>";
-
 	}else{
 		header("Location: sesioniniciada.php");
 	}

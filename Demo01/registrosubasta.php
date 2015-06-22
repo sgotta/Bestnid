@@ -100,7 +100,7 @@
 					</style>
 					<!-- form registrar subasta -->
 					<section class="posts container col-md-12">
-						<form action="registrarsubasta.php" role="form" id="reg-subasta-form" method="post">
+						<form action="registrarsubasta.php" enctype="multipart/form-data" role="form" id="reg-subasta-form" method="post">
 						<section class="col-md-4">
 							<div class="thumbnail">    
 								<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
