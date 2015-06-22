@@ -34,7 +34,16 @@
 			//SI ES SUEÑO MUESTRO CANTIDAD DE OFERTAS
 			if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 				if ($_SESSION['username'] == $barradueño['Usuario_nombre_usuario']){
-					$barra = $barra. '<span class="badge">'.$bo.'</span>';
+					$datesql = strtotime($barradueño['fecha_fin']);
+					if ((getdate()['year'] < date("Y",$datesql)) 
+						OR (getdate()['year'] == date("Y",$datesql) AND getdate()['mon'] < date("n",$datesql))
+						OR (getdate()['year'] == date("Y",$datesql) AND getdate()['mon'] == date("n",$datesql) AND getdate()['mday'] < date("j",$datesql))){
+						//LA SUBASTA NO FINALIZO, AL DUEÑO NO LE MUESTRO CUANTAS OFERTAS HAY
+					}
+					else {
+						//FINALIZO SUBASTA, MUESTRO BADGE CON CANTIDAD DE OFERTAS
+						$barra = $barra. '<span class="badge">'.$bo.'</span>';
+					}		
 				}
 			}
 			$barra = $barra.'</a></li> </ul>';
@@ -47,9 +56,24 @@
 			//SI ES SUEÑO MUESTRO CANTIDAD DE OFERTAS
 			if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 				if ($_SESSION['username'] == $barradueño['Usuario_nombre_usuario']){
-					$barra = $barra. '<span class="badge">'.$bo.'</span>';
+					$datesql = strtotime($barradueño['fecha_fin']);
+					// date("Y",$datesql)
+					// date("n",$datesql)
+					// date("j",$datesql)
+					// getdate()['year']
+					// getdate()['mon']
+					// getdate()['mday']
+					if ((getdate()['year'] < date("Y",$datesql)) 
+						OR (getdate()['year'] == date("Y",$datesql) AND getdate()['mon'] < date("n",$datesql))
+						OR (getdate()['year'] == date("Y",$datesql) AND getdate()['mon'] == date("n",$datesql) AND getdate()['mday'] < date("j",$datesql))){
+						//LA SUBASTA NO FINALIZO, AL DUEÑO NO LE MUESTRO CUANTAS OFERTAS HAY
+					}
+					else {
+						//FINALIZO SUBASTA, MUESTRO BADGE CON CANTIDAD DE OFERTAS
+						$barra = $barra. '<span class="badge">'.$bo.'</span>';
+					}		
 				}
-			}
+			}			
 			$barra = $barra.'</a></li> </ul>';
 			$of=include("ofertas.php");							
 			$barra=$barra.$of;
@@ -61,7 +85,16 @@
 		//SI ES SUEÑO MUESTRO CANTIDAD DE OFERTAS
 		if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 			if ($_SESSION['username'] == $barradueño['Usuario_nombre_usuario']){
-				$barra = $barra. '<span class="badge">'.$bo.'</span>';
+				$datesql = strtotime($barradueño['fecha_fin']);
+				if ((getdate()['year'] < date("Y",$datesql)) 
+					OR (getdate()['year'] == date("Y",$datesql) AND getdate()['mon'] < date("n",$datesql))
+					OR (getdate()['year'] == date("Y",$datesql) AND getdate()['mon'] == date("n",$datesql) AND getdate()['mday'] < date("j",$datesql))){
+					//LA SUBASTA NO FINALIZO, AL DUEÑO NO LE MUESTRO CUANTAS OFERTAS HAY
+				}
+				else {
+					//FINALIZO SUBASTA, MUESTRO BADGE CON CANTIDAD DE OFERTAS
+					$barra = $barra. '<span class="badge">'.$bo.'</span>';
+				}		
 			}
 		}
 		$barra = $barra.'</a></li> </ul>';

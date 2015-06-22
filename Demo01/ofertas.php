@@ -19,13 +19,23 @@
 	$reg2=mysql_fetch_array($c2);
 
 	if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
-		//SI ES EL DUEÑO MUESTRO LAS OFERTAS
+		//SI ES EL DUEÑO Y TERMINO LA SUBASTA MUESTRO LAS OFERTAS 
 		if ($_SESSION['username'] == $reg2['Usuario_nombre_usuario']){
-			$ofer = '<ul class="list-group">';
-			while ($reg=mysql_fetch_array($o)){
-				$ofer = $ofer.'<li class="list-group-item">'.$reg['motivo'].'</li>';
+			$date = strtotime($reg2['fecha_fin']);
+			if ((getdate()['year'] < date("Y",$datesql)) 
+				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] < date("n",$date))
+				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] == date("n",$date) AND getdate()['mday'] < date("j",$date))){
+				//LA SUBASTA NO FINALIZO, AL DUEÑO NO LE MUESTRO LAS OFERTAS QUE HAY
+				$ofer = $ofer.'<br><span>***La subasta no ha finalizado***</span><br><br>';
 			}
-			$ofer = $ofer.'</ul>';
+			else {
+				//FINALIZO SUBASTA, MUESTRO OFERTAS
+				$ofer = '<ul class="list-group">';
+				while ($reg=mysql_fetch_array($o)){
+					$ofer = $ofer.'<li class="list-group-item">'.$reg['motivo'].'</li>';
+				}
+				$ofer = $ofer.'</ul>';
+			}	
 		}
 		else {
 			//CONSULTA SI EL USUARIO CONECTADO YA HIZO UNA OFERTA SOBRE LA PUBLICACION
