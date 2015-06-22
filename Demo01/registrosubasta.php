@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="css/estilosBestnid.css">
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="ion.rangeSlider/css/normalize.css" />
+    <link rel="stylesheet" href="ion.rangeSlider/css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" />
 
 </head>
 <body>
@@ -95,43 +98,47 @@
 							color: #000000;
 						}
 					</style>
-					<section class="posts col-md-6">
-						<div class="thumbnail">    
-							<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
-						</div>
-						<div class="form-group">
-						    <input type="file" id="imagen">
-						    <!-- <p class="help-block">Subir imagen del producto que desea subastar.</p> -->
-					    </div>
-					</section>
 					<!-- form registrar subasta -->
-					<section class="posts col-md-6">
-						<form>
+					<section class="posts container col-md-12">
+						<form action="registrarsubasta.php" role="form" id="reg-subasta-form" method="post">
+						<section class="col-md-4">
+							<div class="thumbnail">    
+								<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
+							</div>
+							<div class="form-group">
+							    <input type="file" id="foto" name="foto" required>
+						    </div>
+						</section>
+						<section class="col-md-8">
 						  <div class="form-group">
-						    <input type="text" class="form-control" id="titulo" placeholder="Título de su publicación">
+						    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título de su publicación" required maxlength="45">
 						  </div>
-						  <textarea class="form-control" rows="5" placeholder="Descripción del producto"></textarea><br>
-						  <div class="form-inline">
-							<div class="input-group">
-								<label for="fecha-inicio">Inicio Subasta</label>
-					    		<input type="date" class="form-control" id="fecha-inicio">
+
+						  <textarea class="form-control" rows="5" placeholder="Descripción del producto" name="descripcion" id="descripcion" required maxlength="300"></textarea><br>
+						  	<div class="form-inline">
+								<div class="form-group col-md-8">
+									<label for="duracion-subasta">Duración de la subasta:</label>
+									<input type="text" name="duracion-subasta" id="duracion-subasta" value="30">					
+							  	</div><br>
+								<select class="form-control col-md-4" style="margin-top: 25px;" name="categ" id="categ" required>
+									<option value="" disabled selected>Categorias</option>
+									<?php include("opcionesCategorias.php");?> 
+								</select>
 							</div>
-							<div class="input-group">
-								<label for="fecha-fin">Fin Subasta</label>
-					    		<input type="date" class="form-control" id="fecha-fin">
-							</div>
-						  </div><br>
-						  <div class="form-inline">
+
+						  <div class="form-inline" style="margin-left:100px;">
 							<div class="form-group">
 								<div class="input-group">
 									<a href="sesioniniciada.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
 								</div>
 								<div class="input-group">
-									<button type="button" class="btn btn-primary" id="btn-registro"> Registrar Subasta </button>
+									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrar Subasta"/>
 								</div>
 							</div>
 						  </div><br>
+
 						</form>
+						</section>
 					</section>
 				</div>
 			</section>
@@ -145,7 +152,21 @@
 		<span> (0800) - 555 - 5555 </span><br>
 		<span id="creds"> Desarrollado por Strategus </span>
 	</footer>
+
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="ion.rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+	
+	<script type="text/javascript">
+		$(function () {
+			$("#duracion-subasta").ionRangeSlider({
+			    from: 15,
+			    keyboard: true,
+			    postfix: " dias",
+			    grid: true,
+			    values: [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+			});
+	    });
+	</script>
 </body>
 </html>

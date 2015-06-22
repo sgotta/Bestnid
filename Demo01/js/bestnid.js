@@ -100,3 +100,19 @@ $(document).ready(function(){
 		            }
 	        });
 	</script>
+
+	$("#username").on("keydown",function(event){
+			console.log(event.type+": "+event.which);
+			if (event.which == 13) {
+				validarusuario(this); // ver: console.log(this);
+			};
+		});
+
+
+
+	var d = new Date(); 
+	var month = d.getMonth()+1; 
+	var day = d.getDate(); //no es day?
+	var output = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+
+Ver más en: http://www.iteramos.com/pregunta/18729/como-obtener-la-fecha-actual-en-jquery
