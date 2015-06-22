@@ -61,14 +61,14 @@
 			</style>		
 			<section class="posts container col-md-9">
 				<form action="registrar.php" class="navbar-form" role="form" id="registro-form" method="post">
-					<span id="spanRegistro">Registrate</span>
+					<span id="spanRegistro">Registrarse</span>
 					<div class="form-group">
 					<span id="comprobarusuario"></span>
 						<div class="form-inline">
 		 					<div class="form-group" id="campo-usuario-validacion">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-user" ></span>
-									<input type="text" class="form-control" autofocus tabindex="1" onblur="validarusuario(this);" placeholder="Nombre de usuario"  name="username" id="username" maxlength="16" required autocomplete="off">
+									<input type="text" class="form-control" onblur="validarusuario(this);" placeholder="Nombre de usuario"  name="username" id="username" maxlength="16" required autocomplete="off">
 								</div>
 							</div>	
 						</div>
@@ -76,7 +76,7 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
-									<input type="password" class="form-control" tabindex="2" placeholder="Contraseña"  name="password" id="password" minlength="8" maxlength="45" required autocomplete="off">
+									<input type="password" class="form-control" placeholder="Contraseña"  name="password" id="password" minlength="8" maxlength="45" required autocomplete="off">
 								</div>
 							</div>
 						</div>
@@ -84,23 +84,11 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" tabindex="3" placeholder="Nombre"  name="nombre" maxlength="45" required autocomplete="on">
+									<input type="text" class="form-control" placeholder="Nombre"  name="nombre" maxlength="45" required autocomplete="on">
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" tabindex="4" placeholder="Apellido"  name="apellido" maxlength="45" required autocomplete="on">
-								</div>
-							</div>
-						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" tabindex="5" placeholder="Telefono"  name="telefono" maxlength="45" required autocomplete="on">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="email" class="form-control" tabindex="6" placeholder="Mail"  name="mail" maxlength="45" required autocomplete="on">
+									<input type="text" class="form-control" placeholder="Apellido"  name="apellido" maxlength="45" required autocomplete="on">
 								</div>
 							</div>
 						</div>
@@ -108,23 +96,11 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" tabindex="7" placeholder="Calle"  name="calle" maxlength="45" required autocomplete="on">
+									<input type="text" class="form-control" placeholder="Telefono"  name="telefono" maxlength="45" required autocomplete="on">
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" tabindex="8" placeholder="Numero"  name="numero" maxlength="11" required autocomplete="on">
-								</div>
-							</div>
-						</div>
-						<div class="form-inline">
-		 					<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" tabindex="9" placeholder="Depto"  name="depto" maxlength="15" autocomplete="on">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<input type="text" class="form-control" tabindex="10" placeholder="Piso"  name="piso" maxlength="11" autocomplete="on">
+									<input type="email" class="form-control" placeholder="Mail"  name="mail" maxlength="45" required autocomplete="on">
 								</div>
 							</div>
 						</div>
@@ -132,7 +108,31 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<select class="form-control" tabindex="11" name="ciudad" id="ciudad" required>
+									<input type="text" class="form-control" placeholder="Calle"  name="calle" maxlength="45" required autocomplete="on">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Numero"  name="numero" maxlength="11" required autocomplete="on">
+								</div>
+							</div>
+						</div>
+						<div class="form-inline">
+		 					<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Depto"  name="depto" maxlength="15" autocomplete="on">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<input type="text" class="form-control" placeholder="Piso"  name="piso" maxlength="11" autocomplete="on">
+								</div>
+							</div>
+						</div>
+						<div class="form-inline">
+		 					<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
+									<select class="form-control" name="ciudad" id="ciudad" required>
 										<option value="" disabled selected>Ciudad</option>
 										<option value="Buenos Aires">Buenos Aires</option>
 										<option value="La Plata">La Plata</option>
@@ -142,8 +142,8 @@
 									</select>
 								</div>
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<select class="form-control" tabindex="12" name="provincia" id="provincia" required>
+									<span class="input-group-addon glyphicon glyphicon-pencil"></span>
+									<select class="form-control" name="provincia" id="provincia" required>
 										<option value="" disabled selected>Provincia</option>
 										<option value="Buenos Aires">Buenos Aires</option>
 									</select>
@@ -154,7 +154,7 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									  <select class="form-control" tabindex="13" name="pais" id="pais" required>
+									  <select class="form-control" name="pais" id="pais" required>
 									  	<option value="" disabled selected>Pais</option>
 									    <option value="Argentina">Argentina</option>
 									  </select>
@@ -167,7 +167,7 @@
 									<a href="index.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
 								</div>
 								<div class="input-group">
-									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrarme" disabled="disabled" />
+									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrarse"/>
 								</div>
 							</div>
 						</div>	
@@ -191,34 +191,7 @@
 		$( document ).ready(function() {
     		console.log( "Ready" );
 		});
-
-		// // Al presionar cualquier tecla en cualquier campo de texto, ejectuamos la siguiente función:
-  //       $('input').on('keydown', function(e){
-  //           // Solo nos importa si la tecla presionada fue ENTER...
-  //           if(e.keyCode === 13){
-	 //            // Obtenemos el número del tabindex del campo actual
-	 //            var currentTabIndex = $(this).attr('tabindex');
-	 //            // Le sumamos 1 al actual para obtener el siguiente tabindex
-	 //            var nextTabIndex = parseInt(currentTabIndex) + 1;
-	 //            // Obtenemos (si existe) el siguiente elemento usando la variable nextTabIndex
-	 //            var nextField = $('[tabindex='+nextTabIndex+']');
-	 //            // Si se encontró un elemento:
-	 //            if(nextField.length > 0){
-	 //                // Hacerle focus (seleccionarlo)
-	 //                nextField.focus();
-	 //                // Ignorar el funcionamiento predeterminado (enviar el formulario)
-	 //                e.preventDefault();
-	 //            }
-	 //            // Si no se encontro ningún elemento, no hacemos nada (se envia el formulario)
-	 //        }
-  //       });
-		$("#username").on("keydown",function(event){
-			console.log(event.type+": "+event.which);
-			if (event.which == 13) {
-				validarusuario(this);
-			};
-		});
-
+		
 		function validarusuario(usuario){
 			$.ajax({
 				beforeSend: function(){
@@ -228,25 +201,24 @@
 				type: 'get', /*= method*/
 				/*dataType: 'json',*/
 				data: 'usuario='+usuario.value /*parametros para url*/
-				
 			})
-			.done(function(respuesta){ /*true*/
+			.done(function(respuesta){ /*Si funcionó ajax*/
 				console.log("Success");
 				$('#comprobarusuario').html(respuesta);
 				if (respuesta === '<p class="text-success">"Nombre de usuario <strong>OK!</strong>"</p>') {
-					console.log(respuesta);
-					//hacer focus en el campo "Contraseña" y habilitar botón submit
-					$("#password").focus();
-					$("#btn-registro").removeAttr('disabled');
-					$("#campo-usuario-validacion").removeClass("has-error");
+					console.log("Usuario OK!");
 				}else{
-					//pongo en rojo el campo de nombre de usuario.
-					
-					$("#campo-usuario-validacion").addClass("has-error");
-
+					//mantengo el foco en username
+					if (usuario.value=='') {
+						$('#comprobarusuario').html('<p class="text-info">"Nombre de usuario no puede estar vacio"</p>');
+						console.log("Campo vacio")
+					}else{
+						console.log("Username en uso!")
+					};
+					$("#username").focus();
 				}
 			})
-			.fail(function(){ /*false*/
+			.fail(function(){ /*esto es si falla el llamado de ajax*/
 				console.log("Error");
 				$('#comprobarusuario').html("Error Ajax.");
 			})

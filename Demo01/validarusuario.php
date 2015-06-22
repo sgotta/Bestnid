@@ -12,14 +12,12 @@
 			WHERE nombre_usuario='$usuario'")
 		or die("problemas en consulta: ".mysql_error());
 		$cant=mysql_num_rows($registro);
-		sleep(2);
+		/*sleep(1);*/
 		if ($cant > 0) {
 			echo '<p class="text-danger">"El nombre de usuario <strong>'.$usuario.'</strong> ya está en uso, por favor elija otro."</p>';
 		}else{
 			echo '<p class="text-success">"Nombre de usuario <strong>OK!</strong>"</p>';
 		}
-	}else{
-		echo '<p class="text-danger">"El campo <strong>Nombre de usuario</strong> no puede estar vacio."</p>';
 	}
 
 	
