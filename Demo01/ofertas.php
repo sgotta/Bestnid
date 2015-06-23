@@ -53,10 +53,10 @@
 			//SINO, FORMULARIO PARA REALIZAR OFERTA
 			else {
 				$ofer = $ofer.'<form action="ofertar.php?subID='.$_GET['subID'].'" method="post">
-						<textarea class="form-control" rows="3" placeholder="Motivo" name="motivo"></textarea><br>
+						<textarea class="form-control" rows="3" required minlength="1" maxlength="140" placeholder="Motivo" name="motivo"></textarea><br>
 						<div class="input-group col-md-2">
 							<span class="input-group-addon glyphicon glyphicon-usd"></span>
-							<input type="text" class="form-control" placeholder="Precio" name="precio" maxlength="15" autocomplete="on">
+							<input type="text" class="form-control" placeholder="Precio" name="precio" required minlength="1" autocomplete="on">
 						</div><br>
 						<button type="submit" class="btn btn-primary" id="btn-registro"> Ofertar </button>
 					</form><br>';

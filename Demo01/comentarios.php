@@ -30,7 +30,7 @@
 			if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 				if ($_SESSION['username'] == $reg2['Usuario_nombre_usuario']){
 					$coment = $coment.'<form action="responder.php?subID='.$_GET['subID'].'&c='.$reg['idComentario'].'" method="post">
-										<textarea class="form-control" rows="1" placeholder="Escribir respuesta..." name="response" id="respuesta"></textarea><br>
+										<textarea class="form-control" rows="1" required minlength="1" maxlength="140" placeholder="Escribir respuesta..." name="response" id="respuesta"></textarea><br>
 										<button type="submit" class="btn btn-primary" id="btn-registro2"> Responder </button>
 									</form><br>';
 				}
@@ -45,7 +45,7 @@
 		}
 		else {  //SI ES CUALQUIER OTRO USUARIO MUESTRO FORMULARIO COMENTAR
 			$coment = $coment.'<form action="comentar.php?subID='.$_GET['subID'].'" method="post">
-							<textarea class="form-control" rows="3" placeholder="Haz un comentario..." name="coment"></textarea><br>
+							<textarea class="form-control" rows="3" required minlength="1" maxlength="140" placeholder="Haz un comentario..." name="coment"></textarea><br>
 							<button type="submit" class="btn btn-primary" id="btn-registro"> Comentar </button>
 						</form><br>';
 		}
