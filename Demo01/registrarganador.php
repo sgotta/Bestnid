@@ -5,19 +5,34 @@
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
 
-	$usuarioGanador = $_POST['optionsRadios'];
+	$idOfertaGanadora = $_POST['optionsRadios'];
 
-	//en esta oferta tengo que poner ganador en 1
-	
-	$ofertaGanadora=mysql_query("SELECT *  
+	//Me fijo a que usuario le tengo que notificar que ganó.
+	$nombreGanador=mysql_query("SELECT Usuario_nobre_usuario  
 								FROM oferta
-								WHERE Usuario_nombre_usuario = '$usuarioGanador'
-								AND /*--- acá me falta algo, ya intente inner join, pero es lo mismo ---*/") 
+								WHERE idOferta='$idOfertaGanadora'") 
 								or die ("problemas en consulta:".mysql_error());
+
+	//Actualizo el campo ganador en 1 para poder consultar en un futuro quien ganó esta subasta.
+	/*mysql_query("UPDATE oferta SET ganador = 1 WHERE idOferta = '$idOfertaGanadora'",$con);*/
+
+	//FALTA:
+	//Agregar dos notificaciones, una Ganador, otra Perdedores
+	//Notificar a todos los usuarios que participaron de esta subasta.
+
+
 	
-	$arrayOferta=mysql_fetch_array($ofertaGanadora);
 
-	print_r($arrayOferta);
-	echo "Gano: ".$usuarioGanador;
 
+	// **** ESTO ES COPY PASTE DE LO DE NICO PARA TERMINAR LO QUE ME FALTA **** //
+
+	//AGREGO LA NOTIFICACION A LA BASE
+	/*mysql_query("INSERT INTO notificacion (descripcion,leida) VALUES ('$descrip','0')",$con);
+	$idNotif = mysql_insert_id();
+	//AHORA RELACIONO LA NOTIFICACION CON EL USUARIO
+	mysql_query("INSERT INTO usuario_notificacion (Notificacion_numero_identificacion,Usuario_nombre_usuario) 
+				 VALUES ('$idNotif','$d[nombre_usuario]')",$con);*/
+
+	// **** FIN COPY PASTE DE LO DE NICO PARA TERMINAR LO QUE ME FALTA **** //
+	
  ?>

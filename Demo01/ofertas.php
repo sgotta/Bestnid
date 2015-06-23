@@ -35,7 +35,7 @@
 				$contador=1;
 				while ($reg=mysql_fetch_array($o)){
 					$ofer = $ofer.'<div class="radio">
-        								<input type="radio" name="optionsRadios" id="optionsRadios'.$contador.'" value="'.$reg['Usuario_nombre_usuario'].'">
+        								<input type="radio" name="optionsRadios" id="optionsRadios'.$contador.'" value="'.$reg['idOferta'].'">
         								"Elegir como motivo ganador":
         								<li class="list-group-item">'.$reg['motivo'].'</li>
     								</div>';
