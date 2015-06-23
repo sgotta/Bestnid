@@ -60,25 +60,23 @@
 				}
 			</style>		
 			<section class="posts container col-md-9">
-				<form action="registrar.php" class="navbar-form " role="form" id="registro-form" method="post">
-					<span id="spanRegistro">Registrate</span>
+				<form action="registrar.php" class="navbar-form" role="form" id="registro-form" method="post">
+					<span id="spanRegistro">Registrarse</span>
 					<div class="form-group">
+					<span id="comprobarusuario"></span>
 						<div class="form-inline">
-		 					<div class="form-group">
+		 					<div class="form-group" id="campo-usuario-validacion">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-user" ></span>
-									<input type="text" class="form-control" onblur="validarusuario(this);" placeholder="Nombre de usuario"  name="username" maxlength="16" required autocomplete="off">
-									
+									<input type="text" class="form-control" onblur="validarusuario(this);" placeholder="Nombre de usuario"  name="username" id="username" maxlength="16" required autocomplete="off">
 								</div>
-							</div>
-							
+							</div>	
 						</div>
-						<span id="comprobarusuario"></span>
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
-									<input type="password" class="form-control" placeholder="Contraseña"  name="password" minlength="8" maxlength="45" required autocomplete="off">
+									<input type="password" class="form-control" placeholder="Contraseña"  name="password" id="password" minlength="8" maxlength="45" required autocomplete="off">
 								</div>
 							</div>
 						</div>
@@ -118,11 +116,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- <div class="input-group">
-						      <div class="input-group-addon">$</div>
-						      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-						      <div class="input-group-addon">.00</div>
-						    </div> -->
 						<div class="form-inline">
 		 					<div class="form-group">
 								<div class="input-group">
@@ -139,7 +132,6 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<!-- <input type="text" class="form-control" placeholder="Ciudad"  name="ciudad" maxlength="45" required autocomplete="off"> -->
 									<select class="form-control" name="ciudad" id="ciudad" required>
 										<option value="" disabled selected>Ciudad</option>
 										<option value="Buenos Aires">Buenos Aires</option>
@@ -150,8 +142,7 @@
 									</select>
 								</div>
 								<div class="input-group">
-									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<!-- <input type="text" class="form-control" placeholder="Provincia"  name="provincia" maxlength="45" required autocomplete="off"> -->
+									<span class="input-group-addon glyphicon glyphicon-pencil"></span>
 									<select class="form-control" name="provincia" id="provincia" required>
 										<option value="" disabled selected>Provincia</option>
 										<option value="Buenos Aires">Buenos Aires</option>
@@ -163,7 +154,6 @@
 		 					<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-pencil" ></span>
-									<!-- <input type="text" class="form-control" placeholder="Pais" name="pais" maxlength="45" required autocomplete="off"> -->
 									  <select class="form-control" name="pais" id="pais" required>
 									  	<option value="" disabled selected>Pais</option>
 									    <option value="Argentina">Argentina</option>
@@ -177,7 +167,7 @@
 									<a href="index.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
 								</div>
 								<div class="input-group">
-									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrarme"/>
+									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrarse"/>
 								</div>
 							</div>
 						</div>	
@@ -194,15 +184,51 @@
 		<span> (0800) - 555 - 5555 </span><br>
 		<span id="creds"> Desarrollado por Strategus </span>
 	</footer>
+	
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/prototype.js"></script>
 	<script type="text/javascript">
-	function validarusuario(usuario){
-		var url = 'validarusuario.php';
-		var parametros = 'usuario='+usuario.value;
-		var ajax = new Ajax.Updater('comprobarusuario',url,{method: 'get', parameters: parametros});
-	}
+		$( document ).ready(function() {
+    		console.log( "Ready" );
+		});
+		
+		function validarusuario(usuario){
+			$.ajax({
+				beforeSend: function(){
+					$('#comprobarusuario').html('<p class="text-info">Comprobando...</p>');
+				},
+				url: 'validarusuario.php', /*= action*/
+				type: 'get', /*= method*/
+				/*dataType: 'json',*/
+				data: 'usuario='+usuario.value /*parametros para url*/
+			})
+			.done(function(respuesta){ /*Si funcionó ajax*/
+				console.log("Success");
+				$('#comprobarusuario').html(respuesta);
+				if (respuesta === '<p class="text-success">"Nombre de usuario <strong>OK!</strong>"</p>') {
+					console.log("Usuario OK!");
+				}else{
+					//mantengo el foco en username
+					if (usuario.value=='') {
+						$('#comprobarusuario').html('<p class="text-info">"Nombre de usuario no puede estar vacio"</p>');
+						console.log("Campo vacio")
+					}else{
+						console.log("Username en uso!")
+					};
+					$("#username").focus();
+				}
+			})
+			.fail(function(){ /*esto es si falla el llamado de ajax*/
+				console.log("Error");
+				$('#comprobarusuario').html("Error Ajax.");
+			})
+			.always(function(){
+				console.log("Complete");
+				/*setTimeout(function(){
+					$('.fa').hide();
+				}, 1000);*/
+			});
+		}
 	</script>
 </body>
 </html>

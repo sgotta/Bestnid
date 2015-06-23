@@ -9,6 +9,12 @@
 	<link rel="stylesheet" href="css/estilosBestnid.css">
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<<<<<<< HEAD
+=======
+	<link rel="stylesheet" href="ion.rangeSlider/css/normalize.css" />
+    <link rel="stylesheet" href="ion.rangeSlider/css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" />
+>>>>>>> origin/Registro-con-Jquery-Ajax
 
 </head>
 <body>
@@ -27,6 +33,19 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
+<<<<<<< HEAD
+=======
+				<style>
+				#navegacion-fm {
+					float: right;
+					width: 1000px;
+				}
+				#barra-busqueda {
+					width: 200px;
+					margin-left: 350px;
+				}
+				</style>
+>>>>>>> origin/Registro-con-Jquery-Ajax
 					<form action="sesioniniciada.php" method="get" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
@@ -67,6 +86,7 @@
 		<div class="row">			
 			<section class="posts container col-md-12 pull-right">
 				<div class="row"> <!-- 1ER FILA IMAGENES -->
+<<<<<<< HEAD
 					<section class="posts col-md-6">
 						<div class="thumbnail">    
 							<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
@@ -94,16 +114,75 @@
 							</div>
 						  </div><br>
 						  <div class="form-inline">
+=======
+					<style>
+						#btn-ofertar {
+							background: #FF5050;
+							color: #FFFFFF;
+							border: 1px;
+							border-color: #ccc;
+							border-style: solid;
+						}
+						#btn-ofertar:hover,
+						#btn-ofertar:active,
+						#btn-ofertar:focus {
+							background: #B23B39;
+							border-color: #B23B39;
+						}
+						a {
+							color: #000000;
+						}
+					</style>
+					<!-- form registrar subasta -->
+					<section class="posts container col-md-12">
+						<form action="registrarsubasta.php" enctype="multipart/form-data" role="form" id="reg-subasta-form" method="post">
+						<section class="col-md-4">
+							<div class="thumbnail">    
+								<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
+							</div>
+							<div class="form-group">
+							    <input type="file" id="foto" name="foto" required>
+						    </div>
+						</section>
+						<section class="col-md-8">
+						  <div class="form-group">
+						    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título de su publicación" required maxlength="45">
+						  </div>
+
+						  <textarea class="form-control" rows="5" placeholder="Descripción del producto" name="descripcion" id="descripcion" required maxlength="300"></textarea><br>
+						  	<div class="form-inline">
+								<div class="form-group col-md-8">
+									<label for="duracion-subasta">Duración de la subasta:</label>
+									<input type="text" name="duracion-subasta" id="duracion-subasta" value="30">					
+							  	</div><br>
+								<select class="form-control col-md-4" style="margin-top: 25px;" name="categ" id="categ" required>
+									<option value="" disabled selected>Categorias</option>
+									<?php include("opcionesCategorias.php");?> 
+								</select>
+							</div>
+
+						  <div class="form-inline" style="margin-left:100px;">
+>>>>>>> origin/Registro-con-Jquery-Ajax
 							<div class="form-group">
 								<div class="input-group">
 									<a href="sesioniniciada.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
 								</div>
 								<div class="input-group">
+<<<<<<< HEAD
 									<button type="button" class="btn btn-primary" id="btn-registro"> Registrar Subasta </button>
 								</div>
 							</div>
 						  </div><br>
 						</form>
+=======
+									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrar Subasta"/>
+								</div>
+							</div>
+						  </div><br>
+
+						</form>
+						</section>
+>>>>>>> origin/Registro-con-Jquery-Ajax
 					</section>
 				</div>
 			</section>
@@ -117,7 +196,26 @@
 		<span> (0800) - 555 - 5555 </span><br>
 		<span id="creds"> Desarrollado por Strategus </span>
 	</footer>
+<<<<<<< HEAD
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+=======
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="ion.rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+	
+	<script type="text/javascript">
+		$(function () {
+			$("#duracion-subasta").ionRangeSlider({
+			    from: 15,
+			    keyboard: true,
+			    postfix: " dias",
+			    grid: true,
+			    values: [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+			});
+	    });
+	</script>
+>>>>>>> origin/Registro-con-Jquery-Ajax
 </body>
 </html>

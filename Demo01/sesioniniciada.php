@@ -40,7 +40,6 @@
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
 					<a href="#" class="glyphicon glyphicon-bullhorn" id="inicio"></a>
-					
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					
