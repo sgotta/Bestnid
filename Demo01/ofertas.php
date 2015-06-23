@@ -30,11 +30,26 @@
 			}
 			else {
 				//FINALIZO SUBASTA, MUESTRO OFERTAS
-				$ofer = '<ul class="list-group">';
+				$ofer = '<form action="registrarganador.php" role="form" id="reg-ganador-form" method="post">
+							<ul class="list-group">';
+				$contador=1;
 				while ($reg=mysql_fetch_array($o)){
-					$ofer = $ofer.'<li class="list-group-item">'.$reg['motivo'].'</li>';
+					$ofer = $ofer.'<div class="radio">
+        								<input type="radio" name="optionsRadios" id="optionsRadios'.$contador.'" value="'.$reg['Usuario_nombre_usuario'].'">
+        								"Elegir como motivo ganador":
+        								<li class="list-group-item">'.$reg['motivo'].'</li>
+    								</div>';
+    				$contador= $contador+1;
 				}
-				$ofer = $ofer.'</ul>';
+				$ofer = $ofer.'</ul>
+							<div class="form-inline pull-right" style="margin-bottom:20px;">
+							<div class="form-group">
+								<div class="input-group">
+									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrar Ganador"/>
+								</div>
+							</div>
+						  </div><br>
+						</form>';
 			}	
 		}
 		else {
