@@ -1,6 +1,5 @@
 <?php 
 	//0 ES COMENTARIO, 1 ES OFERTA, 2 ES RESPUESTA. SEGUN LO QUE SEA HAY QUE NOTIFICAR A DIFERENTES PERSONAS
-	$descrip = 'Ha recibido una notificacion del usuario: "'.$_SESSION['username'].'"';
 	if ($cor == 0){
 		//COMENTARIO
 		//BUSCO EL DUEÑO DE LA SUBASTA PARA NOTIFICAR QUE LE HICIERON UN COMENTARIO
@@ -9,7 +8,7 @@
 							WHERE idPublicacion = '$_GET[subID]'") or die ("problemas en consulta:".mysql_error());
 		$d=mysql_fetch_array($dueño);
 		//TERMINO DE ARMAR LA NOTIFICACION
-		$descrip = $descrip.', realizo el comentario: "'.$_POST['coment'].'" en la subasta: "'.$d['titulo'].'"';
+		$descrip = 'Tiene un nuevo comentario en la subasta: "'.$d['titulo'].'"'; //: "'.$_POST['coment'].'"
 	}
 	else {
 		if ($cor == 1){
@@ -20,7 +19,7 @@
 								WHERE idPublicacion = '$_GET[subID]'") or die ("problemas en consulta:".mysql_error());
 			$d=mysql_fetch_array($dueño);
 			//TERMINO DE ARMAR LA NOTIFICACION
-			$descrip = $descrip.', realizo la oferta: "'.$_POST['motivo'].'" en la subasta: "'.$d['titulo'].'"';
+			$descrip = 'Tiene una nueva oferta en la subasta: "'.$d['titulo'].'"';
 		}
 		else {
 			if ($cor == 2){
@@ -31,7 +30,7 @@
 									WHERE idComentario = '$_GET[c]'") or die ("problemas en consulta:".mysql_error());
 				$d=mysql_fetch_array($dueño);
 				//TERMINO DE ARMAR LA NOTIFICACION
-				$descrip = $descrip.', respondio: "'.$_POST['response'].'" en la subasta: "'.$d['titulo'].'"';
+				$descrip = 'Tiene una nueva respuesta en la subasta: "'.$d['titulo'].'"'; //: "'.$_POST['response'].'"
 			}
 		}
 	}
