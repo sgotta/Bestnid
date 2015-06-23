@@ -9,12 +9,9 @@
 	<link rel="stylesheet" href="css/estilosBestnid.css">
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<<<<<<< HEAD
-=======
 	<link rel="stylesheet" href="ion.rangeSlider/css/normalize.css" />
     <link rel="stylesheet" href="ion.rangeSlider/css/ion.rangeSlider.css" />
     <link rel="stylesheet" href="ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" />
->>>>>>> origin/Registro-con-Jquery-Ajax
 
 </head>
 <body>
@@ -33,8 +30,6 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
-<<<<<<< HEAD
-=======
 				<style>
 				#navegacion-fm {
 					float: right;
@@ -45,7 +40,6 @@
 					margin-left: 350px;
 				}
 				</style>
->>>>>>> origin/Registro-con-Jquery-Ajax
 					<form action="sesioniniciada.php" method="get" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
@@ -86,35 +80,6 @@
 		<div class="row">			
 			<section class="posts container col-md-12 pull-right">
 				<div class="row"> <!-- 1ER FILA IMAGENES -->
-<<<<<<< HEAD
-					<section class="posts col-md-6">
-						<div class="thumbnail">    
-							<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
-						</div>
-						<div class="form-group">
-						    <input type="file" id="imagen">
-						    <!-- <p class="help-block">Subir imagen del producto que desea subastar.</p> -->
-					    </div>
-					</section>
-					<!-- form registrar subasta -->
-					<section class="posts col-md-6">
-						<form>
-						  <div class="form-group">
-						    <input type="text" class="form-control" id="titulo" placeholder="Título de su publicación">
-						  </div>
-						  <textarea class="form-control" rows="5" placeholder="Descripción del producto"></textarea><br>
-						  <div class="form-inline">
-							<div class="input-group">
-								<label for="fecha-inicio">Inicio Subasta</label>
-					    		<input type="date" class="form-control" id="fecha-inicio">
-							</div>
-							<div class="input-group">
-								<label for="fecha-fin">Fin Subasta</label>
-					    		<input type="date" class="form-control" id="fecha-fin">
-							</div>
-						  </div><br>
-						  <div class="form-inline">
-=======
 					<style>
 						#btn-ofertar {
 							background: #FF5050;
@@ -162,19 +127,11 @@
 							</div>
 
 						  <div class="form-inline" style="margin-left:100px;">
->>>>>>> origin/Registro-con-Jquery-Ajax
 							<div class="form-group">
 								<div class="input-group">
 									<a href="sesioniniciada.php" class="btn btn-primary" id="btn-registro-cancelar"> Cancelar </a>
 								</div>
 								<div class="input-group">
-<<<<<<< HEAD
-									<button type="button" class="btn btn-primary" id="btn-registro"> Registrar Subasta </button>
-								</div>
-							</div>
-						  </div><br>
-						</form>
-=======
 									<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrar Subasta"/>
 								</div>
 							</div>
@@ -182,7 +139,6 @@
 
 						</form>
 						</section>
->>>>>>> origin/Registro-con-Jquery-Ajax
 					</section>
 				</div>
 			</section>
@@ -196,10 +152,6 @@
 		<span> (0800) - 555 - 5555 </span><br>
 		<span id="creds"> Desarrollado por Strategus </span>
 	</footer>
-<<<<<<< HEAD
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-=======
 
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -216,6 +168,5 @@
 			});
 	    });
 	</script>
->>>>>>> origin/Registro-con-Jquery-Ajax
 </body>
 </html>
