@@ -96,7 +96,7 @@
 		}  //<a href="#" class="btn btn-success" id="btn-ofertar">Ofertar</a>
 		$subastas = $subastas. '<section class="posts col-md-4">
 				<div class="thumbnail">    
-					<a href="#" class="thumb">
+					<a href="subasta.php?subID='.$reg['idPublicacion'].'" class="thumb">
 						<img class="img-thumbnail" src="data:image/jpeg;base64,'.base64_encode( $reg['foto'] ).'" alt="" style="max-height: 140px;">
 					</a>
 					<div class="caption">

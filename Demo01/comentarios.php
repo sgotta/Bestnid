@@ -21,8 +21,7 @@
 
 	//EMPIEZO A DEVOLVER COMENTARIOS
 	while ($reg=mysql_fetch_array($c)){
-		
-		$coment = $coment.'<li class="list-group-item" id="pregunta">'.$reg['descripcion'].'</li>';
+		$coment = $coment.'<li class="list-group-item" id="pregunta"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;'.$reg['descripcion'].'</li>';
 		if (isset($reg['respuesta']) && !empty($reg['respuesta'])){
 			$coment = $coment.'<li class="list-group-item" id="respuesta">'.$reg['respuesta'].'</li>';
 		}
@@ -31,7 +30,7 @@
 			if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 				if ($_SESSION['username'] == $reg2['Usuario_nombre_usuario']){
 					$coment = $coment.'<form action="responder.php?subID='.$_GET['subID'].'&c='.$reg['idComentario'].'" method="post">
-										<textarea class="form-control" rows="1" placeholder="" name="response" id="respuesta"></textarea><br>
+										<textarea class="form-control" rows="1" placeholder="Escribir respuesta..." name="response" id="respuesta"></textarea><br>
 										<button type="submit" class="btn btn-primary" id="btn-registro2"> Responder </button>
 									</form><br>';
 				}
