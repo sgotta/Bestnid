@@ -7,32 +7,54 @@
 
 	$idOfertaGanadora = $_POST['optionsRadios'];
 
-	//Me fijo a que usuario le tengo que notificar que ganó.
-	$nombreGanador=mysql_query("SELECT Usuario_nobre_usuario  
-								FROM oferta
-								WHERE idOferta='$idOfertaGanadora'") 
-								or die ("problemas en consulta:".mysql_error());
-
 	//Actualizo el campo ganador en 1 para poder consultar en un futuro quien ganó esta subasta.
-	/*mysql_query("UPDATE oferta SET ganador = 1 WHERE idOferta = '$idOfertaGanadora'",$con);*/
+	mysql_query("UPDATE oferta SET ganador = 1 WHERE idOferta = '$idOfertaGanadora'",$con);
 
-	//FALTA:
-	//Agregar dos notificaciones, una Ganador, otra Perdedores
-	//Notificar a todos los usuarios que participaron de esta subasta.
+	//Consulto todos los datos de la oferta ganadora.
+	$query = mysql_query("SELECT *  
+					FROM oferta
+					WHERE idOferta='$idOfertaGanadora'") 
+					or die ("problemas en consulta:".mysql_error());
 
+	$ofertaGanadora=mysql_fetch_array($query);
+	$ganador=$ofertaGanadora['Usuario_nombre_usuario'];
+	$idPublicacion=$ofertaGanadora['Publicacion_idPublicacion'];
 
-	
+	//busco también la publicación en cuestión (El producto en sí, que se está subastando).
+	$query = mysql_query("SELECT *  
+					FROM publicacion
+					WHERE idPublicacion='$idPublicacion'") 
+					or die ("problemas en consulta:".mysql_error());
 
+	$datosSubasta=mysql_fetch_array($query);
+	$tituloSubasta=$datosSubasta['titulo'];
 
-	// **** ESTO ES COPY PASTE DE LO DE NICO PARA TERMINAR LO QUE ME FALTA **** //
-
-	//AGREGO LA NOTIFICACION A LA BASE
-	/*mysql_query("INSERT INTO notificacion (descripcion,leida) VALUES ('$descrip','0')",$con);
+	//Agregamos dos notificaciones, una para el ganador, otra para los Perdedores.
+	//GANADOR
+	$msjGanador= 'Felicidades! Usted es el ganador de la subasta: "'.$tituloSubasta.". En breve	le informaremos como realizar el pago.";
+	//AGREGO LA NOTIFICACION A LA BASE 
+	mysql_query("INSERT INTO notificacion (descripcion,leida) VALUES ('$msjGanador','0')",$con);
 	$idNotif = mysql_insert_id();
 	//AHORA RELACIONO LA NOTIFICACION CON EL USUARIO
 	mysql_query("INSERT INTO usuario_notificacion (Notificacion_numero_identificacion,Usuario_nombre_usuario) 
-				 VALUES ('$idNotif','$d[nombre_usuario]')",$con);*/
+				 VALUES ('$idNotif','$ganador')",$con);
+	//PERDEDORES
+	$msjPerdedor= 'Lamentamos informarle que no ha sido seleccionado como ganador de la subasta: "'.$tituloSubasta.'". "Bestnid le desea mucha suerte para sus proximas participaciones!";
+	//Consulto sobre todos los participantes para esta subasta.
+	$query = mysql_query("SELECT Usuario_nombre_usuario  
+					FROM oferta
+					WHERE Publicacion_idPublicacion='$idPublicacion'") 
+					or die ("problemas en consulta:".mysql_error());
 
-	// **** FIN COPY PASTE DE LO DE NICO PARA TERMINAR LO QUE ME FALTA **** //
-	
+	while ($participante=mysql_fetch_array($query)) {
+		//AGREGO LA NOTIFICACION A LA BASE
+		if ($participante['Usuario_nombre_usuario']!=$ganador) {
+		 	mysql_query("INSERT INTO notificacion (descripcion,leida) VALUES ('$msjPerdedor','0')",$con);
+			$idNotif = mysql_insert_id();
+			//AHORA RELACIONO LA NOTIFICACION CON EL USUARIO
+			mysql_query("INSERT INTO usuario_notificacion (Notificacion_numero_identificacion,Usuario_nombre_usuario) 
+						 VALUES ('$idNotif','$participante[Usuario_nombre_usuario]')",$con);
+		}
+	}
+	header("Location: sesioniniciada.php");
  ?>
