@@ -30,7 +30,7 @@
 			}
 			else {
 				//FINALIZO SUBASTA, MUESTRO OFERTAS
-				$ofer = '<form action="registrarganador.php" role="form" id="reg-ganador-form" method="post">
+				$ofer = '<form action="registrarganador.php?subID='.$_GET['subID'].'" role="form" id="reg-ganador-form" method="post">
 							<ul class="list-group">';
 				$contador=1;
 				while ($reg=mysql_fetch_array($o)){

@@ -72,7 +72,7 @@
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
 				<ol class="breadcrumb pull-left">
-					<li class="">Inicio</li>
+					<li><a href="sesioniniciada.php" class="">Inicio</a></li>
 					<li class="active">Registro Subasta</li>
 				</ol>
 			</div>

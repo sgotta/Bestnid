@@ -56,5 +56,6 @@
 						 VALUES ('$idNotif','$participante[Usuario_nombre_usuario]')",$con);
 		}
 	}
-	header("Location: sesioniniciada.php");
+	$head = "Location: subasta.php?subID=".$_GET['subID']."&op=2";
+	header($head);
  ?>
