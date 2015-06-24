@@ -31,7 +31,7 @@
 		if ($_GET['op']==1){
 			$barra = $barra. '<li role="presentation" class="active"><a onclick="comentarios()">Comentarios&nbsp;<span class="badge">'.$bc.'</span></a></li>
 				<li role="presentation"><a onclick="ofertas()">Ofertas&nbsp;';
-			//SI ES SUEÑO MUESTRO CANTIDAD DE OFERTAS
+			//SI ES DUEÑO MUESTRO CANTIDAD DE OFERTAS
 			if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 				if ($_SESSION['username'] == $barradueño['Usuario_nombre_usuario']){
 					$datesql = strtotime($barradueño['fecha_fin']);

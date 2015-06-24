@@ -30,16 +30,6 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
-				<style>
-				#navegacion-fm {
-					float: right;
-					width: 1000px;
-				}
-				#barra-busqueda {
-					width: 200px;
-					margin-left: 350px;
-				}
-				</style>
 					<form action="sesioniniciada.php" method="get" class="navbar-form navbar-left" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar">
@@ -80,24 +70,6 @@
 		<div class="row">			
 			<section class="posts container col-md-12 pull-right">
 				<div class="row"> <!-- 1ER FILA IMAGENES -->
-					<style>
-						#btn-ofertar {
-							background: #FF5050;
-							color: #FFFFFF;
-							border: 1px;
-							border-color: #ccc;
-							border-style: solid;
-						}
-						#btn-ofertar:hover,
-						#btn-ofertar:active,
-						#btn-ofertar:focus {
-							background: #B23B39;
-							border-color: #B23B39;
-						}
-						a {
-							color: #000000;
-						}
-					</style>
 					<!-- form registrar subasta -->
 					<section class="posts container col-md-12">
 						<form action="registrarsubasta.php" enctype="multipart/form-data" role="form" id="reg-subasta-form" method="post">

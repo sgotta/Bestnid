@@ -30,7 +30,7 @@
 			if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 				if ($_SESSION['username'] == $reg2['Usuario_nombre_usuario']){
 					$coment = $coment.'<form action="responder.php?subID='.$_GET['subID'].'&c='.$reg['idComentario'].'" method="post">
-										<textarea class="form-control" rows="1" required minlength="1" maxlength="140" placeholder="Escribir respuesta..." name="response" id="respuesta"></textarea><br>
+										<textarea class="form-control list-group-item pull-right" rows="1" style="width: 98%;" required minlength="1" maxlength="140" placeholder="Escribir respuesta..." name="response" id="respuesta"></textarea><br>
 										<button type="submit" class="btn btn-primary" id="btn-registro2"> Responder </button>
 									</form><br>';
 				}
@@ -44,10 +44,22 @@
 			//SI ES EL DUEÑO DE LA SUBASTA NO MUESTRO OPCION DE COMENTAR
 		}
 		else {  //SI ES CUALQUIER OTRO USUARIO MUESTRO FORMULARIO COMENTAR
-			$coment = $coment.'<form action="comentar.php?subID='.$_GET['subID'].'" method="post">
+			$date = strtotime($reg2['fecha_fin']);
+			if ((getdate()['year'] < date("Y",$date)) 
+				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] < date("n",$date))
+				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] == date("n",$date) AND getdate()['mday'] < date("j",$date))){
+				//LA SUBASTA NO FINALIZO, MUESTRO FORMULARIO PARA COMENTAR
+				$coment = $coment.'<form action="comentar.php?subID='.$_GET['subID'].'" method="post">
 							<textarea class="form-control" rows="3" required minlength="1" maxlength="140" placeholder="Haz un comentario..." name="coment"></textarea><br>
 							<button type="submit" class="btn btn-primary" id="btn-registro"> Comentar </button>
 						</form><br>';
+				
+			}
+			//LA SUBASTA FINALIZO, NO SE PUEDE COMENTAR
+			else {
+				$coment = $coment.'<br><span>***La subasta ha finalizado, ya no se pueden realizar comentarios***</span><br><br>';
+			}
+			
 		}
 	}
 	else {  //SI NO HAY USUARIO CONECTADO NO MUESTRO OPCION COMENTAR

@@ -22,8 +22,14 @@
 	else {
 		if (isset($_GET['catID']) && !empty($_GET['catID'])) {
 			$registro=mysql_query("SELECT * FROM categoria WHERE idCategoria = $_GET[catID]") or die ("problemas en consulta:".mysql_error());
-			echo '<li><a href="index.php" id="migaja">Inicio</a></li>';
-			echo '<li class="active">'.mysql_fetch_array($registro)['nombre'].'</li>';
+			if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
+				echo '<li><a href="sesioniniciada.php" id="migaja">Inicio</a></li>';
+				echo '<li class="active">'.mysql_fetch_array($registro)['nombre'].'</li>';
+			}
+			else {
+				echo '<li><a href="index.php" id="migaja">Inicio</a></li>';
+				echo '<li class="active">'.mysql_fetch_array($registro)['nombre'].'</li>';
+			}
 		}
 		else {
 			echo '<li class="active">Inicio</li>';

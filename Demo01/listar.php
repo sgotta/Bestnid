@@ -22,10 +22,30 @@
 						AND usuario.nombre_usuario = publicacion.Usuario_nombre_usuario";
 	}
 	if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
-		$query = $query." WHERE titulo LIKE'%$_GET[buscar]%'
-						  AND ( $condicionFecha )";
+		$palabras = explode(' ', $_GET['buscar']);
+		$query = $query." WHERE";
+		$p = 0;
+		while ($p < count($palabras)) {
+			if (($p == 0) && ($p == (count($palabras)-1))){
+				$query = $query." (titulo LIKE'%$palabras[$p]%' OR descripcion LIKE'%$palabras[$p]%')";
+			}
+			else {
+				if ($p == 0) {
+					$query = $query." ((titulo LIKE'%$palabras[$p]%' OR descripcion LIKE'%$palabras[$p]%')";
+				}
+				else {
+					if ($p == (count($palabras)-1)) {
+						$query = $query." AND (titulo LIKE'%$palabras[$p]%' OR descripcion LIKE'%$palabras[$p]%'))";
+					}
+					else {
+						$query = $query." AND (titulo LIKE'%$palabras[$p]%' OR descripcion LIKE'%$palabras[$p]%')";
+					}
+				}
+			}
+			$p++;
+		}
+		$query = $query." AND ( $condicionFecha )";
 	}
-
 	if(isset($_GET['catID']) && !empty($_GET['catID'])){
 		if(isset($_GET['buscar']) && !empty($_GET['buscar'])){
 			$query = $query." AND publicacion.Categoria_idCategoria = $_GET[catID]";
