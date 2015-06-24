@@ -31,7 +31,7 @@
 
 	//Agregamos dos notificaciones, una para el ganador, otra para los Perdedores.
 	//GANADOR
-	$msjGanador= 'Felicidades! Usted es el ganador de la subasta: "'.$tituloSubasta.". En breve	le informaremos como realizar el pago.";
+	$msjGanador= 'Felicidades! Usted es el ganador de la subasta: "'.$tituloSubasta.'". En breve le informaremos como realizar el pago.';
 	//AGREGO LA NOTIFICACION A LA BASE 
 	mysql_query("INSERT INTO notificacion (descripcion,leida) VALUES ('$msjGanador','0')",$con);
 	$idNotif = mysql_insert_id();
@@ -39,7 +39,7 @@
 	mysql_query("INSERT INTO usuario_notificacion (Notificacion_numero_identificacion,Usuario_nombre_usuario) 
 				 VALUES ('$idNotif','$ganador')",$con);
 	//PERDEDORES
-	$msjPerdedor= 'Lamentamos informarle que no ha sido seleccionado como ganador de la subasta: "'.$tituloSubasta.'". "Bestnid le desea mucha suerte para sus proximas participaciones!";
+	$msjPerdedor= 'Lamentamos informarle que no ha sido seleccionado como ganador de la subasta: "'.$tituloSubasta.'". Bestnid le desea mucha suerte para sus proximas participaciones!';
 	//Consulto sobre todos los participantes para esta subasta.
 	$query = mysql_query("SELECT Usuario_nombre_usuario  
 					FROM oferta
