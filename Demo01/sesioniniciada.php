@@ -39,7 +39,7 @@
 					<!-- </form> -->
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
-					<a href="#" class="glyphicon glyphicon-bullhorn" id="inicio"></a>
+					<a href="#notif" class="glyphicon glyphicon-bullhorn" data-toggle="modal"  id="inicio"></a>
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					
@@ -156,5 +156,25 @@
 			});
 		}
 	</script>
+
+	<!-- modal notificaciones-->
+	<div class="modal fade" id="notif">
+		<div class="modal-dialog" id="modal-dialogo">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="notiftitulo">Notificaciones</h4>
+				</div>
+				<div class="modal-body" id="notifcuerpo">
+					<?php include("leernotificaciones.php"); ?>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<!--<input type="button" class="btn btn-primary" value="Ver todas" onclick="mostrarnotificaciones('1')"/>-->
+				</div>
+			</div>
+		</div>							
+	</div>					
+	<!-- fin modal notificaciones-->
 </body>
 </html>

@@ -13,6 +13,9 @@ body {
 #ayuda:hover {
 	color:#FFFFFF;
 }
+#inicio, #inicio:focus{
+	outline:0 none;
+}
 #inicio {
 	margin: 15px;
 	padding-right: 25px;
@@ -31,7 +34,34 @@ body {
 	/*margin-top: 17px;*/
 	/*border-right: 1px solid #B23B39;*/
 }
+#modal-dialogo{
+	width:470px;
+}
+#notiftitulo{
+	color: #AA2121;
+}
 
+#notifcuerpo{
+/*	background-color: #F68080;*/
+	padding: 1px;
+}
+#textonotif:focus, #textonotif:hover
+ {	
+	color: #000000;
+	/*text-decoration: none;*/
+}
+#notifnueva {
+	position:relative;
+	background-color: #F68080;
+	border: 1px solid #D8D5D5;
+	margin-bottom: 0px;
+
+}
+#notifleida {
+	background-color: #FFFFFF;
+	border: 1px solid #D8D5D5;
+	margin-bottom: 0px;	
+}
 #navegacion-fm {
 	float: right;
 	/*width: 1000px;*/

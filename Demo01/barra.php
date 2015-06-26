@@ -1,8 +1,8 @@
 <?php 
 	if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 		echo '<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
-			<a href="#" class="glyphicon glyphicon-bullhorn" id="inicio"></a>
-			
+			<a href="#notif" class="glyphicon glyphicon-bullhorn" data-toggle="modal" id="inicio"></a>
+
 			<span class="dropdown">
 				<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button">'.$_SESSION['username']." ".'<span class="glyphicon glyphicon-user"></span></a>
