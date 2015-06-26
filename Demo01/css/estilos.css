@@ -43,7 +43,7 @@ body {
 
 #notifcuerpo{
 /*	background-color: #F68080;*/
-	padding: 1px;
+	padding: 0px 1px;
 }
 #textonotif:focus, #textonotif:hover
  {	
@@ -52,7 +52,8 @@ body {
 }
 #notifnueva {
 	position:relative;
-	background-color: #F68080;
+	/*background-color: #eb9bf7;  */
+	background-color: #8182b1;
 	border: 1px solid #D8D5D5;
 	margin-bottom: 0px;
 
