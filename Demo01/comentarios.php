@@ -47,7 +47,7 @@
 			$date = strtotime($reg2['fecha_fin']);
 			if ((getdate()['year'] < date("Y",$date)) 
 				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] < date("n",$date))
-				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] == date("n",$date) AND getdate()['mday'] < date("j",$date))){
+				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] == date("n",$date) AND getdate()['mday'] <= date("j",$date))){
 				//LA SUBASTA NO FINALIZO, MUESTRO FORMULARIO PARA COMENTAR
 				$coment = $coment.'<form action="comentar.php?subID='.$_GET['subID'].'" method="post">
 							<textarea class="form-control" rows="3" required minlength="1" maxlength="140" placeholder="Haz un comentario..." name="coment"></textarea><br>

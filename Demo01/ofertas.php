@@ -24,7 +24,7 @@
 			$date = strtotime($reg2['fecha_fin']);
 			if ((getdate()['year'] < date("Y",$date)) 
 				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] < date("n",$date))
-				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] == date("n",$date) AND getdate()['mday'] < date("j",$date))){
+				OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] == date("n",$date) AND getdate()['mday'] <= date("j",$date))){
 				//LA SUBASTA NO FINALIZO, AL DUEÑO NO LE MUESTRO LAS OFERTAS QUE HAY
 				$ofer = $ofer.'<br><span>***La subasta no ha finalizado***</span><br><br>';
 			}
@@ -62,7 +62,7 @@
 							$ofer = $ofer.'<li class="list-group-item">'.$reg['motivo'].'</li>';
 						}
 						else {
-							$ofer = $ofer.'<li class="list-group-item" style="background-color: #F68080;">'.$reg['motivo'].'</li>';
+							$ofer = $ofer.'<li class="list-group-item" style="background-color: #F68080;">'.$reg['motivo'].'&nbsp(Oferta ganadora)</li>';
 						}	
 					}
 					$ofer = $ofer.'</ul>';
@@ -87,7 +87,7 @@
 				$date = strtotime($reg2['fecha_fin']);
 				if ((getdate()['year'] < date("Y",$date)) 
 					OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] < date("n",$date))
-					OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] == date("n",$date) AND getdate()['mday'] < date("j",$date))){
+					OR (getdate()['year'] == date("Y",$date) AND getdate()['mon'] == date("n",$date) AND getdate()['mday'] <= date("j",$date))){
 					//LA SUBASTA NO FINALIZO, MUESTRO FORMULARIO PARA OFERTAR
 					$ofer = $ofer.'<form action="ofertar.php?subID='.$_GET['subID'].'" method="post">
 						<textarea class="form-control" rows="3" required minlength="1" maxlength="140" placeholder="Motivo" name="motivo"></textarea><br>

@@ -49,7 +49,7 @@
 	while ($participante=mysql_fetch_array($query)) {
 		//AGREGO LA NOTIFICACION A LA BASE
 		if ($participante['Usuario_nombre_usuario']!=$ganador) {
-		 	mysql_query("INSERT INTO notificacion (descripcion,leida) VALUES ('$msjPerdedor','0')",$con);
+		 	mysql_query("INSERT INTO notificacion (descripcion,leida,id_publicacion) VALUES ('$msjPerdedor','0','$_GET[subID]')",$con);
 			$idNotif = mysql_insert_id();
 			//AHORA RELACIONO LA NOTIFICACION CON EL USUARIO
 			mysql_query("INSERT INTO usuario_notificacion (Notificacion_numero_identificacion,Usuario_nombre_usuario) 
