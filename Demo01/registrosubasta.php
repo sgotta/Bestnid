@@ -77,8 +77,10 @@
 							<div class="thumbnail">    
 								<img class="img-thumbnail" src="img/logobestnid.jpg" alt="No hay imagen" style="max-height: 250px;">
 							</div>
-							<div class="form-group">
-							    <input type="file" id="foto" name="foto" required>
+							<span id="comprobarsize"></span> 
+							<div class="form-group" id="divfoto">
+								<!-- <input type="hidden" name="MAX_FILE_SIZE" value="8388608">   -->
+							    <input type="file" id="foto" name="foto" required onchange="validarsize(this);">
 						    </div>
 						</section>
 						<section class="col-md-8">
@@ -139,6 +141,50 @@
 			    values: [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
 			});
 	    });
+	</script>
+	<script>
+		function validarsize(foto) {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				beforeSend: function(){
+					$('#comprobarsize').html('<p class="text-info">Comprobando...</p>');
+				},
+				url: 'validarsize.php', /*= action*/
+				type: 'get', /*= method*/
+				/*dataType: 'json',*/
+				data: { /*parametros para url*/
+					size: foto.files[0].size,
+					name: foto.files[0].name
+				}
+				
+			})
+			.done(function(respuesta){ /*Si funcionó ajax*/
+				console.log("Success");
+				$('#comprobarsize').html(respuesta);
+				if (respuesta === '<p class="text-success">"Tamaño de imagen <strong>OK!</strong>"</p>') {
+					console.log("Tamaño OK!");
+				}else{
+					//mantengo el foco en username
+					if (foto.files[0].name=='') {
+						$('#comprobarsize').html('<p class="text-info">"Campo vacio..."</p>');
+						console.log("Campo vacio")
+					}else{
+						console.log("Supera tamaño permitido!")
+					};
+					$("#divfoto").html('<input type="file" id="foto" name="foto" required onchange="validarsize(this);">');
+					$("#foto").focus();
+				}
+			})
+			.fail(function(){ /*esto es si falla el llamado de ajax*/
+				console.log("Error");
+				$('#comprobarsize').html("Error Ajax.");
+			})
+			.always(function(){
+				console.log("Complete");
+				/*setTimeout(function(){
+					$('.fa').hide();
+				}, 1000);*/
+			});
+		}
 	</script>
 </body>
 </html>
