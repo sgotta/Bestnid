@@ -64,11 +64,11 @@
 					<span id="spanRegistro">Registrarse</span>
 					<div class="form-group">
 					<span id="comprobarusuario"></span>
-						<div class="form-inline">
+						<div class="form-inline" id="divusername">
 		 					<div class="form-group" id="campo-usuario-validacion">
 								<div class="input-group">
 									<span class="input-group-addon glyphicon glyphicon-user" ></span>
-									<input type="text" class="form-control" onblur="validarusuario(this);" placeholder="Nombre de usuario"  name="username" id="username" maxlength="16" required autocomplete="off">
+									<input type="text" class="form-control" onchange="validarusuario(this);" placeholder="Nombre de usuario"  name="username" id="username" maxlength="16" required autocomplete="off">
 								</div>
 							</div>	
 						</div>
@@ -215,6 +215,9 @@
 					}else{
 						console.log("Username en uso!")
 					};
+
+					$("#divusername").html('<div class="form-group" id="campo-usuario-validacion"><div class="input-group"><span class="input-group-addon glyphicon glyphicon-user" ></span><input type="text" class="form-control" onchange="validarusuario(this);" placeholder="Nombre de usuario"  name="username" id="username" maxlength="16" required autocomplete="off"></div></div>');
+					
 					$("#username").focus();
 				}
 			})
