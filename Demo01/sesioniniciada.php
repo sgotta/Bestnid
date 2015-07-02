@@ -109,7 +109,7 @@
 		function mostrarSubastas(busqueda) {                              //ACTUALIZO LAS SUBASTAS SEGUN LA BUSQUEDA
 			$.ajax({
 				type: 'GET',
-				url: 'http://localhost/Bestnid/Demo01/listar.php',
+				url: 'listar.php',
 				// dataType: 'json' ,
 				data: {
 					buscar: busqueda ,
@@ -129,7 +129,7 @@
 			});
 			$.ajax({                                               //ACTUALIZO LOS HREF DE LOS FILTROS SEGUN LA BUSQUEDA
 				type: 'GET',
-				url: 'http://localhost/Bestnid/Demo01/filtros.php',
+				url: 'filtros.php',
 				data: {
 					buscar: busqueda ,
 					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
@@ -141,7 +141,7 @@
 			});
 			$.ajax({                                                   //ACTUALIZO LOS HREF DEL ORDENAR SEGUN LA BUSQUEDA
 				type: 'GET',
-				url: 'http://localhost/Bestnid/Demo01/ordenar.php',
+				url: 'ordenar.php',
 				data: {
 					buscar: busqueda ,
 					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){

@@ -84,7 +84,7 @@
 		function comentarios() {                              //MUESTRO/ACTUALIZO LOS COMENTARIOS
 			$.ajax({
 				type: 'GET',
-				url: 'http://localhost/Bestnid/Demo01/comentariosofertas.php',
+				url: 'comentariosofertas.php',
 				// dataType: 'json' ,
 				data: {
 					op: 1,
@@ -101,7 +101,7 @@
 		function ofertas() {                              //MUESTRO/ACTUALIZO LAS OFERTAS
 			$.ajax({
 				type: 'GET',
-				url: 'http://localhost/Bestnid/Demo01/comentariosofertas.php',
+				url: 'comentariosofertas.php',
 				// dataType: 'json' ,
 				data: {
 					op: 2,
