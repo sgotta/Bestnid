@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="css/estilosBestnid.css">
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-
 </head>
 <body>
 	<header>
@@ -44,11 +43,8 @@
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					
 							<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
-							<!-- <a href="#"  >
-								Categorias <span class="caret"></span>
-							</a> -->
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="perfil.php">Perfil</a></li>
+								<li><a href="#">Perfil</a></li>
 								<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
 							</ul>
 						</li>
@@ -61,38 +57,34 @@
 		<section class="container">
 			<div class="miga-de-pan col-md-9 ">
 				<ol class="breadcrumb pull-left">
-					<?php include("migajas.php"); ?>
+					<li><a href="sesioniniciada.php" id="migaja">Inicio</a></li>
+					<li class="active">Mi cuenta</li>
 				</ol>
 			</div>
-			<li class="dropdown pull-right nav navbar-nav" id="liOrdenar">
-				<?php include("ordenar.php"); ?>		
-			</li>
 		</section>
 		<div class="row">			
 			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
-				<div class="row" > <!-- 1ER FILA IMAGENES -->
-					<?php include("listar.php"); ?>
+				<div class="row" id="perfil" > 
+					<!-- aca quiero mostrar con ajax lo que devuelva la opcion seleccionada -->
 				</div>
-				<nav>
-					<div class="center-block">
-						<ul class="pagination">
-						<?php include("paginacion.php"); ?>
-						</ul>
-					</div>
-				</nav>
 			</section>
+
 			<aside class="col-md-3 hidden-xs hidden-sm">
-				<h4>Categorias</h4>
+				<h4>Mi cuenta</h4>
 				<div class="list-group" id="divCategorias">
-					<?php include("categorias.php"); ?>
+					<a class="list-group-item active" id="misSubastas" href="#">Mis subastas</a>
+					<a class="list-group-item" id="misOfertas" href="#">Mis ofertas</a>
+					<a class="list-group-item" id="modificarDatos" href="#">Modificar mis datos</a>
 				</div>
-				<!-- filtros -->
-				<h4>Filtros por ciudad: </h4>
-				<div class="list-group" id="divFiltros">					
-					<?php include("filtros.php"); ?>
+				<br>
+				<h4>Eliminar cuenta</h4>
+				<div class="list-group" id="divCategorias">
+					<a class="list-group-item" id="eliminarCuenta" href="#" style="background-color: ; color: red;">
+					<span class="glyphicon glyphicon-alert" style="color: red;" aria-hidden="true"></span>&nbsp;&nbsp;
+					Eliminar mi cuenta</a>
 				</div>
-				<!-- fin filtros -->
 			</aside>
+
 		</div>
 	</section>
 	<footer id="foot">
@@ -106,55 +98,46 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
-		function mostrarSubastas(busqueda) {                              //ACTUALIZO LAS SUBASTAS SEGUN LA BUSQUEDA
+		/*mostrar mis subastas*/
+		$('#misSubastas').click(function(){
 			$.ajax({
-				type: 'GET',
-				url: 'listar.php',
-				// dataType: 'json' ,
-				data: {
-					buscar: busqueda ,
-					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
-						echo 'catID:'.'"'.$_GET['catID'].'"';
-					}
-					  if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
-						echo ' ,'.'filtros: '.'"'.$_GET['filtros'].'"';
-					}
-					  if(isset($_GET['ordID']) && !empty($_GET['ordID'])){
-						echo  ' ,'.'ordID: '.'"'.$_GET['ordID'].'"';
-					}?>
-				}
-			}).done(function(listado){
-				$('#sectionSubastas').html(listado);
-				console.log(busqueda);
+				type: 'get',
+				url: 'misSubastas.php'
+			}).done(function(respuesta){
+				$('#perfil').html(respuesta);
+				console.log("ok");
 			});
-			$.ajax({                                               //ACTUALIZO LOS HREF DE LOS FILTROS SEGUN LA BUSQUEDA
-				type: 'GET',
-				url: 'filtros.php',
-				data: {
-					buscar: busqueda ,
-					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
-							echo 'catID:'.'"'.$_GET['catID'].'"';
-						}?>
-				}
-			}).done(function(filtros){
-				$('#divFiltros').html(filtros);
+		});
+		/*mostrar mis ofertas*/
+		$('#misOfertas').click(function(){
+			$.ajax({
+				type: 'get',
+				url: 'misOfertas.php'
+			}).done(function(respuesta){
+				$('#perfil').html(respuesta);
+				console.log("ok");
 			});
-			$.ajax({                                                   //ACTUALIZO LOS HREF DEL ORDENAR SEGUN LA BUSQUEDA
-				type: 'GET',
-				url: 'ordenar.php',
-				data: {
-					buscar: busqueda ,
-					<?php if(isset($_GET['catID']) && !empty($_GET['catID'])){
-							echo 'catID:'.'"'.$_GET['catID'].'"';
-						}?> 
-					<?php if(isset($_GET['filtros']) && !empty($_GET['filtros'])){
-							echo ' ,'.'filtros: '.'"'.$_GET['filtros'].'"';
-						}?>
-				}
-			}).done(function(orden){
-				$('#liOrdenar').html(orden);
+		});
+		/*modificar mis datos*/
+		$('#modificarDatos').click(function(){
+			$.ajax({
+				type: 'get',
+				url: 'modificarDatos.php'
+			}).done(function(respuesta){
+				$('#perfil').html(respuesta);
+				console.log("ok");
 			});
-		}
+		});
+		/*eliminar mi cuenta*/
+		$('#eliminarCuenta').click(function(){
+			$.ajax({
+				type: 'get',
+				url: 'eliminarCuenta.php'
+			}).done(function(respuesta){
+				$('#perfil').html(respuesta);
+				console.log("ok");
+			});
+		});
 	</script>
 
 	<!-- modal notificaciones-->
