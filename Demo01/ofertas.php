@@ -93,7 +93,7 @@
 						<textarea class="form-control" rows="3" required minlength="1" maxlength="140" placeholder="Motivo" name="motivo"></textarea><br>
 						<div class="input-group col-md-2">
 							<span class="input-group-addon glyphicon glyphicon-usd"></span>
-							<input type="number" min="1" class="form-control" placeholder="Precio" name="precio" required minlength="1" autocomplete="on">
+							<input type="number" step="0.01" min="1" class="form-control" placeholder="Precio" name="precio" required minlength="1" autocomplete="on">
 						</div><br>
 						<button type="submit" class="btn btn-primary" id="btn-registro"> Ofertar </button>
 					</form><br>';
