@@ -10,7 +10,7 @@
 						Categorias <span class="caret"></span>
 					</a> -->
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Perfil</a></li>
+						<li><a href="perfil.php">Perfil</a></li>
 						<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
 					</ul>
 				</li>
