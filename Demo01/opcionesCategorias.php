@@ -3,7 +3,9 @@
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
 	$cat= mysql_query("SELECT * FROM categoria",$con);
+	$ret='';
 	while ($c = mysql_fetch_array($cat)) {
-		echo '<option value="'.$c['nombre'].'">'.$c['nombre'].'</option>';
+		$ret = $ret.'<option value="'.$c['nombre'].'">'.$c['nombre'].'</option>';
 	}
+	return $ret;
 ?>

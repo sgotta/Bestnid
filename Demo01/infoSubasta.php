@@ -22,6 +22,6 @@
 		    		<h5><u>Fin Subasta:</u> '.$reg['fecha_fin'].'</h5>
 				</div>
 			</div><br>		
-			</div><br>';
+			';
 ?>
 

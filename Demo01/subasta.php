@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="css/estilosBestnid.css">
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="ion.rangeSlider/css/normalize.css" />
+    <link rel="stylesheet" href="ion.rangeSlider/css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" />
 
 </head>
 <body>
@@ -57,11 +60,14 @@
 				</ol>
 			</div>
 		</section>
-		<div class="row">			
+		<div class="row" id="contenidoSubasta">			
 			<section class="posts container col-md-12 pull-right">
 				<div class="row"> <!-- 1ER FILA IMAGENES -->
 					<section class="posts col-md-6" >
-						<?php include ("infoSubasta.php"); ?>
+						<div id="infoSub"> 
+							<?php include ("infoSubasta.php"); ?>
+							<?php include ("modificarEliminarSubasta.php"); ?>
+						</div>
 						<div id="com-of"> 
 							<?php include ("comentariosofertas.php"); ?> <!-- ACA ME TRAIGO LA BARRA, COMENTARIOS Y OFERTAS -->
 						</div>
@@ -80,12 +86,13 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="ion.rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+
 	<script>
 		function comentarios() {                              //MUESTRO/ACTUALIZO LOS COMENTARIOS
 			$.ajax({
 				type: 'GET',
 				url: 'comentariosofertas.php',
-				// dataType: 'json' ,
 				data: {
 					op: 1,
 					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
@@ -97,12 +104,12 @@
 			});
 		}
 	</script>
+
 	<script>
 		function ofertas() {                              //MUESTRO/ACTUALIZO LAS OFERTAS
 			$.ajax({
 				type: 'GET',
 				url: 'comentariosofertas.php',
-				// dataType: 'json' ,
 				data: {
 					op: 2,
 					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
@@ -114,6 +121,124 @@
 			});
 		}
 	</script>
+
+	<script>
+		function modificarSubasta() {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				type: 'GET',
+				url: 'modificarSubasta.php',
+				data: {
+					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
+							echo 'subID:'.'"'.$_GET['subID'].'"';
+						}?> 
+				}
+			}).done(function(subasta){
+				if (subasta == 'No se puede modificar'){
+					console.log("prohibido modificar");
+					alert("Alguien realizo una oferta, la subasta no se puede modificar...");
+				}
+				else {
+					console.log("modificando");
+					$('#contenidoSubasta').html(subasta);
+					$('#duracion-subasta').ionRangeSlider({
+					    <?php include("calcularDuracion.php");?>,
+					    keyboard: true,
+					    postfix: " dias",
+					    grid: true,
+					    values: [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+					});
+					console.log("prueba");
+				}
+			});
+		}
+	</script>
+
+	<script>
+		function eliminarSubasta() {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				type: 'GET',
+				url: 'eliminarSubasta.php',
+				data: {
+					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
+							echo 'subID:'.'"'.$_GET['subID'].'"';
+						}?> 
+				}
+			}).done(function(subasta){
+				if (subasta != '') {
+					$('#infoSub').html(subasta);
+					console.log("Eliminado");
+				}
+				else {
+					console.log("algo paso");
+				}
+			});
+		}
+	</script>
+
+	<script>
+		function validarsize(foto) {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				beforeSend: function(){
+					$('#comprobarsize').html('<p class="text-info">Comprobando...</p>');
+				},
+				url: 'validarsize.php', /*= action*/
+				type: 'get', /*= method*/
+				/*dataType: 'json',*/
+				data: { /*parametros para url*/
+					size: foto.files[0].size,
+					name: foto.files[0].name
+				}
+				
+			})
+			.done(function(respuesta){ /*Si funcionó ajax*/
+				console.log("Success");
+				$('#comprobarsize').html(respuesta);
+				if (respuesta === '<p class="text-success">"Tamaño de imagen <strong>OK!</strong>"</p>') {
+					console.log("Tamaño OK!");
+				}else{
+					//mantengo el foco en username
+					if (foto.files[0].name=='') {
+						$('#comprobarsize').html('<p class="text-info">"Campo vacio..."</p>');
+						console.log("Campo vacio")
+					}else{
+						console.log("Supera tamaño permitido!")
+					};
+					$("#divfoto").html('<input type="file" id="foto" name="foto" onchange="validarsize(this);">');
+					$("#foto").focus();
+				}
+			})
+			.fail(function(){ /*esto es si falla el llamado de ajax*/
+				console.log("Error");
+				$('#comprobarsize').html("Error Ajax.");
+			})
+			.always(function(){
+				console.log("Complete");
+				/*setTimeout(function(){
+					$('.fa').hide();
+				}, 1000);*/
+			});
+		}
+	</script>
+
+	<!-- modal eliminar subasta -->
+	<div class="modal fade" id="eliminarSubasta">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">Eliminar subasta</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p>¿Esta seguro que desea eliminar la subasta?</p>
+			    </div>
+			    <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			        <a onclick="eliminarSubasta()" class="btn btn-primary" data-dismiss="modal">Eliminar</a>
+			    </div>
+		    </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- fin modal eliminar subasta -->
 	
 	<!-- modal notificaciones-->
 	<div class="modal fade" id="notif">

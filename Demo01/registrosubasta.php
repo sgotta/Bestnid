@@ -96,7 +96,7 @@
 							  	</div><br>
 								<select class="form-control col-md-4" style="margin-top: 25px;" name="categ" id="categ" required>
 									<option value="" disabled selected>Categorias</option>
-									<?php include("opcionesCategorias.php");?> 
+									<?php echo include("opcionesCategorias.php");?> 
 								</select>
 							</div>
 
