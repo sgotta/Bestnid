@@ -56,12 +56,17 @@ body {
 	background-color: #8182b1;
 	border: 1px solid #D8D5D5;
 	margin-bottom: 0px;
-
 }
 #notifleida {
 	background-color: #FFFFFF;
 	border: 1px solid #D8D5D5;
 	margin-bottom: 0px;	
+}
+#badge-notif{
+background-color: #8182b1;
+}
+#inicio-badge{
+background-color: #8182b1;	
 }
 #navegacion-fm {
 	float: right;
