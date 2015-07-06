@@ -89,7 +89,7 @@
 			 					<div class="form-group">
 									<div class="input-group">
 										<span class="input-group-addon glyphicon glyphicon-user"></span>
-										<input type="text" class="form-control" placeholder="Nombre de usuario" name="username" required maxlength="16">
+										<input type="text" class="form-control" autofocus placeholder="Nombre de usuario" name="username" required maxlength="16">
 									</div>
 								</div>
 							</div>

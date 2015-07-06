@@ -27,14 +27,14 @@
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
 					<!-- <form action="sesioniniciada.php" method="get" class="navbar-form navbar-left" role="search"> -->
-					<div class="navbar-form navbar-left" role="search">
+					<!-- <div class="navbar-form navbar-left" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar" onkeyup="mostrarSubastas(this.value)">
-							<!-- <button type="submit" class="btn btn-primary"> -->
-								<!-- <span class="glyphicon glyphicon-search"></span> -->
-							<!-- </button> -->
+							<button type="submit" class="btn btn-primary">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
 						</div>
-					</div>
+					</div> -->
 					<!-- </form> -->
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
@@ -64,15 +64,16 @@
 		</section>
 		<div class="row">			
 			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
-				<div class="row" id="perfil" > 
+				<div class="row" id="perfil"> 
 					<!-- aca quiero mostrar con ajax lo que devuelva la opcion seleccionada -->
+					<?php include('misSubastas.php'); ?>
 				</div>
 			</section>
 
 			<aside class="col-md-3 hidden-xs hidden-sm">
 				<h4>Mi cuenta</h4>
 				<div class="list-group" id="divCategorias">
-					<a class="list-group-item active" id="misSubastas" href="#">Mis subastas</a>
+					<a class="list-group-item" id="misSubastas" href="#">Mis subastas</a>
 					<a class="list-group-item" id="misOfertas" href="#">Mis ofertas</a>
 					<a class="list-group-item" id="modificarDatos" href="#">Modificar mis datos</a>
 				</div>
@@ -98,6 +99,11 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
+		$( document ).ready(function() {
+    		console.log( "Ready" );
+		});
+
+	/*----------------------------------------------*/
 		/*mostrar mis subastas*/
 		$('#misSubastas').click(function(){
 			$.ajax({
