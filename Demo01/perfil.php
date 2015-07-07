@@ -80,7 +80,7 @@
 				<br>
 				<h4>Eliminar cuenta</h4>
 				<div class="list-group" id="divCategorias">
-					<a class="list-group-item" id="eliminarCuenta" href="#" style="background-color: ; color: red;">
+					<a class="list-group-item alert" id="eliminarCuenta" href="#" style="background-color: ; color: red;">
 					<span class="glyphicon glyphicon-alert" style="color: red;" aria-hidden="true"></span>&nbsp;&nbsp;
 					Eliminar mi cuenta</a>
 				</div>
@@ -98,10 +98,37 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootbox.min.js"></script>
 	<script>
 		$( document ).ready(function() {
     		console.log( "Ready" );
 		});
+
+        $(document).on("click", ".alert", function(e) {
+        	bootbox.confirm("<h4><p class='text-danger'>Seguro desea <strong>eliminar</strong> su cuenta de Bestnid?!</p><h4>", function(result) {
+        		if (result==true) {
+        			console.log(result);
+        			bootbox.prompt("<h5><p class='text-warning'><strong>Confirme su eliminación</strong> ingresando su email: </p><h5>", function(result) {                
+					  if (result==null) {                                             
+					    console.log("se canceló");                              
+					  } else {
+					    console.log("email: "+result);
+					    $.ajax({
+							type: 'get',
+							url: 'eliminarCuenta.php',
+							data: 'email='+result
+						}).done(function(respuesta){
+							bootbox.alert(respuesta, function() {
+							  console.log();
+							});
+						});                          
+					  }
+					});
+        		}else{
+        			console.log(result);
+        		};
+			});
+        });
 
 	/*----------------------------------------------*/
 		/*mostrar mis subastas*/
@@ -135,15 +162,15 @@
 			});
 		});
 		/*eliminar mi cuenta*/
-		$('#eliminarCuenta').click(function(){
-			$.ajax({
-				type: 'get',
-				url: 'eliminarCuenta.php'
-			}).done(function(respuesta){
-				$('#perfil').html(respuesta);
-				console.log("ok");
-			});
-		});
+		// $('#eliminarCuenta').click(function(){
+		// 	$.ajax({
+		// 		type: 'get',
+		// 		url: 'eliminarCuenta.php'
+		// 	}).done(function(respuesta){
+		// 		$('#perfil').html(respuesta);
+		// 		console.log("ok");
+		// 	});
+		// });
 	</script>
 
 	<!-- modal notificaciones-->
