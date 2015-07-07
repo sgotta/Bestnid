@@ -68,6 +68,13 @@ background-color: #8182b1;
 #inicio-badge{
 background-color: #8182b1;	
 }
+#labelEliminar{
+	float: right;
+	margin-right: 10px; 
+}
+#tituloCat{
+	margin-left: 10px; 
+}
 #navegacion-fm {
 	float: right;
 	/*width: 1000px;*/

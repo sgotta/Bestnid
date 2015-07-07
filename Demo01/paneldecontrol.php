@@ -26,22 +26,11 @@
 				</div>
 				<!-- inicia menu -->
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
-					<!-- <form action="sesioniniciada.php" method="get" class="navbar-form navbar-left" role="search"> -->
-					<!-- <div class="navbar-form navbar-left" role="search">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Buscar" aria-describedby="basic-addon2" id="barra-busqueda" name="buscar" onkeyup="mostrarSubastas(this.value)">
-							<button type="submit" class="btn btn-primary">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</div>
-					</div> -->
-					<!-- </form> -->
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
-					<a href="#notif" class="glyphicon glyphicon-bullhorn" data-toggle="modal"  id="inicio"></a>
+					<?php include ("notificacion.php"); ?>
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
-					
 							<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#">Perfil</a></li>
@@ -59,32 +48,26 @@
 			<div class="miga-de-pan col-md-9 ">
 				<ol class="breadcrumb pull-left">
 					<li><a href="sesioniniciada.php" id="migaja">Inicio</a></li>
-					<li class="active">Mi cuenta</li>
+					<li class="active">Eliminar categoria</li>
 				</ol>
 			</div>
 		</section>
 		<div class="row">			
 			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
-				<div class="row" id="perfil"> 
-					<!-- aca quiero mostrar con ajax lo que devuelva la opcion seleccionada -->
-					<?php include('misSubastas.php'); ?>
+				<div class="row" id="categ"> 
+					<!-- aca quiero mostrar con ajax lo que devuelva la opcion seleccionada (campo) -->
+					<?php include('misCategorias.php'); ?> 
 				</div>
 			</section>
 
 			<aside class="col-md-3 hidden-xs hidden-sm">
-				<h4>Mi cuenta</h4>
+				<h4>Categorias</h4>
 				<div class="list-group" id="divCategorias">
-					<a class="list-group-item" id="misSubastas" href="#">Mis subastas</a>
-					<a class="list-group-item" id="misOfertas" href="#">Mis ofertas</a>
-					<a class="list-group-item" id="modificarDatos" href="#">Modificar mis datos</a>
+					<a class="list-group-item" id="eliminarCategoria" href="#">Eliminar categoria</a>
+					<a class="list-group-item" id="nuevaCategoria" href="#">Nueva categoria</a>
 				</div>
-				<br>
-				<h4>Eliminar cuenta</h4>
-				<div class="list-group" id="divCategorias">
-					<a class="list-group-item alert" id="eliminarCuenta" href="#" style="background-color: ; color: red;">
-					<span class="glyphicon glyphicon-alert" style="color: red;" aria-hidden="true"></span>&nbsp;&nbsp;
-					Eliminar mi cuenta</a>
-				</div>
+				
+				
 			</aside>
 
 		</div>
@@ -99,79 +82,33 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootbox.min.js"></script>
 	<script>
 		$( document ).ready(function() {
     		console.log( "Ready" );
 		});
 
-        $(document).on("click", ".alert", function(e) {
-        	bootbox.confirm("<h4><p class='text-danger'>Seguro desea <strong>eliminar</strong> su cuenta de Bestnid?!</p><h4>", function(result) {
-        		if (result==true) {
-        			console.log(result);
-        			bootbox.prompt("<h5><p class='text-warning'><strong>Confirme su eliminación</strong> ingresando su email: </p><h5>", function(result) {                
-					  if (result==null) {                                             
-					    console.log("se canceló");                              
-					  } else {
-					    console.log("email: "+result);
-					    $.ajax({
-							type: 'get',
-							url: 'eliminarCuenta.php',
-							data: 'email='+result
-						}).done(function(respuesta){
-							bootbox.alert(respuesta, function() {
-							  console.log();
-							});
-						});                          
-					  }
-					});
-        		}else{
-        			console.log(result);
-        		};
-			});
-        });
-
 	/*----------------------------------------------*/
 		/*mostrar mis subastas*/
-		$('#misSubastas').click(function(){
+		$('#nuevaCategoria').click(function(){
 			$.ajax({
 				type: 'get',
-				url: 'misSubastas.php'
+				url: 'altaCategoria.php'
 			}).done(function(respuesta){
-				$('#perfil').html(respuesta);
+				$('#categ').html(respuesta);
 				console.log("ok");
 			});
 		});
 		/*mostrar mis ofertas*/
-		$('#misOfertas').click(function(){
+		$('#eliminarCategoria').click(function(){
 			$.ajax({
 				type: 'get',
-				url: 'misOfertas.php'
+				url: 'eliminarCategoria.php'
 			}).done(function(respuesta){
-				$('#perfil').html(respuesta);
+				$('#categ').html(respuesta);
 				console.log("ok");
 			});
 		});
-		/*modificar mis datos*/
-		$('#modificarDatos').click(function(){
-			$.ajax({
-				type: 'get',
-				url: 'modificarDatos.php'
-			}).done(function(respuesta){
-				$('#perfil').html(respuesta);
-				console.log("ok");
-			});
-		});
-		/*eliminar mi cuenta*/
-		// $('#eliminarCuenta').click(function(){
-		// 	$.ajax({
-		// 		type: 'get',
-		// 		url: 'eliminarCuenta.php'
-		// 	}).done(function(respuesta){
-		// 		$('#perfil').html(respuesta);
-		// 		console.log("ok");
-		// 	});
-		// });
+	);
 	</script>
 
 	<!-- modal notificaciones-->

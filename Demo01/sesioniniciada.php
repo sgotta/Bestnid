@@ -49,6 +49,7 @@
 							</a> -->
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="perfil.php">Perfil</a></li>
+								<?php include("esAdministrador.php"); ?>
 								<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
 							</ul>
 						</li>
