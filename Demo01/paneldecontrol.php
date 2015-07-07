@@ -33,7 +33,7 @@
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 							<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Perfil</a></li>
+								<li><a href="perfil.php">Perfil</a></li>
 								<?php include("esAdministrador.php"); ?>
 								<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
 							</ul>
@@ -48,7 +48,7 @@
 			<div class="miga-de-pan col-md-9 ">
 				<ol class="breadcrumb pull-left">
 					<li><a href="sesioniniciada.php" id="migaja">Inicio</a></li>
-					<li class="active">Eliminar categoria</li>
+					<li class="active">Panel de control</li>
 				</ol>
 			</div>
 		</section>
@@ -62,8 +62,9 @@
 
 			<aside class="col-md-3 hidden-xs hidden-sm">
 				<h4>Categorias</h4>
-				<div class="list-group" id="divCategorias">
-					<a class="list-group-item" id="eliminarCategoria" href="#">Eliminar categoria</a>
+				<div class="list-group" id="divCategorias" style="min-height: 400px;">
+					<a class="list-group-item" id="eliminarCategoria" href="paneldecontrol.php">Eliminar categoria</a>
+					<a class="list-group-item" id="modificarCategoria" href="#">Modificar categoria</a>
 					<a class="list-group-item" id="nuevaCategoria" href="#">Nueva categoria</a>
 				</div>
 				
@@ -82,13 +83,36 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootbox.min.js"></script>
 	<script>
 		$( document ).ready(function() {
     		console.log( "Ready" );
 		});
+		/* eliminar categoria */
+ 		$(document).on("click", ".label-danger", function(e) {
+        	bootbox.confirm("<h4><p class='text-danger'>Seguro desea eliminar la categoria?</p><h4>", function(result) {
+        		if (result==true) {
+        			console.log(result);
+        			$.ajax({
+						type: 'get',
+						url: 'eliminarCategoria.php',
+						data: result
+						}).done(function(respuesta){
+							bootbox.alert(respuesta, function() {
+							 console.log();
+							});
+						});                          
+					  }
+					
+        		else{
+        			console.log(result);
+        		};
+			});
+        });
+		 	
 
 	/*----------------------------------------------*/
-		/*mostrar mis subastas*/
+		/*nueva categorias*/
 		$('#nuevaCategoria').click(function(){
 			$.ajax({
 				type: 'get',
@@ -98,17 +122,16 @@
 				console.log("ok");
 			});
 		});
-		/*mostrar mis ofertas*/
-		$('#eliminarCategoria').click(function(){
+		/*modificar categoria*/
+		$('#modificarCategoria').click(function(){
 			$.ajax({
 				type: 'get',
-				url: 'eliminarCategoria.php'
+				url: 'modificarCategoria.php'
 			}).done(function(respuesta){
 				$('#categ').html(respuesta);
 				console.log("ok");
 			});
 		});
-	);
 	</script>
 
 	<!-- modal notificaciones-->

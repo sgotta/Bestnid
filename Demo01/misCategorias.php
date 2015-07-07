@@ -23,4 +23,7 @@
 	}else{
 		echo '<div class="alert alert-warning" role="alert">"Usted no ha creado una categoria."</div>';
 	}
+
 ?>
+
+				
