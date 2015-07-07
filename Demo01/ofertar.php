@@ -11,6 +11,7 @@
 		// 						WHERE nombre_usuario='$_SESSION[username]'") or die("problemas en consulta: ".mysql_error());
 		mysql_query("INSERT INTO oferta (motivo,precio,ganador,Usuario_nombre_usuario,Publicacion_idPublicacion) 
 					VALUES ('$_POST[motivo]','$_POST[precio]',0,'$_SESSION[username]','$_GET[subID]')",$con);
+		$id = mysql_insert_id();
 		$cor=1;
 		include("notificar.php");
 	}

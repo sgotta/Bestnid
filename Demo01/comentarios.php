@@ -21,7 +21,8 @@
 
 	//EMPIEZO A DEVOLVER COMENTARIOS
 	while ($reg=mysql_fetch_array($c)){
-
+		//guardo id comentario para saber, en caso de que el usuario quiera, que comentario o que respuesta eliminar
+		$idComentario = $reg['idComentario'];
 		$coment = $coment.'<li class="list-group-item" id="pregunta"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;'.$reg['descripcion'];
 		if (isset($reg['respuesta']) && !empty($reg['respuesta'])){
 			$coment = $coment.'</li>';
@@ -39,7 +40,7 @@
 													    <span class="sr-only">Toggle Dropdown</span>
 													  </button>
 													  <ul class="dropdown-menu">
-													    <li><a onclick="eliminarRespuesta()">Eliminar respuesta</a></li>
+													    <li><a onclick="eliminarRespuesta('.$idComentario.')">Eliminar respuesta</a></li>
 													  </ul>
 													</div>';	
 							// $coment = $coment.'<div class="btn-group pull-right" role="group" aria-label="...">
@@ -87,7 +88,7 @@
 													    <span class="sr-only">Toggle Dropdown</span>
 													  </button>
 													  <ul class="dropdown-menu">
-													    <li><a onclick="eliminarComentario()">Eliminar comentario</a></li>
+													    <li><a onclick="eliminarComentario('.$idComentario.')">Eliminar comentario</a></li>
 													  </ul>
 													</div>';		
 						}

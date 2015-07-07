@@ -78,13 +78,13 @@
 			$reg3=mysql_fetch_array($c3);
 			//SI YA HIZO OFERTA, SE MUESTRA 
 			if (mysql_num_rows($c3) == 1){
-				$ofer = '<ul class="list-group">';
+				$ofer = '<div id="lista-ofertas"><ul class="list-group">';
 				$ofer = $ofer.'<li class="list-group-item">'.$reg3['motivo'].'</li>';
 				$ofer = $ofer.'</ul>';
 				$ofer = $ofer.'<div class="btn-group" role="group" aria-label="...">
-					<a onclick= "modificarOferta()" class="btn btn-default">Modificar oferta</a>
-				    <a onclick= "eliminarOferta()" class="btn btn-default">Eliminar oferta</a>
-				</div><br><br>';  //data-toggle="modal"
+					<a onclick= "modificarOferta('.$reg3['idOferta'].')" class="btn btn-default">Modificar oferta</a>
+				    <a onclick= "eliminarOferta('.$reg3['idOferta'].')" class="btn btn-default">Eliminar oferta</a>
+				</div></div><br><br>';  //data-toggle="modal"
 			}
 			//SINO, FORMULARIO PARA REALIZAR OFERTA
 			else {

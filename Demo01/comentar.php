@@ -10,6 +10,7 @@
 		// 						WHERE nombre_usuario='$_SESSION[username]'") or die("problemas en consulta: ".mysql_error());
 		mysql_query("INSERT INTO comentario (descripcion,Usuario_nombre_usuario1,Publicacion_numero_publicacion) 
 					 VALUES ('$_POST[coment]','$_SESSION[username]','$_GET[subID]')",$con);
+		$id = mysql_insert_id();
 		$cor=0;
 		include("notificar.php");
 	}

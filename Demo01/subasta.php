@@ -123,6 +123,116 @@
 	</script>
 
 	<script>
+		function modificarOferta(idOferta) {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				type: 'GET',
+				url: 'modificarOferta.php',
+				data: {
+					of: idOferta,
+					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
+							echo 'subID:'.'"'.$_GET['subID'].'"';
+						}?> 
+				}
+			}).done(function(ret){
+				if (ret == 'Fecha'){
+					console.log("fecha vencimiento cumplida");
+					alert("Se ha cumplido la fecha de vencimiento, no se puede modificar la oferta...");
+				}
+				else {
+					console.log("Modificar oferta");
+					$('#lista-ofertas').html(ret);
+				}
+			});
+		}
+	</script>
+
+	<script>
+		function eliminarOferta(idOferta) {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				type: 'GET',
+				url: 'eliminarOferta.php',
+				data: {
+					of: idOferta,
+					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
+							echo 'subID:'.'"'.$_GET['subID'].'"';
+						}?> 
+				}
+			}).done(function(ret){
+				if (ret == 'Fecha'){
+					console.log("fecha vencimiento cumplida");
+					alert("Se ha cumplido la fecha de vencimiento, no se puede eliminar la oferta...");
+				}
+				else {
+					if (ret == 'Eliminada'){
+						console.log("Eliminando oferta");
+						ofertas();
+					}
+				}
+			});
+		}
+	</script>
+
+	<script>
+		function eliminarComentario(idComentario) {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				type: 'GET',
+				url: 'eliminarComentario.php',
+				data: {
+					com: idComentario,
+					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
+							echo 'subID:'.'"'.$_GET['subID'].'"';
+						}?> 
+				}
+			}).done(function(ret){
+				if (ret == 'Fecha'){
+					console.log("fecha vencimiento cumplida");
+					alert("Se ha cumplido la fecha de vencimiento, no se puede eliminar el comentario...");
+				}
+				else {
+					if (ret == 'Hay respuesta'){
+						console.log("Hay respuesta");
+						alert("El comentario ya se ha respondido, no se puede eliminar...");
+					}
+					else {
+						if (ret == 'Eliminado'){
+							console.log("Respuesta vacia, eliminando...");
+							comentarios();
+						}
+					}
+				}
+				console.log(ret);
+			});
+		}
+	</script>
+
+	<script>
+		function eliminarRespuesta(idComentario) {                              //MUESTRO/ACTUALIZO LAS OFERTAS
+			$.ajax({
+				type: 'GET',
+				url: 'eliminarRespuesta.php',
+				data: {
+					com: idComentario,
+					<?php if(isset($_GET['subID']) && !empty($_GET['subID'])){
+							echo 'subID:'.'"'.$_GET['subID'].'"';
+						}?> 
+				}
+			}).done(function(ret){
+				if (ret == 'Fecha'){
+					console.log("fecha vencimiento cumplida");
+					alert("Se ha cumplido la fecha de vencimiento, no se puede eliminar la respuesta...");
+				}
+				else {
+					if (ret == 'Eliminada'){
+						console.log("Eliminando respuesta...");
+						comentarios();
+					}
+				}
+				console.log(ret);
+			});
+		}
+	</script>
+
+	<script>
 		function modificarSubasta() {                              //MUESTRO/ACTUALIZO LAS OFERTAS
 			$.ajax({
 				type: 'GET',
@@ -133,21 +243,27 @@
 						}?> 
 				}
 			}).done(function(subasta){
-				if (subasta == 'No se puede modificar'){
-					console.log("prohibido modificar");
+				if (subasta == 'Oferta'){
+					console.log("prohibido modificar, hay oferta");
 					alert("Alguien realizo una oferta, la subasta no se puede modificar...");
 				}
 				else {
-					console.log("modificando");
-					$('#contenidoSubasta').html(subasta);
-					$('#duracion-subasta').ionRangeSlider({
-					    <?php include("calcularDuracion.php");?>,
-					    keyboard: true,
-					    postfix: " dias",
-					    grid: true,
-					    values: [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-					});
-					console.log("prueba");
+					if (subasta == 'Fecha') {
+						console.log("prohibido modificar, fecha vencimiento");
+						alert("La subasta ha llegado a la fecha de vencimiento, no se puede modificar...");
+					}
+					else {
+						console.log("modificando");
+						$('#contenidoSubasta').html(subasta);
+						$('#duracion-subasta').ionRangeSlider({
+						    <?php include("calcularDuracion.php");?>,
+						    keyboard: true,
+						    postfix: " dias",
+						    grid: true,
+						    values: [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+						});
+						console.log("prueba");
+					}
 				}
 			});
 		}
@@ -164,12 +280,21 @@
 						}?> 
 				}
 			}).done(function(subasta){
+				console.log(subasta);
 				if (subasta != '') {
-					$('#infoSub').html(subasta);
-					console.log("Eliminado");
+					if (subasta == 'Eliminada') {
+						alert("Subasta eliminada, redireccionando a su perfil...");
+						window.location="perfil.php";
+						console.log("Eliminado");
+					}					
+					else {
+						alert("La subasta ha llegado a la fecha de vencimiento, no se puede eliminar...");
+						console.log("No se elimino");
+					}
 				}
 				else {
 					console.log("algo paso");
+					
 				}
 			});
 		}
