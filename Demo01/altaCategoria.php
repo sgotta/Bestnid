@@ -6,7 +6,7 @@
 				<section class="col-md-8">
 					<h4>Nueva categoria:</h4>
 				    <div class="form-group" id="divnombre">
-					    <input type="text" class="form-control" onchange="validarnombrecategoria(this);" id="nombre" name="nombre" placeholder="Nombre de su categoria" maxlength="45" required autocomplete="off">
+					    <input type="text" class="form-control" onkeyup="validarnombrecategoria(this);" id="nombre" name="nombre" placeholder="Nombre de su categoria" maxlength="45" required autocomplete="off">
 				    </div>
 				    <span id="comprobarnombre"></span>
     			    <div class="form-inline" >

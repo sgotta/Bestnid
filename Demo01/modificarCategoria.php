@@ -11,7 +11,7 @@
 					</select>
 					<br><br><h4>Nuevo nombre: </h4>
 				    <div class="form-group" id="divnombre">
-					    <input type="text" class="form-control" onchange="validarnombrecategoria(this);" id="nombre" name="nombre" placeholder="Nombre de su categoria" required maxlength="45">
+					    <input type="text" class="form-control" onkeyup="validarnombrecategoria(this);" id="nombre" name="nombre" placeholder="Nombre de su categoria" required maxlength="45">
 				    </div>
 				     <span id="comprobarnombre"></span>
     			    <div class="form-inline">

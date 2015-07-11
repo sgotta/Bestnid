@@ -9,7 +9,8 @@
 		$registro=mysql_query("      
 			SELECT * 
 			FROM categoria
-			WHERE nombre='$nombre'")
+			WHERE nombre='$nombre'
+			AND borrado=0")
 		or die("problemas en consulta: ".mysql_error());
 		$cant=mysql_num_rows($registro);
 		/*sleep(1);*/

@@ -25,14 +25,13 @@
 					<a href="sesioniniciada.php" class="navbar-brand">Bestnid</a>
 				</div>
 				<!-- inicia menu -->
+
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
-					
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
-					<a href="#notif" class="glyphicon glyphicon-bullhorn" data-toggle="modal"  id="inicio"></a>
+					<?php include ("notificacion.php"); ?>
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
-					
 							<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="perfil.php">Perfil</a></li>
@@ -58,7 +57,7 @@
 			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
 				<div class="row" id="categ"> 
 					<!-- aca quiero mostrar con ajax lo que devuelva la opcion seleccionada (campo) -->
-					<?php include('altaCategoria.php'); ?> 
+					<?php include('eliminarCategoria.php'); ?> 
 				</div>
 			</section>
 
@@ -89,61 +88,61 @@
 	<script>
 		$( document ).ready(function() {
     		console.log( "Ready" );
+    		$('#modalEliminar').modal({
+    			backdrop: 'static'
+    		});
 		});
-		/* eliminar categoria */
- 		/*$(document).on("click", ".label-danger", function(e) {
-        	bootbox.confirm("<h4><p class='text-danger'>Seguro desea eliminar la categoria?</p><h4>", function(result) {
-        		if (result==true) {
-        			console.log(result);
-        			$.ajax({
-						type: 'get',
-						url: 'eliminarCategoria.php',
-						data: result
-						}).done(function(respuesta){
-							bootbox.alert(respuesta, function() {
-							 console.log();
-							});
-						});                          
-					  }
-					
-        		else{
-        			console.log(result);
-        		};
-			});
-        });*/
-		 	
-
-	/*----------------------------------------------*/
-		/*nueva categorias*/
-		$('#nuevaCategoria').click(function(){
-			$.ajax({
-				type: 'get',
-				url: 'altaCategoria.php'
-			}).done(function(respuesta){
-				$('#categ').html(respuesta);
-				console.log("ok");
-			});
+		
+	<!--      -->
+	function categoriaEliminada() {                              
+		$.ajax({
+			type: 'GET',
+			url: 'categoriaEliminada.php',
+			data: {
+				<?php if(isset($_POST['categ']) && !empty($_POST['categ'])){
+					echo 'categ:'.'"'.$_POST['categ'].'"';
+				}?> 
+			}
+		}).done(function(categoria){
+			console.log(categoria);
+			if (categoria != '') {
+				if (categoria == 'Eliminada') {
+					alert("Categoria eliminada, redireccionando a su panel de control...");
+					window.location="paneldecontrol.php";
+					console.log("Eliminado");
+				}					
+				else {
+					alert("La categoria tiene publicaciones activas, no se puede eliminar por el momento pero queda desactiva para proximas publicaciones...");
+					window.location="paneldecontrol.php";
+					console.log("No se elimino");
+				}
+			}
+			else {
+				console.log("algo paso");
+			}
 		});
-		/*modificar categoria*/
-		$('#modificarCategoria').click(function(){
-			$.ajax({
-				type: 'get',
-				url: 'modificarCategoria.php'
-			}).done(function(respuesta){
-				$('#categ').html(respuesta);
-				console.log("ok");
-			});
-		});
-		$('#eliminarCategoria').click(function(){
-			$.ajax({
-				type: 'get',
-				url: 'eliminarCategoria.php'
-			}).done(function(respuesta){
-				$('#categ').html(respuesta);
-				console.log("ok");
-			});
-		});
+	}
 	</script>
+	</script>
+	<!-- modal eliminar categoria -->
+	<div class="modal fade" id="modalEliminar">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <a href="paneldecontrol.php" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+			        <h4 class="modal-title">Eliminar categoria</h4>
+			    </div>
+			    <div class="modal-body">
+			        <p>¿Esta seguro que desea eliminar la categoria?</p>
+			    </div>
+			    <div class="modal-footer">
+			        <a href="paneldecontrol.php" type="button" class="btn btn-default" >Cancelar</a>
+			        <a onclick="categoriaEliminada()" class="btn btn-primary" data-dismiss="modal">Eliminar</a>
+			    </div>
+		    </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!--fin modal eliminar categoria -->
 
 
 	<!-- modal notificaciones-->
@@ -165,5 +164,6 @@
 		</div>							
 	</div>					
 	<!-- fin modal notificaciones-->
+	
 </body>
 </html>
