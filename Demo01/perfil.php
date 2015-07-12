@@ -162,16 +162,44 @@
 				console.log("ok");
 			});
 		});
-		/*eliminar mi cuenta*/
-		// $('#eliminarCuenta').click(function(){
-		// 	$.ajax({
-		// 		type: 'get',
-		// 		url: 'eliminarCuenta.php'
-		// 	}).done(function(respuesta){
-		// 		$('#perfil').html(respuesta);
-		// 		console.log("ok");
-		// 	});
-		// });
+
+		/*Lo siguiente es para la modificación de datos: */
+		function modificarDomicilio(){
+			$.ajax({
+				url: 'modificarDomicilio.php'
+			}).done(function(respuesta){
+				$('#perfil').html(respuesta);
+				console.log("ok");
+			});
+		}
+
+		function modificarTel(){
+			$.ajax({
+				url: 'modificarTel.php'
+			}).done(function(respuesta){
+				$('#perfil').html(respuesta);
+				console.log("ok");
+			});
+		}
+
+		function modificarEmail(){
+			$.ajax({
+				url: 'modificarEmail.php'
+			}).done(function(respuesta){
+				$('#perfil').html(respuesta);
+				console.log("ok");
+			});
+		}
+
+		function modificarContraseña(){
+			$.ajax({
+				url: 'modificarPassword.php'
+			}).done(function(respuesta){
+				$('#perfil').html(respuesta);
+				console.log(respuesta);
+			});
+		}
+		
 	</script>
 
 	<!-- modal notificaciones-->
