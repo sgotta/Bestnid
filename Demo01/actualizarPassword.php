@@ -11,19 +11,17 @@
 	$user=$_SESSION['username'];
 
 	$password = $_REQUEST['password'];
-	$password1 = $_REQUEST['password1'];
+	
+	//actualizar base:
+	$resultado=mysql_query("UPDATE usuario 
+					SET password='$password' 
+					WHERE nombre_usuario = '$user'",$con) 
+					or die ("problemas en consulta: ".mysql_error());
 
-	if ($password==$password1) {
-		//actualizar base:
-		mysql_query("UPDATE usuario 
-						SET password='$password' 
-						WHERE nombre_usuario = '$user'",$con) 
-						or die ("problemas en consulta: ".mysql_error());
-
-		echo '<script type="text/javascript">', 'alert("Su contraseña ha sido actualizada"); document.location = perfil.php;', '</script>';
-		echo'<script>location.href="perfil.php"; </script>';
+	if (!$resultado) {
+		echo "Problemas al actualizar contraseña";
 	}else{
-		echo '<script type="text/javascript">', 'alert("Las contraseñas no coinciden, intentelo nuevamente"); document.location = perfil.php;', '</script>';
-		echo'<script>location.href="perfil.php"; </script>';
+		echo "Se actualizó";
 	}
+
 ?>

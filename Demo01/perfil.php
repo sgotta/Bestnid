@@ -66,8 +66,10 @@
 		<div class="row">			
 			<section class="posts container col-md-9 pull-right" id="sectionSubastas">
 				<div class="row" id="perfil"> 
+				<?php include('misSubastas.php'); ?>
+
 					<!-- aca quiero mostrar con ajax lo que devuelva la opcion seleccionada -->
-					<?php include('misSubastas.php'); ?>
+					
 				</div>
 			</section>
 
@@ -139,7 +141,7 @@
 				url: 'misSubastas.php'
 			}).done(function(respuesta){
 				$('#perfil').html(respuesta);
-				console.log("ok");
+				console.log("mis subastas");
 			});
 		});
 		/*mostrar mis ofertas*/
@@ -149,7 +151,7 @@
 				url: 'misOfertas.php'
 			}).done(function(respuesta){
 				$('#perfil').html(respuesta);
-				console.log("ok");
+				console.log("mis ofertas");
 			});
 		});
 		/*modificar mis datos*/
@@ -159,7 +161,7 @@
 				url: 'modificarDatos.php'
 			}).done(function(respuesta){
 				$('#perfil').html(respuesta);
-				console.log("ok");
+				console.log("modificar datos");
 			});
 		});
 
@@ -169,7 +171,7 @@
 				url: 'modificarDomicilio.php'
 			}).done(function(respuesta){
 				$('#perfil').html(respuesta);
-				console.log("ok");
+				console.log("modificar domicilio");
 			});
 		}
 
@@ -178,7 +180,7 @@
 				url: 'modificarTel.php'
 			}).done(function(respuesta){
 				$('#perfil').html(respuesta);
-				console.log("ok");
+				console.log("modificar tel");
 			});
 		}
 
@@ -187,7 +189,7 @@
 				url: 'modificarEmail.php'
 			}).done(function(respuesta){
 				$('#perfil').html(respuesta);
-				console.log("ok");
+				console.log("modificar email");
 			});
 		}
 
@@ -196,8 +198,39 @@
 				url: 'modificarPassword.php'
 			}).done(function(respuesta){
 				$('#perfil').html(respuesta);
-				console.log(respuesta);
+				$('#password').focus();
+				console.log("modificar contraseña");
 			});
+
+		}
+
+		function verificarPassword(form){
+			console.log(form.password.value);
+			console.log(form.password1.value);
+			if (form.password.value===form.password1.value) {
+				console.log("son iguales");
+				if (password.value.length>=8 && password.value.length<=45) {
+					console.log("la longitud está entre 8 y 45");
+					$.ajax({
+						url: 'actualizarPassword.php',
+						type: 'get',
+						data: 'password='+password.value
+					}).done(function(respuesta){
+						console.log(respuesta);
+						bootbox.alert("Su contraseña fue actualizada.", function() {
+						  window.location.href='perfil.php';
+						});
+					});
+				}else{
+					bootbox.alert("Recuerde que la contraseña debe tener entre 8 y 45 caracteres, elija otra.", function() {
+					  console.log("longitud: "+password.value.length);
+					});
+				};
+			}else{
+				bootbox.alert("Error de coincidencia, verifique haber ingresado la misma contraseña en ambos campos.", function() {
+				  console.log("son distintos");
+				});
+			};
 		}
 		
 	</script>

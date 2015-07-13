@@ -1,5 +1,5 @@
 <?php 
-	echo '<form action="actualizarPassword.php" class="navbar-form" role="form" id="registro-form" method="post" style="padding-bottom: 40px;">
+	echo '<form action="javascript:verificarPassword(document.forms.registro_form);" class="navbar-form" role="form" id="registro_form" method="post" style="padding-bottom: 40px;">
 			<h4 class="pull-left">Nueva contraseña: </h4>
 			<div class="form-group">
 				<div class="form-inline">
@@ -7,7 +7,7 @@
  					<h5 class="pull-left">Ingrese su nueva contraseña: </h5><br>
 						<div class="input-group">
 							<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
-							<input type="password" class="form-control" placeholder="Contraseña"  name="password" id="password" minlength="8" maxlength="45" required autocomplete="off">
+							<input type="password" class="form-control" placeholder="Nueva contraseña"  name="password" id="password" minlength="8" maxlength="45" required autocomplete="off">
 						</div>
 					</div>
 				</div>			
@@ -17,7 +17,7 @@
  					<h5 class="pull-left">Repita su nueva contraseña: </h5><br>
 						<div class="input-group">
 							<span class="input-group-addon glyphicon glyphicon-asterisk" ></span>
-							<input type="password" class="form-control" placeholder="Contraseña"  name="password1" id="password1" minlength="8" maxlength="45" required autocomplete="off">
+							<input type="password" class="form-control" placeholder="Repetir contraseña"  name="password1" id="password1" minlength="8" maxlength="45" required autocomplete="off">
 						</div>
 					</div>
 				</div><br>
