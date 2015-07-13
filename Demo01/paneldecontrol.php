@@ -101,13 +101,55 @@
 	<script src="js/bootbox.min.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
 
+
 	
 	<script>
 		$( document ).ready(function() {
     		console.log( "Ready" );
+    		
 		});
 		
 	/*----------------------------------------------*/
+		function validarnombrecategoria(nombre){
+			$.ajax({
+				beforeSend: function(){
+					$('#comprobarnombre').html('<p class="text-info">Comprobando...</p>');
+				},
+				url: 'validarnombrecategoria.php', /*= action*/
+				type: 'get', /*= method*/
+				/*dataType: 'json',*/
+				data: 'nombre='+nombre.value /*parametros para url*/
+			})
+			.done(function(respuesta){ /*Si funcionó ajax*/
+				console.log("Success");
+				$('#comprobarnombre').html(respuesta);
+				if (respuesta === '<p class="text-success">"Nombre de categoria <strong>OK!</strong>"</p>') {
+					console.log("Nombre OK!");
+				}else{
+					//mantengo el foco en username
+					if (nombre.value=='') {
+						$('#comprobarnombre').html('<p class="text-info">"Nombre de la categoria no puede estar vacio"</p>');
+						console.log("Campo vacio")
+					}else{
+						console.log("Nombre en uso!")
+					};
+					$("#divnombre").html(' <input type="text" class="form-control" onchange="validarnombrecategoria(this);" id="nombre" name="nombre" placeholder="Nombre de su categoria" maxlength="45" required autocomplete="off">');
+					
+					$("#nombre").focus();
+				}
+			})
+			.fail(function(){ /*esto es si falla el llamado de ajax*/
+				console.log("Error");
+				$('#comprobarnombre').html("Error Ajax.");
+			})
+			.always(function(){
+				console.log("Complete");
+				/*setTimeout(function(){
+					$('.fa').hide();
+				}, 1000);*/
+			});
+		};
+
 		/*nueva categorias*/
 		$('#nuevaCategoria').click(function(){
 			$.ajax({

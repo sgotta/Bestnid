@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang = "es">
+<?php
 		<section class="col-md-12">
 			<form action="cambiarEstandar.php" enctype="multipart/form-data" role="form" id="formEst" method="post">
 				<section class="col-md-2"></section>
@@ -25,4 +24,4 @@
 		</section>
 					
 	
-</html>
+?>

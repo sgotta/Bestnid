@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang = "es">
-		<section class="col-md-12">
+<?php
+		echo'<section class="col-md-12">
 			<form action="categoriaEliminadaModal.php" enctype="multipart/form-data" role="form" id="formCategoriaMod" method="post">
 				<section class="col-md-2"></section>
 				<section class="col-md-8">
 					<h4>Eliminar categoria: </h4>
 					<select class="form-control col-md-4" name="categ" id="categ" required>
-									<option value="" disabled selected>Categorias</option>
-					<?php echo include("opcionesCategorias.php"); ?>
-					</select>
+									<option value="" disabled selected>Categorias</option>';
+					echo include("opcionesCategorias.php"); 
+					echo'</select>
 					<br><br>
     			    <div class="form-inline">
 						<div class="form-group">
@@ -22,6 +21,6 @@
 					</div>
 				</section>
 			</form>
-		</section>
+		</section>';
 					
-</html>
+?>

@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang = "es">
+<?php
 		<section class="col-md-12">
 			<form action="cambiarAdmin.php" enctype="multipart/form-data" role="form" id="formAdmin" method="post">
 				<section class="col-md-2"></section>
@@ -25,4 +24,4 @@
 		</section>
 				
 
-</html>
+?>
