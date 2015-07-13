@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
 	<link rel="stylesheet" href="css/estilosBestnid.css">
+	<link rel="stylesheet" href="css/datepicker.css">
+
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
@@ -64,10 +66,20 @@
 
 			<aside class="col-md-3 hidden-xs hidden-sm">
 				<h4>Categorias</h4>
-				<div class="list-group" id="divCategorias" style="min-height: 400px;">
+				<div class="list-group" id="divCategorias">
 					<a class="list-group-item" id="nuevaCategoria" href="#">Nueva categoria</a>
 					<a class="list-group-item" id="modificarCategoria" href="#">Modificar categoria</a>
 					<a class="list-group-item" id="eliminarCategoria" href="#">Eliminar categoria</a>					
+				</div>
+				<h4>Cambiar rol de usuario</h4>
+				<div class="list-group" id="divCategorias">
+					<a class="list-group-item" id="cambiaraAdministrador" href="#">Estandar a administrador</a>		
+					<a class="list-group-item" id="cambiaraEstandar" href="#">Administrador a estandar</a>		
+				</div>
+				<h4>Estadisticas</h4>
+				<div class="list-group" id="divCategorias" style="min-height: 100px;">
+					<a class="list-group-item" id="estadistica1" href="#">Subastas concretadas</a>		
+					<a class="list-group-item" id="estadistica2" href="#">Usuarios registrados</a>		
 				</div>
 				
 				
@@ -86,33 +98,14 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootbox.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+
+	
 	<script>
 		$( document ).ready(function() {
     		console.log( "Ready" );
 		});
-		/* eliminar categoria */
- 		/*$(document).on("click", ".label-danger", function(e) {
-        	bootbox.confirm("<h4><p class='text-danger'>Seguro desea eliminar la categoria?</p><h4>", function(result) {
-        		if (result==true) {
-        			console.log(result);
-        			$.ajax({
-						type: 'get',
-						url: 'eliminarCategoria.php',
-						data: result
-						}).done(function(respuesta){
-							bootbox.alert(respuesta, function() {
-							 console.log();
-							});
-						});                          
-					  }
-					
-        		else{
-        			console.log(result);
-        		};
-			});
-        });*/
-		 	
-
+		
 	/*----------------------------------------------*/
 		/*nueva categorias*/
 		$('#nuevaCategoria').click(function(){
@@ -134,10 +127,49 @@
 				console.log("ok");
 			});
 		});
+		/*eliminar categoria*/
 		$('#eliminarCategoria').click(function(){
 			$.ajax({
 				type: 'get',
 				url: 'eliminarCategoria.php'
+			}).done(function(respuesta){
+				$('#categ').html(respuesta);
+				console.log("ok");
+			});
+		});
+		/*cambiar rol*/
+		$('#cambiaraAdministrador').click(function(){
+			$.ajax({
+				type: 'get',
+				url: 'cambiaraAdministrador.php'
+			}).done(function(respuesta){
+				$('#categ').html(respuesta);
+				console.log("ok");
+			});
+		});
+		$('#cambiaraEstandar').click(function(){
+			$.ajax({
+				type: 'get',
+				url: 'cambiaraEstandar.php'
+			}).done(function(respuesta){
+				$('#categ').html(respuesta);
+				console.log("ok");
+			});
+		});
+		/*estadisticas*/
+		$('#estadistica1').click(function(){
+			$.ajax({
+				type: 'get',
+				url: 'estadistica1.php'
+			}).done(function(respuesta){
+				$('#categ').html(respuesta);
+				console.log("ok");
+			});
+		});
+		$('#estadistica2').click(function(){
+			$.ajax({
+				type: 'get',
+				url: 'estadistica2.php'
 			}).done(function(respuesta){
 				$('#categ').html(respuesta);
 				console.log("ok");

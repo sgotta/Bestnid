@@ -123,7 +123,6 @@
 		});
 	}
 	</script>
-	</script>
 	<!-- modal eliminar categoria -->
 	<div class="modal fade" id="modalEliminar">
 		<div class="modal-dialog">
