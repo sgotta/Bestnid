@@ -92,7 +92,8 @@
 		</div>
 	</section>
 	<footer id="foot">
-		<span id="contacto"> Contacto </span><br>
+		<a href="#contactar" id="contacto" data-toggle="modal">Contactar</a><br>
+		<!-- <span id="contacto"> Contacto </span><br> -->
 		<span class="glyphicon glyphicon-envelope" id="correo"></span>
 		<span> bestnid.administracion@bestnid.com.ar </span><br>
 		<span class="glyphicon glyphicon-earphone" id="correo"></span>
@@ -254,5 +255,32 @@
 		</div>							
 	</div>					
 	<!-- fin modal notificaciones-->
+	
+	<!-- modal contactar -->
+	<div class="modal fade" id="contactar">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">Contactar</h4>
+			    </div>
+			    <form action="javascript:$(function () { $('#contactar').modal('hide') }); $(function () { $('.campoContacto').val('') }); alert('Se ha enviado con exito');" class="navbar-form container" role="form" method="post">
+			    	<div class="modal-body">
+		        		<p>Complete el formulario para contactarnos!</p>
+		        		<input type="text" class="form-control campoContacto" placeholder="Nombre"  style="width: 49%;" name="nombre" maxlength="45" required autocomplete="on">
+		        		<input type="text" class="form-control campoContacto" placeholder="Apellido"  style="width: 50%;" name="apellido" maxlength="45" required autocomplete="on"><br><br>
+		        		<input type="email" id="inputMail" class="form-control campoContacto" style="width: 100%;" placeholder="E-mail" name="mail" maxlength="45" required autocomplete="on"><br><br>
+		        		<textarea class="form-control campoContacto" style="width: 100%;" rows="5" placeholder="Texto del mensaje" name="descripcion" id="descripcion" required maxlength="300"></textarea><br>
+				    </div>
+				    <div class="modal-footer">
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	    				<button type="submit" class="btn btn-primary">Enviar</button>
+				    </div>
+			    </form>
+		    </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- fin modal contactar -->
+
 </body>
 </html>

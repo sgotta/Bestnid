@@ -292,6 +292,14 @@ background-color: #8182b1;
 	margin-left: 60px;
 }
 
+#foot #contacto:link {
+    color: #B23B39;
+}
+
+#foot #contacto:hover {
+    color: #000000;
+}
+
 /*#correo {
 	margin: 10px;
 	padding: 10px;

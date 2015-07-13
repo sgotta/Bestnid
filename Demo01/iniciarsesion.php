@@ -111,6 +111,10 @@
 									</div>
 								</div>
 							</div>	
+							<br>
+							<div>
+								<a href="#recuperarClave" data-toggle="modal">Recuperar contraseña</a>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -118,7 +122,8 @@
 		</div>
 	</section>
 	<footer id="foot">
-		<span id="contacto"> Contacto </span><br>
+		<a href="#contactar" id="contacto" data-toggle="modal">Contactar</a><br>
+		<!-- <span id="contacto"> Contacto </span><br> -->
 		<span class="glyphicon glyphicon-envelope" id="correo"></span>
 		<span> bestnid.administracion@bestnid.com.ar </span><br>
 		<span class="glyphicon glyphicon-earphone" id="correo"></span>
@@ -127,5 +132,93 @@
 	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+	<script>
+		function recuperarClave(email) {
+			$.ajax({
+				type: 'GET',
+				url: 'recuperandoClave.php',
+				data: {
+					mail: email
+				}
+			}).done(function(ret){
+				console.log(ret);
+				if (ret != '') {
+					if (ret == 'recuperado') {
+						$('#spanMail').html('<p class="text-success campoClave">El email ingresado es correcto...</p>');
+					}					
+					else {
+						if (ret == 'nomail') {
+							$('#spanMail').html('<p class="text-danger campoClave">El email "'+email+'" no existe...</p>');
+							$('#divMail').html('<input type="email" id="inputMail" onchange="recuperarClave(this.value)" class="form-control" style="width: 100%;" placeholder="E-mail" name="mail" maxlength="45" required autocomplete="on">');
+							$("#inputMail").focus();
+						}
+						else {
+							//ESTE CASO NUNCA SE DARIA, SE CORROBORA QUE EL CAMPO NO ESTE VACIO CON HTML5
+							if (ret == 'vacio') {
+								$('#divMail').html('<input type="email" id="inputMail" onchange="recuperarClave(this.value)" class="form-control" style="width: 100%;" placeholder="E-mail" name="mail" maxlength="45" required autocomplete="on">');
+							}
+						}
+					}
+				}
+				else {
+					console.log("algo paso");
+				}
+			});
+		}
+	</script>
+	
+	<!-- modal recuperar clave -->
+	<div class="modal fade" id="recuperarClave">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">Recuperar contraseña</h4>
+			    </div>
+			    <form action="javascript:$(function () { $('#recuperarClave').modal('hide') }); $(function () { $('#inputMail').val('') }); $(function () { $('.campoClave').text('') }); alert('Se ha enviado la contraseña al email ingresado!');" class="navbar-form container" role="form" method="post">
+			    	<div class="modal-body">
+		        		<p>Ingrese su email para que le podamos enviar la contraseña...</p>
+		        		<span id="spanMail"></span>
+		        		<div id="divMail">
+		        			<input type="email" id="inputMail" onchange="recuperarClave(this.value)" class="form-control" style="width: 100%;" placeholder="E-mail" name="mail" maxlength="45" required autocomplete="on">
+				   		</div>
+				    </div>
+				    <div class="modal-footer">
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	    				<button type="submit" class="btn btn-primary">Recuperar</button>
+				    </div>
+			    </form>
+		    </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- fin modal recuperar clave -->
+
+	<!-- modal contactar -->
+	<div class="modal fade" id="contactar">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">Contactar</h4>
+			    </div>
+			    <form action="javascript:$(function () { $('#contactar').modal('hide') }); $(function () { $('.campoContacto').val('') }); alert('Se ha enviado con exito');" class="navbar-form container" role="form" method="post">
+			    	<div class="modal-body">
+		        		<p>Complete el formulario para contactarnos!</p>
+		        		<input type="text" class="form-control campoContacto" placeholder="Nombre"  style="width: 49%;" name="nombre" maxlength="45" required autocomplete="on">
+		        		<input type="text" class="form-control campoContacto" placeholder="Apellido"  style="width: 50%;" name="apellido" maxlength="45" required autocomplete="on"><br><br>
+		        		<input type="email" id="inputMail" class="form-control campoContacto" style="width: 100%;" placeholder="E-mail" name="mail" maxlength="45" required autocomplete="on"><br><br>
+		        		<textarea class="form-control campoContacto" style="width: 100%;" rows="5" placeholder="Texto del mensaje" name="descripcion" id="descripcion" required maxlength="300"></textarea><br>
+				    </div>
+				    <div class="modal-footer">
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	    				<button type="submit" class="btn btn-primary">Enviar</button>
+				    </div>
+			    </form>
+		    </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- fin modal contactar -->
+
 </body>
 </html>
