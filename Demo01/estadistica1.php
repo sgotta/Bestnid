@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "es">
 		<section class="col-md-12">
-			<form action="estSubastas.php" enctype="multipart/form-data" role="form" id="formAdmin" method="post">
+			<form action="javascript:mostrarEstadistica1(document.forms.formAdmin);" enctype="multipart/form-data" role="form" id="formAdmin" method="post">
 				<section class="col-md-2"></section>
 				<section class="col-md-8">
 					<h4>Elegir fecha de inicio: </h4>

@@ -110,7 +110,7 @@
 		});
 		
 	/*----------------------------------------------*/
-		function validarnombrecategoria(nombre){
+		function validarnombrecategoria(form){
 			$.ajax({
 				beforeSend: function(){
 					$('#comprobarnombre').html('<p class="text-info">Comprobando...</p>');
@@ -118,13 +118,22 @@
 				url: 'validarnombrecategoria.php', /*= action*/
 				type: 'get', /*= method*/
 				/*dataType: 'json',*/
-				data: 'nombre='+nombre.value /*parametros para url*/
+				data: 'nombre='+form.nombre.value /*parametros para url*/
 			})
 			.done(function(respuesta){ /*Si funcionó ajax*/
 				console.log("Success");
 				$('#comprobarnombre').html(respuesta);
 				if (respuesta === '<p class="text-success">"Nombre de categoria <strong>OK!</strong>"</p>') {
 					console.log("Nombre OK!");
+					$.ajax({
+					url: 'agregarCategoria.php',
+					type: 'get',
+					data: 'nombre='+form.nombre.value
+				}).done(function(respuesta){
+					$('#categ').html(respuesta);
+					console.log("ok");
+				});
+				
 				}else{
 					//mantengo el foco en username
 					if (nombre.value=='') {
@@ -133,7 +142,7 @@
 					}else{
 						console.log("Nombre en uso!")
 					};
-					$("#divnombre").html(' <input type="text" class="form-control" onchange="validarnombrecategoria(this);" id="nombre" name="nombre" placeholder="Nombre de su categoria" maxlength="45" required autocomplete="off">');
+					$("#divnombre").html(' <input type="text" class="form-control"  id="nombre" name="nombre" placeholder="Nombre de su categoria" maxlength="45" required autocomplete="off">');
 					
 					$("#nombre").focus();
 				}
@@ -148,7 +157,90 @@
 					$('.fa').hide();
 				}, 1000);*/
 			});
-		};
+		}
+		function validarnombrecategoriamodificada(form){
+			$.ajax({
+				beforeSend: function(){
+					$('#comprobarnombre').html('<p class="text-info">Comprobando...</p>');
+				},
+				url: 'validarnombrecategoria.php', /*= action*/
+				type: 'get', /*= method*/
+				/*dataType: 'json',*/
+				data: 'nombre='+form.nombre.value /*parametros para url*/
+			})
+			.done(function(respuesta){ /*Si funcionó ajax*/
+				console.log("Success");
+				$('#comprobarnombre').html(respuesta);
+				if (respuesta === '<p class="text-success">"Nombre de categoria <strong>OK!</strong>"</p>') {
+					console.log("Nombre OK!");
+					var datos = {
+						"categ":form.categ.value,
+						"nombre":form.nombre.value
+					};
+					$.ajax({
+						url: 'categoriaModificada.php',
+						type: 'post',
+						data: datos
+					}).done(function(respuesta){
+					$('#categ').html(respuesta);
+					console.log("ok");
+				});
+				
+				}else{
+					//mantengo el foco en username
+					if (nombre.value=='') {
+						$('#comprobarnombre').html('<p class="text-info">"Nombre de la categoria no puede estar vacio"</p>');
+						console.log("Campo vacio")
+					}else{
+						console.log("Nombre en uso!")
+					};
+					$("#divnombre").html(' <input type="text" class="form-control"  id="nombre" name="nombre" placeholder="Nombre de su categoria" maxlength="45" required autocomplete="off">');
+					
+					$("#nombre").focus();
+				}
+			})
+			.fail(function(){ /*esto es si falla el llamado de ajax*/
+				console.log("Error");
+				$('#comprobarnombre').html("Error Ajax.");
+			})
+			.always(function(){
+				console.log("Complete");
+				/*setTimeout(function(){
+					$('.fa').hide();
+				}, 1000);*/
+			});
+		}
+
+		/* estadistica 1*/
+		function mostrarEstadistica1(form){
+			var datos = {
+				"inicio":form.inicio.value,
+				"fin":form.fin.value
+			};
+			$.ajax({
+				url: 'estSubastas.php',
+				type: 'post',
+				data: datos
+				}).done(function(respuesta){
+					$('#categ').html(respuesta);
+					console.log("ok");
+				});				
+		}
+		/* estadistica 2*/
+		function mostrarEstadistica2(form){
+			var datos = {
+				"inicio":form.inicio.value,
+				"fin":form.fin.value
+			};
+			$.ajax({
+				url: 'estUsuarios.php',
+				type: 'post',
+				data: datos
+				}).done(function(respuesta){
+					$('#categ').html(respuesta);
+					console.log("ok");
+				});				
+		}
 
 		/*nueva categorias*/
 		$('#nuevaCategoria').click(function(){
@@ -199,7 +291,7 @@
 				console.log("ok");
 			});
 		});
-		/*estadisticas*/
+		/*estadistica 1*/
 		$('#estadistica1').click(function(){
 			$.ajax({
 				type: 'get',
@@ -209,6 +301,8 @@
 				console.log("ok");
 			});
 		});
+
+		/*estaditica 2 */
 		$('#estadistica2').click(function(){
 			$.ajax({
 				type: 'get',

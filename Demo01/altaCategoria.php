@@ -1,11 +1,11 @@
 <?php
 		echo'<section class="col-md-12">
-			<form action="agregarCategoria.php" enctype="multipart/form-data" role="form" id="formCategoria" method="post">
+			<form action="javascript:validarnombrecategoria(document.forms.formCategoria);" enctype="multipart/form-data" role="form" id="formCategoria" method="post">
 				<section class="col-md-2"></section>
 				<section class="col-md-8">
 					<h4>Nueva categoria:</h4>
 				    <div class="form-group" id="divnombre">
-					    <input type="text" class="form-control" onchange="validarnombrecategoria(this);" id="nombre" name="nombre" placeholder="Nombre de su categoria" maxlength="45" required autocomplete="off">
+					    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de su categoria" maxlength="45" required autocomplete="off">
 				    </div>
 				    <span id="comprobarnombre"></span>
     			    <div class="form-inline" >

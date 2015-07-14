@@ -1,6 +1,6 @@
 <?php
 		echo'<section class="col-md-12">
-			<form action="categoriaModificada.php" enctype="multipart/form-data" role="form" id="formCategoriaMod" method="post">
+			<form action="javascript:validarnombrecategoriamodificada(document.forms.formCategoriaMod);" enctype="multipart/form-data" role="form" id="formCategoriaMod" method="post">
 				<section class="col-md-2"></section>
 				<section class="col-md-8">
 					<h4>Seleccionar categoria: </h4>
@@ -10,7 +10,7 @@
 					echo' </select>
 					<br><br><h4>Nuevo nombre: </h4>
 				    <div class="form-group" id="divnombre">
-					    <input type="text" class="form-control" onkeyup="validarnombrecategoria(this);" id="nombre" name="nombre" placeholder="Nombre de su categoria" required maxlength="45">
+					    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de su categoria" required maxlength="45">
 				    </div>
 				     <span id="comprobarnombre"></span>
     			    <div class="form-inline">

@@ -1,13 +1,13 @@
 <?php
-		<section class="col-md-12">
+		echo'<section class="col-md-12">
 			<form action="cambiarEstandar.php" enctype="multipart/form-data" role="form" id="formEst" method="post">
 				<section class="col-md-2"></section>
 				<section class="col-md-8">
 					<h4>Cambiar a estandar: </h4>
 					<select class="form-control col-md-4" name="usuario" id="usuario" required>
-									<option value="" disabled selected>Usuarios</option>
-					<?php echo include("opcionesUsuariosAdministrador.php"); ?>
-					</select>
+									<option value="" disabled selected>Usuarios</option>';
+					echo include("opcionesUsuariosAdministrador.php");
+					echo'</select>
 					<br><br>
     			    <div class="form-inline">
 						<div class="form-group">
@@ -21,7 +21,7 @@
 					</div>
 				</section>
 			</form>
-		</section>
+		</section>';
 					
 	
 ?>

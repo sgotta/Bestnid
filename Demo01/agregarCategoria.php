@@ -2,7 +2,7 @@
 	include("conexion.php");
 
 
-	$nombre= $_POST['nombre'];
+	$nombre= $_REQUEST['nombre'];
 	
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
@@ -17,9 +17,7 @@
 								VALUES ('$nombre')",$con);
 	}
 	
-	if (!$resultado) { //si hay error
-		die('Error en base de datos: ' . mysql_error()); /*mostrar error de mysql*/
-	}else{
-		header("Location: paneldecontrol.php");
-	}
+	include('altaCategoria.php'); 
+	echo '<script type="text/javascript">', 'alert("Su categoria ha sido agregada"); document.location = paneldecontrol.php;', '</script>';
+
 ?>
