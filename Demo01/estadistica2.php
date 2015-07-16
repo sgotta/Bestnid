@@ -6,12 +6,12 @@
 				<section class="col-md-8">
 					<h4>Elegir fecha de inicio: </h4>
 					<div class="input-append date" id="dp3" data-date-format="yyyy/mm/dd">
- 						<input class="datepicker" size="16" type="text" name="inicio" value="dd-mm-yyyy" >
+ 						<input class="datepicker" size="16" type="text" name="inicio" value="mm-dd-yyyy" >
 						<span class="add-on"><i class="icon-th"></i></span>
 					</div>
 					<h4>Elegir fecha de fin: </h4>
 					<div class="input-append date" id="dp3"  data-date-format="yyyy-mm-dd">
- 						<input class="datepicker" size="16" type="text" name="fin" value="dd-mm-yyyy">
+ 						<input class="datepicker" size="16" type="text" name="fin" value="mm-dd-yyyy">
 						<span class="add-on"><i class="icon-th"></i></span>
 					</div>
 					<br><br>

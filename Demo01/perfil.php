@@ -38,7 +38,8 @@
 					<!-- </form> -->
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
-					<a href="#notif" class="glyphicon glyphicon-bullhorn" data-toggle="modal"  id="inicio"></a>
+					<!-- <a href="#notif" class="glyphicon glyphicon-bullhorn" data-toggle="modal"  id="inicio"></a> -->
+					<?php  include ("notificacion.php"); ?>
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					

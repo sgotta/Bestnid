@@ -39,7 +39,7 @@
 					<!-- </form> -->
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
-					<?php include ("notificacion.php"); ?>
+					<?php include ("notificacion.php"); ?> <!--pone el badge si hay nuevas -->
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					

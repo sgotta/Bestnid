@@ -75,7 +75,7 @@
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
   background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
   background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #FF5050, #FF5060);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
   border-color: #0044cc #0044cc #002a80;
@@ -166,6 +166,7 @@
 .datepicker th.next,
 .datepicker th.prev {
   font-size: 21px;
+  color: #FF5050;
 }
 .datepicker thead tr:first-child th {
   cursor: pointer;

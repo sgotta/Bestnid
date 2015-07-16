@@ -5,8 +5,8 @@
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
 	
-	$resultado = mysql_query("INSERT INTO usuario (nombre_usuario,nombre,apellido,password,mail,tel,calle,nro,ciudad,provincia,pais,depto,piso) 
-	VALUES ('$_POST[username]','$_POST[nombre]','$_POST[apellido]','$_POST[password]','$_POST[mail]','$_POST[telefono]','$_POST[calle]','$_POST[numero]','$_POST[ciudad]','$_POST[provincia]','$_POST[pais]','$_POST[depto]','$_POST[piso]')",$con);
+	$resultado = mysql_query("INSERT INTO usuario (nombre_usuario,nombre,apellido,password,mail,tel,calle,nro,ciudad,provincia,pais,depto,piso,fecha_registro) 
+	VALUES ('$_POST[username]','$_POST[nombre]','$_POST[apellido]','$_POST[password]','$_POST[mail]','$_POST[telefono]','$_POST[calle]','$_POST[numero]','$_POST[ciudad]','$_POST[provincia]','$_POST[pais]','$_POST[depto]','$_POST[piso]', CURRENT_DATE())",$con);
 	
 	if (!$resultado) { //a este caso se llega si se modifica el nombre de usuario con todos los campos completos y se hace submit.
 		
