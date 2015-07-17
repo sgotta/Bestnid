@@ -39,8 +39,9 @@
 						</div>
 					</form>
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
-					<a href="#" class="glyphicon glyphicon-bullhorn" id="inicio"></a>
-					
+					<div id="divNotificacion">
+					<?php include ("notificacion.php"); ?> <!--pone el badge si hay nuevas -->
+					</div>
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					
@@ -49,7 +50,8 @@
 								Categorias <span class="caret"></span>
 							</a> -->
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Perfil</a></li>
+								<li><a href="perfil.php">Perfil</a></li>
+								<?php include("esAdministrador.php"); ?>
 								<li><a href="cerrarsesion.php">Cerrar sesion</a></li>
 							</ul>
 						</li>
@@ -144,6 +146,24 @@
 	    });
 	</script>
 	<script>
+
+		function cambiarALeida(){
+			$.ajax({
+				type: 'get',
+				url: 'cambiaALeida.php'
+			}).done(function(){
+				$('#notif').modal('show');
+				$.ajax({
+					type: 'get',
+					url: 'notificacion.php'
+				}).done(function(respuesta){
+					console.log(respuesta);
+					$('#divNotificacion').html(respuesta);	
+				});
+						
+			});
+		};
+		
 		function validarsize(foto) {                              //MUESTRO/ACTUALIZO LAS OFERTAS
 			$.ajax({
 				beforeSend: function(){
@@ -188,6 +208,26 @@
 		}
 	</script>
 	
+	<!-- modal notificaciones-->
+	<div class="modal fade" id="notif">
+		<div class="modal-dialog" id="modal-dialogo">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="notiftitulo">Notificaciones</h4>
+				</div>
+				<div class="modal-body" id="notifcuerpo">
+					<?php include("leernotificaciones.php"); ?>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<!--<input type="button" class="btn btn-primary" value="Ver todas" onclick="mostrarnotificaciones('1')"/>-->
+				</div>
+			</div>
+		</div>							
+	</div>					
+	<!-- fin modal notificaciones-->
+
 	<!-- modal contactar -->
 	<div class="modal fade" id="contactar">
 		<div class="modal-dialog">

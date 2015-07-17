@@ -11,7 +11,7 @@
 
 	//CONSULTA DE OFERTAS
 	$o=mysql_query("SELECT * FROM oferta WHERE Publicacion_idPublicacion = '$_GET[subID]'") or die ("problemas en consulta:".mysql_error());
-	//$numPub = mysql_num_rows($c); 
+	$numOfertas = mysql_num_rows($o); 
 
 
 	//CONSULTA SOBRE PUBLICACION PARA MOSTRAR OPCION RESPONDER AL DUEÑO DE LA SUBASTA
@@ -28,31 +28,38 @@
 				//LA SUBASTA NO FINALIZO, AL DUEÑO NO LE MUESTRO LAS OFERTAS QUE HAY
 				$ofer = $ofer.'<br><span>***La subasta no ha finalizado***</span><br><br>';
 			}
+			//FINALIZO SUBASTA, MUESTRO OFERTAS
 			else {
 				$eligioGanador =  mysql_num_rows(mysql_query("SELECT * FROM oferta WHERE Publicacion_idPublicacion = '$_GET[subID]' AND ganador = 1"));
 				//SI NO ELIGIO UNA OFERTA GANADORA SE MUESTRA FORMULARIO PARA ELEGIR
 				if ($eligioGanador == 0) {
-					//FINALIZO SUBASTA, MUESTRO OFERTAS
-					$ofer = '<form action="registrarganador.php?subID='.$_GET['subID'].'" role="form" id="reg-ganador-form" method="post">
-								<ul class="list-group">';
-					$contador=1;
-					while ($reg=mysql_fetch_array($o)){
-						$ofer = $ofer.'<div class="radio">
-	        								<input type="radio" name="optionsRadios" id="optionsRadios'.$contador.'" value="'.$reg['idOferta'].'">
-	        								"Elegir como motivo ganador":
-	        								<li class="list-group-item">'.$reg['motivo'].'</li>
-	    								</div>';
-	    				$contador= $contador+1;
-					}
-					$ofer = $ofer.'</ul>
-								<div class="form-inline pull-right" style="margin-bottom:20px;">
-								<div class="form-group">
-									<div class="input-group">
-										<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrar Ganador"/>
+					//SI HAY AL MENOS UNA OFERTA MUESTRO OPCION PARA ELEGIR GANADOR
+					if ($numOfertas > 0) {
+						$ofer = '<form action="registrarganador.php?subID='.$_GET['subID'].'" role="form" id="reg-ganador-form" method="post">
+									<ul class="list-group">';
+						$contador=1;
+						while ($reg=mysql_fetch_array($o)){
+							$ofer = $ofer.'<div class="radio">
+		        								<input type="radio" name="optionsRadios" id="optionsRadios'.$contador.'" value="'.$reg['idOferta'].'">
+		        								"Elegir como motivo ganador":
+		        								<li class="list-group-item">'.$reg['motivo'].'</li>
+		    								</div>';
+		    				$contador= $contador+1;
+						}
+						$ofer = $ofer.'</ul>
+									<div class="form-inline pull-right" style="margin-bottom:20px;">
+									<div class="form-group">
+										<div class="input-group">
+											<input type="submit" class="btn btn-primary" id="btn-registro" value="Registrar Ganador"/>
+										</div>
 									</div>
-								</div>
-							  </div><br>
-							</form>';
+								  </div><br>
+								</form>';
+					}
+					//LA SUBASTA NO RECIBIO OFERTAS
+					else {
+						$ofer = $ofer.'<br><span>***La subasta ha finalizado, pero no ha recibido ofertas***</span><br><br>';
+					}
 				}
 				//SI YA ELIGIO MUESTRO LAS SUBASTAS, RESALTANDO LA ELEGIDA PREVIAMENTE
 				else {

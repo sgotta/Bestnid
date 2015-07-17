@@ -29,7 +29,9 @@
 				<div class="collapse navbar-collapse pull-right" id="navegacion-fm">
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
-					<?php include ("notificacion.php"); ?>
+					<div id="divNotificacion">
+					<?php include ("notificacion.php"); ?> <!--pone el badge si hay nuevas -->
+					</div>
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 							<a href="#" id="nombreusuario" class="dropdown-toggle" data-toggle="dropdown" role="button"><?php echo $_SESSION['username']." "; ?><span class="glyphicon glyphicon-user"></span></a>
@@ -95,6 +97,23 @@
 		});
 		
 	<!--      -->
+	function cambiarALeida(){
+		$.ajax({
+			type: 'get',
+			url: 'cambiaALeida.php'
+		}).done(function(){
+			$('#notif').modal('show');
+			$.ajax({
+				type: 'get',
+				url: 'notificacion.php'
+			}).done(function(respuesta){
+				console.log(respuesta);
+				$('#divNotificacion').html(respuesta);	
+			});
+					
+		});
+	};
+		
 	function categoriaEliminada() {                              
 		$.ajax({
 			type: 'GET',

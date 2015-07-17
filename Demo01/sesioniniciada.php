@@ -39,7 +39,9 @@
 					<!-- </form> -->
 					<a href="#" class="glyphicon glyphicon-question-sign btn-lg" id="ayuda"></a>
 					<a href="registrosubasta.php" class="" id="inicio">Subastar</a>
+					<div id="divNotificacion">
 					<?php include ("notificacion.php"); ?> <!--pone el badge si hay nuevas -->
+					</div>
 					<span class="dropdown">
 						<li class="dropdown dropdown-user pull-right nav navbar-nav">
 					
@@ -112,9 +114,16 @@
 			$.ajax({
 				type: 'get',
 				url: 'cambiaALeida.php'
-			}).done(function(respuesta){
-				$('#notif').modal({
-				});				
+			}).done(function(){
+				$('#notif').modal('show');
+				$.ajax({
+					type: 'get',
+					url: 'notificacion.php'
+				}).done(function(respuesta){
+					console.log(respuesta);
+					$('#divNotificacion').html(respuesta);	
+				});
+						
 			});
 		};
 

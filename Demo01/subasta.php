@@ -94,9 +94,16 @@
 			$.ajax({
 				type: 'get',
 				url: 'cambiaALeida.php'
-			}).done(function(respuesta){
-				$('#notif').modal({
-				});				
+			}).done(function(){
+				$('#notif').modal('show');
+				$.ajax({
+					type: 'get',
+					url: 'notificacion.php'
+				}).done(function(respuesta){
+					console.log(respuesta);
+					$('#divNotificacion').html(respuesta);	
+				});
+						
 			});
 		};
 

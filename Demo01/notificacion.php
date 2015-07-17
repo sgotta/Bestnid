@@ -1,4 +1,7 @@
 <?php 
+	if (session_status() != PHP_SESSION_ACTIVE){
+		session_start();
+	}
 	if (isset($_SESSION['username']) && !empty($_SESSION['username'])){
 		include("conexion.php");
 		$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
