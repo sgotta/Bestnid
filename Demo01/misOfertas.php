@@ -4,7 +4,6 @@
 	}
 	
 	include("conexion.php");
-
 	$con=mysql_connect($host,$user,$pw) or die ("problemas al conectar");
 	mysql_select_db($db,$con) or die ("problemas al conectarDB");
 
@@ -15,7 +14,11 @@
 								WHERE Usuario_nombre_usuario='$user'",$con);
 
 	$fecha_actual= date("Y-m-d"); //fecha actual con formato yyyy-mm-dd
-	
+
+	$realizarPago = false; //PARA VER SI MUESTRO UN HREF QUE ABARQUE TODA LA OFERTA, 
+						  //O UN DIV PARA QUE CADA LABEL TENGA UN HREF DISTINTO,
+						  //MALISIMA LA SOLUCION, PERO ENTREGAMOS MAÑANA..
+
 	echo '<h4>Mis Ofertas: </h4>';
 
 	if (mysql_num_rows($resultado)>0){ //significa que el usuario realizó oferta/s
@@ -38,7 +41,9 @@
 							$label='<span class="label label-success">Finalizada</span>';
 							$fecha_pago=$subasta['fecha_pago']; //no lo uso
 						}else{
-							$label='<span class="label label-success">Ganador</span>&nbsp<span class="label label-warning">Realizar el pago</span>';
+							$label='<a href="subasta.php?subID='.$oferta['Publicacion_idPublicacion'].'" class="label label-success">Ganador</a>&nbsp;<a href="#realizarPago" data-idSub="'.$oferta['Publicacion_idPublicacion'].'" data-toggle="modal" class="label label-warning">Realizar el pago</a>';
+							//$label='<span class="label label-success">Ganador</span>&nbsp<span class="label label-warning">Realizar el pago</span>';
+							$realizarPago = true;
 						}
 					}	
 				}else{
@@ -47,12 +52,23 @@
 			}else{
 				$label='<span class="label label-primary">Activa</span>';
 			}
-			echo   '<div class="list-group" style="border: solid 1px #D6D6D6;">
+			if ($realizarPago == true) {
+				echo   '<div class="list-group" style="border: solid 1px #D6D6D6;">
+						  <div class="list-group-item">
+						    <h4 class="list-group-item-heading">'.$subasta['titulo'].'&nbsp;&nbsp;'.$label.'</h4>
+						    <p class="list-group-item-text">'.$oferta['motivo'].'</p>
+						  </div>
+						</div>';
+				$realizarPago = false;
+			}
+			else {
+				echo   '<div class="list-group" style="border: solid 1px #D6D6D6;">
 						  <a href="subasta.php?subID='.$oferta['Publicacion_idPublicacion'].'" class="list-group-item">
 						    <h4 class="list-group-item-heading">'.$subasta['titulo'].'&nbsp;&nbsp;'.$label.'</h4>
 						    <p class="list-group-item-text">'.$oferta['motivo'].'</p>
 						  </a>
 						</div>';
+			}
 		}
 	}else{
 		echo '<div class="alert alert-warning" role="alert">"Usted no ha ofertado en ninguna subasta."</div>';

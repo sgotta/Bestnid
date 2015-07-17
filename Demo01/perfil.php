@@ -107,6 +107,17 @@
 	<script>
 		$( document ).ready(function() {
     		console.log( "Ready" );
+    		//HAGO "CLICK" SOBRE "MIS OFERTAS" SI VENGO DE REALIZAR UN PAGO
+    		var ofertas = <?php if(isset($_GET['ofertas']) && !empty($_GET['ofertas'])){
+    								echo $_GET['ofertas'];
+								} 
+								else {
+									echo 0;
+								}
+								?>;
+    		if ( 1 == ofertas){
+    			$('#misOfertas').click();
+    		}
 		});
 
         $(document).on("click", ".alerta", function(e) {
@@ -234,6 +245,55 @@
 				});
 			};
 		}
+
+		function validarFecha(fecha) {       
+			$.ajax({
+				url: 'validarFecha.php', /*= action*/
+				type: 'get', /*= method*/
+				data: { /*parametros para url*/
+					fecha: fecha
+				}
+				
+			})
+			.done(function(respuesta){ /*Si funcionó ajax*/
+				console.log(respuesta);
+				if (respuesta == 'vigente') {
+					console.log("fecha ok");
+					$('#spanFecha').html('<p class="text-success">"La tarjeta esta vigente."</p>');
+					$("#divBotones").html('<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Pagar</button>');
+				}
+				else {
+					console.log("fecha invalida");
+					$('#spanFecha').html('<p class="text-danger">"La tarjeta esta vencida."</p>');
+					//$("#divFechaVenc").html('<input type="month" onchange="validarFecha(this.value)" class="form-control campoRealizarPago" style="width: 50%;" placeholder="Fecha de vencimiento" name="fechaVencimiento" required autocomplete="off">&nbsp;&nbsp;<span>Fecha de vencimiento</span><br><br>');
+					$("#divBotones").html('<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary" disabled="true" style="background: #FFFFFF;">Pagar</button>');
+
+					$("#fechaVenc").focus();
+					//divBotonPagar
+					//disabled="true" style="background: #FFFFFF;"
+				}
+			});
+		}
+
+		function realizarPago(data) {
+			$.ajax({
+				url: 'realizarPago.php', /*= action*/
+				type: 'get', /*= method*/
+				data: { /*parametros para url*/
+					idSub: data
+				}
+			}).done(function(respuesta){
+				if (respuesta == 'ok') {
+					$('#realizarPago').modal('hide'); 
+					$('.campoRealizarPago').val(''); 
+					$('#spanFecha').html('');
+					alert('Se ha enviado con exito');
+					window.location.href='perfil.php?ofertas=1';
+				}
+			});
+			//<span class="label label-info">Info</span>
+			
+		}
 		
 	</script>
 
@@ -282,6 +342,42 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	<!-- fin modal contactar -->
+
+	<!-- modal realizar pago -->
+	<div class="modal fade" id="realizarPago">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">Realizar Pago</h4>
+			    </div>
+			    <form action="javascript: realizarPago($('#realizarPago').data('idSubasta'))" class="navbar-form container" role="form" method="post">
+			    	<div class="modal-body">
+		        		<p>Complete el formulario con los datos de su tarjeta: </p><br>
+		        		<input type="text" class="form-control campoRealizarPago" placeholder="Numero de tarjeta"  style="width: 50%;" step="1" name="numeroTarjeta" pattern="[0-9]{23}" required autocomplete="off">&nbsp;&nbsp;<span>23 digitos, sin guiones ni espacios</span><br><br>
+		        		<input type="text" class="form-control campoRealizarPago" placeholder="Codigo de seguridad"  style="width: 50%;" step="1" name="codigoSeguridad" pattern="[0-9]{3}" required autocomplete="off">&nbsp;&nbsp;<span>3 digitos, sin guiones ni espacios</span><br><br>
+		        		<span id="spanFecha"></span>
+		        		<input type="month" id="fechaVenc" onchange="validarFecha(this.value)" class="form-control campoRealizarPago" style="width: 50%;" placeholder="Fecha de vencimiento" name="fechaVencimiento" required autocomplete="off">&nbsp;&nbsp;<span>Fecha de vencimiento</span><br><br>
+				    </div>
+				    <div class="modal-footer" id="divBotones">
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	    				<button type="submit" class="btn btn-primary">Pagar</button>
+				    </div>
+				    <!-- Nro de tarj (23 dígitos), cod. de seg (3 dígitos) y fecha de venc (que esté vigente la tarjeta), if ok, se muestra un mensaje. -->
+			    </form>
+		    </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- fin modal realizar pago -->
+
+	<!-- SCRIPT PARA AGARRAR EL ID DE LA SUBASTA CORRESPONDIENTE, TIENE QUE ESTAR ABAJO DEL MODAL REALIZAR PAGO -->
+	<script>
+		$('#realizarPago').on('show.bs.modal', function(e) {
+		  var idSUB = e.relatedTarget.dataset.idsub;
+		  console.log(idSUB);
+		  $('#realizarPago').data("idSubasta",idSUB);
+		});
+	</script>;
 
 </body>
 </html>

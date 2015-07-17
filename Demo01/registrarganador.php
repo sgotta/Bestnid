@@ -33,7 +33,7 @@
 	//GANADOR
 	$msjGanador= 'Felicidades! Usted es el ganador de la subasta: "'.$tituloSubasta.'". En breve le informaremos como realizar el pago.';
 	//AGREGO LA NOTIFICACION A LA BASE 
-	mysql_query("INSERT INTO notificacion (descripcion,leida) VALUES ('$msjGanador','0')",$con);
+	mysql_query("INSERT INTO notificacion (descripcion,leida,id_publicacion) VALUES ('$msjGanador','0','$_GET[subID]')",$con);
 	$idNotif = mysql_insert_id();
 	//AHORA RELACIONO LA NOTIFICACION CON EL USUARIO
 	mysql_query("INSERT INTO usuario_notificacion (Notificacion_numero_identificacion,Usuario_nombre_usuario) 
