@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
 	<link rel="stylesheet" href="css/estilosBestnid.css">
-	<link rel="stylesheet" href="css/datepicker.css">
 
 	<link rel="shortcut icon" href="favicon.jpg" type="image/jpeg"/>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -100,17 +99,13 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootbox.min.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-
-
-	
 	<script>
 		$( document ).ready(function() {
     		console.log( "Ready" );
-    		
-		});
+    	});
 		
 	/*----------------------------------------------*/
+
 		function validarnombrecategoria(form){
 			$.ajax({
 				beforeSend: function(){

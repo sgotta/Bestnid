@@ -84,7 +84,7 @@
 				<br>
 				<h4>Eliminar cuenta</h4>
 				<div class="list-group" id="divCategorias">
-					<a class="list-group-item alert" id="eliminarCuenta" href="#" style="background-color: ; color: red;">
+					<a class="list-group-item alert alerta" id="eliminarCuenta" href="#" style="background-color: ; color: red;">
 					<span class="glyphicon glyphicon-alert" style="color: red;" aria-hidden="true"></span>&nbsp;&nbsp;
 					Eliminar mi cuenta</a>
 				</div>
@@ -109,7 +109,7 @@
     		console.log( "Ready" );
 		});
 
-        $(document).on("click", ".alert", function(e) {
+        $(document).on("click", ".alerta", function(e) {
         	bootbox.confirm("<h4><p class='text-danger'>Seguro desea <strong>eliminar</strong> su cuenta de Bestnid?!</p><h4>", function(result) {
         		if (result==true) {
         			console.log(result);
