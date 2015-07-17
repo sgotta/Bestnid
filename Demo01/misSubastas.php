@@ -35,7 +35,15 @@
 						$label='<span class="label label-warning">Pago pendiente</span>';
 					}
 				}else{
-					$label='<span class="label label-danger">Seleccionar ganador</span>';
+					$ofertas = mysql_query("SELECT *
+									FROM oferta
+									WHERE Publicacion_idPublicacion='$publicacion[idPublicacion]'",$con);
+					if (mysql_num_rows($ofertas)>0) {
+						$label='<span class="label label-danger">Seleccionar Ganador</span>';
+					}else{
+						$label='<span class="label label-default">Vencida (sin ofertas)</span>';
+					}
+					
 				}
 			}else{
 				$label='<span class="label label-primary">Activa</span>';
