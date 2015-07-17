@@ -68,6 +68,14 @@ background-color: #8182b1;
 #inicio-badge{
 background-color: #8182b1;	
 }
+#inicio-camp{
+	margin: 15px;
+	padding-right: 15px;
+	float: right;
+	/*color: #8182b1;*/
+	color:#D8D5D5;
+	border-right: 1px solid #B23B39;	
+}
 #labelEliminar{
 	float: right;
 	margin-right: 10px; 

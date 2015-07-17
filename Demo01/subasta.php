@@ -90,6 +90,16 @@
 	<script src="ion.rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
 
 	<script>
+		function cambiarALeida(){
+			$.ajax({
+				type: 'get',
+				url: 'cambiaALeida.php'
+			}).done(function(respuesta){
+				$('#notif').modal({
+				});				
+			});
+		};
+
 		function comentarios() {                              //MUESTRO/ACTUALIZO LOS COMENTARIOS
 			$.ajax({
 				type: 'GET',

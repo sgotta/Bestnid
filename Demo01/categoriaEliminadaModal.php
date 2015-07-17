@@ -110,7 +110,7 @@
 				if (categoria == 'Eliminada') {
 					alert("Categoria eliminada, redireccionando a su panel de control...");
 					window.location="paneldecontrol.php";
-					console.log("Eliminado");
+					console.log("Eliminada");
 				}					
 				else {
 					alert("La categoria tiene publicaciones activas, no se puede eliminar por el momento pero queda desactiva para proximas publicaciones...");

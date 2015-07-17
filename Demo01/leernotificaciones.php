@@ -23,11 +23,7 @@
 				}else{
 					
 					echo '<div id="notifnueva"><a href="subasta.php?subID='.$reg['id_publicacion'].'" id="textonotif">'.$reg['descripcion'].'<br>'.'</a></div>';
-				
-					mysql_query(" UPDATE notificacion
-					SET leida='1'
-					WHERE notificacion.idNotificacion=$reg[idNotificacion]
-					") or die ("problemas en consulta:".mysql_error());    
+				  
 				}
 			} //echo $notificaciones;
 		}

@@ -105,7 +105,15 @@
     	});
 		
 	/*----------------------------------------------*/
-
+		function cambiarALeida(){
+			$.ajax({
+				type: 'get',
+				url: 'cambiaALeida.php'
+			}).done(function(respuesta){
+				$('#notif').modal({
+				});				
+			});
+		};
 		function validarnombrecategoria(form){
 			$.ajax({
 				beforeSend: function(){

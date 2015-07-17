@@ -14,7 +14,7 @@
 		if ($cant == 0){
 			 echo '<a href="#notif" class="glyphicon glyphicon-bullhorn" data-toggle="modal" id="inicio"></a>';
 			} else {
-				echo '<a href="#notif" class="glyphicon glyphicon-bullhorn" data-toggle="modal" id="inicio"><span class="badge" id="badge-notif">'.$cant.'</span></a>';
+			echo '<a href="javascript:cambiarALeida();" class="glyphicon glyphicon-bullhorn" id="inicio-camp"><span class="badge" id="badge-notif">'.$cant.'</span></a>';
 		} 
 	}
 ?>

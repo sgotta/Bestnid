@@ -108,6 +108,16 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
+		function cambiarALeida(){
+			$.ajax({
+				type: 'get',
+				url: 'cambiaALeida.php'
+			}).done(function(respuesta){
+				$('#notif').modal({
+				});				
+			});
+		};
+
 		function mostrarSubastas(busqueda) {                              //ACTUALIZO LAS SUBASTAS SEGUN LA BUSQUEDA
 			$.ajax({
 				type: 'GET',

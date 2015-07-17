@@ -119,7 +119,16 @@
     			$('#misOfertas').click();
     		}
 		});
-
+		function cambiarALeida(){
+			$.ajax({
+				type: 'get',
+				url: 'cambiaALeida.php'
+			}).done(function(respuesta){
+				$('#notif').modal({
+				});				
+			});
+		};
+		
         $(document).on("click", ".alerta", function(e) {
         	bootbox.confirm("<h4><p class='text-danger'>Seguro desea <strong>eliminar</strong> su cuenta de Bestnid?!</p><h4>", function(result) {
         		if (result==true) {
