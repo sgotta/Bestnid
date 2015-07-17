@@ -14,7 +14,7 @@
 	$contador = mysql_query("SELECT *
 							FROM publicacion
 							WHERE Categoria_idCategoria='$id'
-							AND finalizado=0",$con);
+							AND fecha_fin>CURRENT_DATE()",$con);
 	$contador= mysql_num_rows($contador);
 
 
